@@ -5,7 +5,6 @@ import '../screens/profile.dart';
 import '../screens/track.dart';
 import '../screens/courses.dart';
 
-
 class NavFooter extends StatelessWidget {
   const NavFooter({super.key});
 
@@ -16,8 +15,7 @@ class NavFooter extends StatelessWidget {
         color: Colors.white70,
         border: Border(
           top: BorderSide(
-            color: Color.fromRGBO(
-                232, 235, 242, 0.867), // Border color
+            color: Color.fromRGBO(232, 235, 242, 0.867), // Border color
             width: 1.5, // Border width
           ),
         ),
@@ -32,10 +30,9 @@ class NavFooter extends StatelessWidget {
                 icon: const FaIcon(FontAwesomeIcons.house),
                 color: const Color.fromRGBO(13, 18, 28, 0.867),
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const ProfilePage()),
-                  );
+                  if (ModalRoute.of(context)?.settings.name != '/profile') {
+                    Navigator.pushNamed(context, '/profile');
+                  }
                 },
               ),
               const Text(
@@ -54,10 +51,9 @@ class NavFooter extends StatelessWidget {
                 icon: const FaIcon(FontAwesomeIcons.users),
                 color: const Color.fromRGBO(13, 18, 28, 0.867),
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const TrackPage()),
-                  );                        
+                  if (ModalRoute.of(context)?.settings.name != '/track') {
+                    Navigator.pushNamed(context, '/track');
+                  }
                 },
               ),
               const Text(
@@ -76,10 +72,9 @@ class NavFooter extends StatelessWidget {
                 icon: const FaIcon(FontAwesomeIcons.bookOpen),
                 color: const Color.fromRGBO(13, 18, 28, 0.867),
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const CoursesPage()),
-                  );
+                  if (ModalRoute.of(context)?.settings.name != '/courses') {
+                    Navigator.pushNamed(context, '/courses');
+                  }
                 },
               ),
               const Text(
