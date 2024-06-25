@@ -5,6 +5,9 @@ import 'firebase_options.dart';
 import 'screens/home.dart';
 import 'screens/login.dart';
 import 'screens/game_screen.dart';
+import 'screens/profile.dart';
+import 'screens/track.dart';
+import 'screens/courses.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,6 +30,9 @@ class MyApp extends StatelessWidget {
         "/": (context) => const HomePage(),
         "/login": (context) => const LoginPage(),
         "/game": (context) => const GameScreen(),
+        "/profile": (context) => const ProfilePage(),
+        "/track": (context) => const TrackPage(),
+        "/courses": (context) => const CoursesPage(),
       },
       title: 'Flutter Demo',
       theme: ThemeData(

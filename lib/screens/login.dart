@@ -42,11 +42,9 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
         );
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const ProfilePage()),
-        );
         // Navigate to the home page or another page on successful login
+        Navigator.pushNamed(context, '/profile');
+        
       } on FirebaseAuthException catch (e) {
         String message;
         switch (e.code) {
