@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 void main() {
   runApp(MyApp());
@@ -98,10 +99,77 @@ class _TestPageState extends State<TestPage> {
 }
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+
+  // final HomePageHeader header = HomePageHeader(); // Create the widget instance here
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(80.0),
+        child: HomePageHeader(),
+      ),
+      body: Center(
+        child: Text('TODO: Content Body'),
+      ),
+    );
+  }
+}
+
+class HomePageHeader extends StatelessWidget {
+  Widget build (BuildContext context) {
+    return Container(
+      height: 60.0, // Set desired height
+      color: Colors.white70,
+      // margin: EdgeInsets.fromLTRB(0.0, 12.0, 0.0, 0.0,),
+      padding: EdgeInsets.fromLTRB(16.0, 20.0, 16.0, 8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: <Widget> [
+              Text(
+                'Edu',
+                style: TextStyle(
+                  fontSize: 24.0, 
+                color: Color.fromRGBO(221, 150, 12, 0.867),
+                fontFamily: "Lexend",
+                fontWeight: FontWeight.bold,
+                ),
+              ),
+              Text(
+                'GAIte',
+                style: TextStyle(
+                  fontSize: 24.0, 
+                  color: Color.fromRGBO(35, 89, 197, 0.867),
+                  fontFamily: "Lexend",
+                  fontWeight: FontWeight.bold,
+                  ),
+  
+              ),
+            ]
+          ),
+          IconButton(
+            icon: Icon(Icons.search),
+            color: const Color.fromARGB(255, 94, 58, 58),
+            onPressed: () {
+              // TODO: Handle settings button press
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const Placeholder();
   }
 }
+
