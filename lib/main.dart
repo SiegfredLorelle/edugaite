@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
       routes: {
         "/": (context) => TestPage(),
         "/home": (context) => HomePage(),
+        "/login": (context) => LoginPage(),
       },
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -51,11 +52,6 @@ class _TestPageState extends State<TestPage> {
 
   void _incrementCounter() {
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
       _counter++;
     });
   }
@@ -70,9 +66,9 @@ class _TestPageState extends State<TestPage> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+          children: <Widget> [
             const Text(
-              'You have pushed the button this many times:',
+              '!!!TEST PAGE!!!: Click bottom right btn to start',
             ),
             Text(
               '$_counter',
@@ -83,6 +79,14 @@ class _TestPageState extends State<TestPage> {
               tooltip: 'Increment',
               child: const Icon(Icons.add),
             ),
+            FloatingActionButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginPage()),
+                );
+              }
+            )
           ],
         ),
       ),
@@ -95,6 +99,7 @@ class _TestPageState extends State<TestPage> {
         },
         tooltip: 'Increment',
         child: const Icon(Icons.next_plan),
+
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
