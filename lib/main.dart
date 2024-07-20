@@ -89,7 +89,9 @@ class _TestPageState extends State<TestPage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => HomePage()),);
+            context,
+            MaterialPageRoute(builder: (context) => HomePage()),
+          );
         },
         tooltip: 'Increment',
         child: const Icon(Icons.next_plan),
@@ -99,7 +101,6 @@ class _TestPageState extends State<TestPage> {
 }
 
 class HomePage extends StatelessWidget {
-
   // final HomePageHeader header = HomePageHeader(); // Create the widget instance here
 
   @override
@@ -109,15 +110,19 @@ class HomePage extends StatelessWidget {
         preferredSize: Size.fromHeight(80.0),
         child: HomePageHeader(),
       ),
-      body: Center(
-        child: Text('TODO: Content Body'),
-      ),
+      // body: Center(
+      // //   // child: Text('TODO: Content Body'),
+      // //   child: Image(image: AssetImage('assets/images/home-hero.png')),
+      // // ),
+      body: HomePageBody(),
     );
   }
 }
 
 class HomePageHeader extends StatelessWidget {
-  Widget build (BuildContext context) {
+  void _openSearch() {}
+
+  Widget build(BuildContext context) {
     return Container(
       height: 60.0, // Set desired height
       color: Colors.white70,
@@ -126,35 +131,30 @@ class HomePageHeader extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            children: <Widget> [
-              Text(
-                'Edu',
-                style: TextStyle(
-                  fontSize: 24.0, 
+          const Row(children: <Widget>[
+            Text(
+              'Edu',
+              style: TextStyle(
+                fontSize: 24.0,
                 color: Color.fromRGBO(221, 150, 12, 0.867),
                 fontFamily: "Lexend",
                 fontWeight: FontWeight.bold,
-                ),
               ),
-              Text(
-                'GAIte',
-                style: TextStyle(
-                  fontSize: 24.0, 
-                  color: Color.fromRGBO(35, 89, 197, 0.867),
-                  fontFamily: "Lexend",
-                  fontWeight: FontWeight.bold,
-                  ),
-  
+            ),
+            Text(
+              'GAIte',
+              style: TextStyle(
+                fontSize: 24.0,
+                color: Color.fromRGBO(35, 89, 197, 0.867),
+                fontFamily: "Lexend",
+                fontWeight: FontWeight.bold,
               ),
-            ]
-          ),
+            ),
+          ]),
           IconButton(
             icon: Icon(Icons.search),
-            color: const Color.fromARGB(255, 94, 58, 58),
-            onPressed: () {
-              // TODO: Handle settings button press
-            },
+            color: Color.fromARGB(255, 94, 58, 58),
+            onPressed: _openSearch,
           ),
         ],
       ),
@@ -162,7 +162,25 @@ class HomePageHeader extends StatelessWidget {
   }
 }
 
+class HomePageBody extends StatelessWidget {
+  const HomePageBody({super.key});
 
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(children: <Widget> [
+        Image(image: AssetImage('assets/images/home-hero.png')),
+        Container(),
+      ]
+        
+      )
+        // height: 60.0, // Set desired height
+        // color: Colors.white70,
+        // margin: EdgeInsets.fromLTRB(0.0, 12.0, 0.0, 0.0,),
+        // padding: EdgeInsets.fromLTRB(16.0, 20.0, 16.0, 8.0),    );
+        );
+  }
+}
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -172,4 +190,3 @@ class LoginPage extends StatelessWidget {
     return const Placeholder();
   }
 }
-
