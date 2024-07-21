@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../widgets/home-image-carousel.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -89,6 +89,7 @@ class HomePageBody extends StatelessWidget {
                 ),
               ),
             ),
+            
             Container(
               color: Colors.white70,
               padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
@@ -102,6 +103,7 @@ class HomePageBody extends StatelessWidget {
                 ),
               ),
             ),
+
             Container(
               color: Colors.white70,
               padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
@@ -151,6 +153,7 @@ class HomePageBody extends StatelessWidget {
                 ),
               ]),
             ),
+
             Container(
               width: double.infinity,
               color: Colors.white70,
@@ -166,7 +169,9 @@ class HomePageBody extends StatelessWidget {
                 ),
               ),
             ),
+
             const ImageCarousel(),
+
             Container(
               width: double.infinity,
               color: Colors.white70,
@@ -187,6 +192,7 @@ class HomePageBody extends StatelessWidget {
                 ],
               ),
             ),
+
             Container(
               width: double.infinity,
               padding: const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 8.0),
@@ -213,79 +219,6 @@ class HomePageBody extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class ImageCarousel extends StatelessWidget {
-  const ImageCarousel({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white70, // Set your desired background color here
-      child: CarouselSlider(
-        items: [
-          CarouselItem(
-              imagePath: 'assets/images/home-carousel/carousel-1.png',
-              caption: 'Learn New Skills'),
-          CarouselItem(
-              imagePath: 'assets/images/home-carousel/carousel-2.png',
-              caption: 'Earn Badges'),
-          CarouselItem(
-              imagePath: 'assets/images/home-carousel/carousel-3.png',
-              caption: 'Get job-ready'),
-        ],
-        options: CarouselOptions(
-          height: 250.0,
-          enlargeCenterPage: false,
-          autoPlay: true,
-          aspectRatio: 16 / 9,
-          autoPlayCurve: Curves.fastOutSlowIn,
-          enableInfiniteScroll: true,
-          autoPlayAnimationDuration: const Duration(milliseconds: 800),
-          viewportFraction: 0.5,
-        ),
-      ),
-    );
-  }
-}
-
-class CarouselItem extends StatelessWidget {
-  final String imagePath;
-  final String caption;
-
-  const CarouselItem(
-      {required this.imagePath, required this.caption, super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          margin: const EdgeInsets.all(5.0),
-          height: 200,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10.0),
-            image: DecorationImage(
-              image: AssetImage(imagePath),
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.symmetric(vertical: 5.0),
-          child: Text(
-            caption,
-            style: const TextStyle(
-              color: const Color.fromRGBO(13, 18, 28, 0.867),
-              fontSize: 16.0,
-              backgroundColor: Colors.white70,
-              fontFamily: "Lexend",
-            ),
-          ),
-        ),
-      ],
     );
   }
 }
