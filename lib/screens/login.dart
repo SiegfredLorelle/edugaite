@@ -68,7 +68,7 @@ class _LoginPageState extends State<LoginPage> {
     return Form(
       key: _formKey,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
             Container(
               color: Colors.white70,
@@ -151,11 +151,70 @@ class _LoginPageState extends State<LoginPage> {
               return null;
             },
           ),
-          SizedBox(height: 16.0),
-          ElevatedButton(
-            onPressed: _login,
-            child: Text('Login'),
+          SizedBox(height: 32.0),
+
+          InkWell(
+            onTap: () {},
+            child: Container(
+              color: Colors.white70,
+              padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
+              alignment: Alignment.centerLeft,
+              child: const Text(
+                "Forget Password?",
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  fontSize: 12.0,
+                  color: Color.fromRGBO(13, 18, 28, 0.867),
+                  fontFamily: "Lexend",
+                ),
+              ),
+            ),
           ),
+
+          Container(
+            width: double.infinity,
+            height: 48.0,
+            color: Colors.white70,
+            margin: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
+            child: TextButton(
+              onPressed: _login,
+              child: const Text('Log In'),
+              style: TextButton.styleFrom(
+                backgroundColor: const Color.fromRGBO(26, 92, 229, 0.867), // Set your desired background color
+                shape: RoundedRectangleBorder(
+                  borderRadius:
+                      BorderRadius.circular(12.0), // Customize button shape
+                ),
+                foregroundColor: const Color.fromRGBO(
+                  232, 235, 242, 0.867),
+                textStyle: const TextStyle(
+                  fontSize: 16.0, // Set text size
+                  fontFamily: "Lexend",
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ), 
+
+          InkWell(
+            onTap: () {},
+            child: Container(
+              color: Colors.white70,
+              padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
+              alignment: Alignment.center,
+              child: const Text(
+                "New User? Sign Up",
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  fontSize: 12.0,
+                  color: Color.fromRGBO(13, 18, 28, 0.867),
+                  fontFamily: "Lexend",
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+
         ],
       ),
     );
