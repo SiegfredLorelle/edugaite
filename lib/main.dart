@@ -3,11 +3,11 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  // const MyApp({super.key});
 
   // const MyApp({super.key});
 
@@ -34,7 +34,6 @@ class MyApp extends StatelessWidget {
 
 class TestPage extends StatefulWidget {
   const TestPage({super.key});
-
   // const TestPage({super.key, required this.title});
 
   // This widget is the home page of your application. It is stateful, meaning
@@ -87,7 +86,7 @@ class _TestPageState extends State<TestPage> {
             FloatingActionButton(onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const LoginPage()),
+                MaterialPageRoute(builder: (context) => LoginPage()),
               );
             })
           ],
@@ -138,7 +137,6 @@ class HomePageHeader extends StatelessWidget {
     return Container(
       height: 60.0, // Set desired height
       color: Colors.white70,
-      // margin: EdgeInsets.fromLTRB(0.0, 12.0, 0.0, 0.0,),
       padding: const EdgeInsets.fromLTRB(16.0, 20.0, 16.0, 8.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -176,7 +174,6 @@ class HomePageHeader extends StatelessWidget {
 
 class HomePageBody extends StatelessWidget {
   const HomePageBody({super.key});
-  
 
   @override
   Widget build(BuildContext context) {
@@ -278,9 +275,7 @@ class HomePageBody extends StatelessWidget {
                 ),
               ),
             ),
-
             const ImageCarousel(),
-
             Container(
               width: double.infinity,
               color: Colors.white70,
@@ -301,7 +296,6 @@ class HomePageBody extends StatelessWidget {
                 ],
               ),
             ),
-
             Container(
               width: double.infinity,
               padding: const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 8.0),
