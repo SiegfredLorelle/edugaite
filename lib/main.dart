@@ -162,8 +162,8 @@ class HomePageHeader extends StatelessWidget {
             ),
           ]),
           IconButton(
-            icon: const FaIcon(FontAwesomeIcons.magnifyingGlass),
-            color: const Color.fromARGB(255, 94, 58, 58),
+            icon: const FaIcon(FontAwesomeIcons.magnifyingGlass, size: 20),
+            color: const Color.fromRGBO(13, 18, 28, 0.867),
             onPressed: _openSearch,
           ),
         ],
@@ -285,12 +285,12 @@ class HomePageBody extends StatelessWidget {
                 children: <Widget>[
                   IconButton(
                     icon: const FaIcon(FontAwesomeIcons.xTwitter),
-                    color: const Color.fromARGB(255, 94, 58, 58),
+                    color: const Color.fromRGBO(13, 18, 28, 0.867),
                     onPressed: () {},
                   ),
                   IconButton(
                     icon: const FaIcon(FontAwesomeIcons.linkedinIn),
-                    color: const Color.fromARGB(255, 94, 58, 58),
+                    color: const Color.fromRGBO(13, 18, 28, 0.867),
                     onPressed: () {},
                   ),
                 ],
@@ -306,13 +306,13 @@ class HomePageBody extends StatelessWidget {
                   FaIcon(
                     FontAwesomeIcons.copyright,
                     size: 12.0,
-                    color: Colors.black,
+                    color: const Color.fromRGBO(13, 18, 28, 0.867),
                   ),
                   Text(
-                    '$currentYear EduGAIte, Inc. All rights reserved.',
+                    ' $currentYear EduGAIte, Inc. All rights reserved.',
                     style: TextStyle(
                       fontSize: 12.0,
-                      color: Colors.black,
+                      color: const Color.fromRGBO(13, 18, 28, 0.867),
                       fontFamily: "Lexend",
                     ),
                   ),
