@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'screens/home.dart'; // Import the image carousel file
+import 'screens/home.dart';
+import 'screens/login.dart';
 
 void main() {
   runApp(MyApp());
@@ -110,14 +111,5 @@ class _TestPageState extends State<TestPage> {
         child: const Icon(Icons.next_plan),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
-  }
-}
-
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
   }
 }
