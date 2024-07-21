@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -224,6 +225,7 @@ class HomePageBody extends StatelessWidget {
               onPressed: () {
                 // Handle login logic here (e.g., form validation, authentication)
               },
+              child: const Text('Get Started'),
               style: TextButton.styleFrom(
                 backgroundColor: const Color.fromRGBO(26, 92, 229, 0.867), // Set your desired background color
                 shape: RoundedRectangleBorder(
@@ -237,7 +239,6 @@ class HomePageBody extends StatelessWidget {
 
                 ),
               ),
-              child: const Text('Get Started'),
             ),
 
             const Spacer(),
@@ -246,6 +247,7 @@ class HomePageBody extends StatelessWidget {
               onPressed: () {
                 // Handle login logic here (e.g., form validation, authentication)
               },
+              child: const Text('Sign In'),
               style: TextButton.styleFrom(
                 backgroundColor: const Color.fromRGBO(232, 235, 242, 0.867), // Set your desired background color
                 shape: RoundedRectangleBorder(
@@ -256,10 +258,8 @@ class HomePageBody extends StatelessWidget {
                   fontSize: 12.0, // Set text size
                   fontFamily: "Lexend",
                   fontWeight: FontWeight.bold,
-
                 ),
               ),
-              child: const Text('Sign In'),
             ),
             
           ]
@@ -267,16 +267,101 @@ class HomePageBody extends StatelessWidget {
           )
         ),
 
+        Container(
+          width: double.infinity,
+          color: Colors.white70,
+          padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
+          child: const Text(
+            "Why EduGAIte for schools?",
+            textAlign: TextAlign.left,
+            style: TextStyle(
+              fontSize: 16.0,
+              color: Color.fromRGBO(13, 18, 28, 0.867),
+              fontFamily: "Lexend",
+              fontWeight: FontWeight.bold,
+            )
+          )
+        ),
+
+
+        const ImageCarousel(),
+
+
+
+
       ]
+
+
+
+      
         
       )
-        // height: 60.0, // Set desired height
-        // color: Colors.white70,
-        // margin: EdgeInsets.fromLTRB(0.0, 12.0, 0.0, 0.0,),
-        // padding: EdgeInsets.fromLTRB(16.0, 20.0, 16.0, 8.0),    );
-        );
+    );
   }
 }
+
+
+class ImageCarousel extends StatelessWidget {
+  const ImageCarousel({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return CarouselSlider(
+      items: [
+        CarouselItem(imagePath: 'assets/images/home-carousel/carousel-1.png', caption: 'Learn New Skills'),
+        CarouselItem(imagePath: 'assets/images/home-carousel/carousel-2.png', caption: 'Earn Badges'),
+        CarouselItem(imagePath: 'assets/images/home-carousel/carousel-3.png', caption: 'Get job-ready'),
+      ],
+      options: CarouselOptions(
+        height: 200.0,
+        enlargeCenterPage: false,
+        autoPlay: true,
+        aspectRatio: 16 / 9,
+        autoPlayCurve: Curves.fastOutSlowIn,
+        enableInfiniteScroll: true,
+        autoPlayAnimationDuration: const Duration(milliseconds: 800),
+        viewportFraction: 0.5,
+      ),
+    );
+  }
+}
+
+class CarouselItem extends StatelessWidget {
+  final String imagePath;
+  final String caption;
+
+  const CarouselItem({required this.imagePath, required this.caption, super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.all(5.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10.0),
+        image: DecorationImage(
+          image: AssetImage(imagePath),
+          fit: BoxFit.cover,
+        ),
+      ),
+      child: Container(
+        alignment: Alignment.bottomCenter,
+        child: Text(
+          caption,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 16.0,
+            backgroundColor: Colors.black54,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+
+
+
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
