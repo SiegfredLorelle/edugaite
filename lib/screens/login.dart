@@ -1,37 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-
-
-
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(80.0),
-        child: LoginPageHeader(),
-      ),
-      body: LoginPageBody(),
-    );
-  }
+  _LoginPageState createState() => _LoginPageState();
 }
 
-class LoginPageHeader extends StatelessWidget {
-  const LoginPageHeader({super.key});
+class _LoginPageState extends State<LoginPage> {
+  final _formKey = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   @override
-  Widget build(BuildContext context) {
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  void _login() {
+    if (_formKey.currentState?.validate() ?? false) {
+      // Handle login logic here (e.g., form validation, authentication)
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Logging in as ${_emailController.text}')),
+      );
+    }
+  }
+
+
+  Widget HomePageHeader() {
     return Container(
       height: 60.0, // Set desired height
       color: Colors.white70,
       padding: const EdgeInsets.fromLTRB(16.0, 20.0, 16.0, 8.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Row(children: <Widget>[
+      child: Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
             Text(
               'Edu',
               style: TextStyle(
@@ -50,31 +57,24 @@ class LoginPageHeader extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-          ]),
-
-        ],
+          ],
+        ),
       ),
     );
-  }
 }
 
-class LoginPageBody extends StatelessWidget {
-  const LoginPageBody({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    int currentYear = DateTime.now().year;
-
-    return SingleChildScrollView(
-      child: Container(
-        child: Column(
-          children: <Widget>[
-            const Image(image: AssetImage('assets/images/home-hero.png')),
+  Widget _buildLoginForm() {
+    return Form(
+      key: _formKey,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
             Container(
               color: Colors.white70,
-              padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
+              padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 16.0),
               child: const Text(
-                "TODO LOGIN PAGE ",
+                "Welcome Back",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 32.0,
@@ -84,134 +84,97 @@ class LoginPageBody extends StatelessWidget {
                 ),
               ),
             ),
-            
-            Container(
-              color: Colors.white70,
-              padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
-              child: const Text(
-                "Gamified, AI-powered training for Math and Science teachers",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 16.0,
-                  color: Color.fromRGBO(13, 18, 28, 0.867),
-                  fontFamily: "Lexend",
-                ),
-              ),
-            ),
 
-            Container(
-              color: Colors.white70,
-              padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
-              child: Row(children: <Widget>[
-                TextButton(
-                  onPressed: () {
-                    // Handle login logic here (e.g., form validation, authentication)
-                  },
-                  child: const Text('Get Started'),
-                  style: TextButton.styleFrom(
-                    backgroundColor: const Color.fromRGBO(26, 92, 229,
-                        0.867), // Set your desired background color
-                    shape: RoundedRectangleBorder(
-                      borderRadius:
-                          BorderRadius.circular(12.0), // Customize button shape
-                    ),
-                    foregroundColor: const Color.fromRGBO(
-                        232, 235, 242, 0.867), // Set your desired color here
-                    textStyle: const TextStyle(
-                      fontSize: 12.0, // Set text size
-                      fontFamily: "Lexend",
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                const Spacer(),
-                TextButton(
-                  onPressed: () {
-                    // Handle login logic here (e.g., form validation, authentication)
-                  },
-                  child: const Text('Sign In'),
-                  style: TextButton.styleFrom(
-                    backgroundColor: const Color.fromRGBO(232, 235, 242,
-                        0.867), // Set your desired background color
-                    shape: RoundedRectangleBorder(
-                      borderRadius:
-                          BorderRadius.circular(12.0), // Customize button shape
-                    ),
-                    foregroundColor: const Color.fromRGBO(
-                        13, 18, 28, 0.867), // Set your desired color here
-                    textStyle: const TextStyle(
-                      fontSize: 12.0, // Set text size
-                      fontFamily: "Lexend",
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ]),
-            ),
+          TextFormField(
+            controller: _emailController,
+            cursorColor: Color.fromRGBO(13, 18, 28, 0.867),
+            decoration: InputDecoration(
+              labelText: 'Username',
+              labelStyle: TextStyle(color: const Color.fromRGBO(79, 102, 150, 1)), // Label text color
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12.0), // Border radius
 
-            Container(
-              width: double.infinity,
-              color: Colors.white70,
-              padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
-              child: const Text(
-                "Why EduGAIte for schools?",
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                  fontSize: 20.0,
-                  color: Color.fromRGBO(13, 18, 28, 0.867),
-                  fontFamily: "Lexend",
-                  fontWeight: FontWeight.bold,
-                ),
               ),
-            ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: const Color.fromRGBO(232, 235, 242, 0.867)), // Border color when enabled
+                borderRadius: BorderRadius.circular(12.0), // Border radius
 
-            Container(
-              width: double.infinity,
-              color: Colors.white70,
-              padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 0.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  IconButton(
-                    icon: const FaIcon(FontAwesomeIcons.xTwitter),
-                    color: const Color.fromRGBO(13, 18, 28, 0.867),
-                    onPressed: () {},
-                  ),
-                  IconButton(
-                    icon: const FaIcon(FontAwesomeIcons.linkedinIn),
-                    color: const Color.fromRGBO(13, 18, 28, 0.867),
-                    onPressed: () {},
-                  ),
-                ],
               ),
-            ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Color.fromRGBO(13, 18, 28, 0.867)), // Border color when focused
+                borderRadius: BorderRadius.circular(12.0), // Border radius
 
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 8.0),
-              color: Colors.white70,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  FaIcon(
-                    FontAwesomeIcons.copyright,
-                    size: 12.0,
-                    color: const Color.fromRGBO(13, 18, 28, 0.867),
-                  ),
-                  Text(
-                    ' $currentYear EduGAIte, Inc. All rights reserved.',
-                    style: TextStyle(
-                      fontSize: 12.0,
-                      color: const Color.fromRGBO(13, 18, 28, 0.867),
-                      fontFamily: "Lexend",
-                    ),
-                  ),
-                ],
               ),
-            )
-          ],
-        ),
+              fillColor: const Color.fromRGBO(232, 235, 242, 0.867), // Background color of the textbox
+              filled: true,
+              hintStyle: TextStyle(color: const Color.fromARGB(255, 2, 1, 1)), // Hint text color
+            ),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter your username';
+              }
+              return null;
+            },
+          ),
+
+          SizedBox(height: 16.0),
+
+          TextFormField(
+            controller: _passwordController,
+            cursorColor: Color.fromRGBO(13, 18, 28, 0.867),
+
+            decoration: InputDecoration(
+              labelText: 'Password',
+              labelStyle: TextStyle(color: const Color.fromRGBO(79, 102, 150, 1)), // Label text color
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12.0), // Border radius
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: const Color.fromRGBO(232, 235, 242, 0.867)), // Border color when enabled
+                borderRadius: BorderRadius.circular(12.0), // Border radius
+
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Color.fromRGBO(13, 18, 28, 0.867)), // Border color when focused
+                borderRadius: BorderRadius.circular(12.0), // Border radius
+
+              ),
+              fillColor: const Color.fromRGBO(232, 235, 242, 0.867), // Background color of the textbox
+              filled: true,
+              hintStyle: TextStyle(color: const Color.fromARGB(255, 2, 1, 1)), // Hint text color
+            ),  
+            obscureText: true,
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter your password';
+              }
+              return null;
+            },
+          ),
+          SizedBox(height: 16.0),
+          ElevatedButton(
+            onPressed: _login,
+            child: Text('Login'),
+          ),
+        ],
       ),
     );
   }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(80.0),
+        child: HomePageHeader(),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: _buildLoginForm(),
+      ),
+    );
+  }
+  
 }
+
+
