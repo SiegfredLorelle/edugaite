@@ -183,7 +183,21 @@ class HomePageBody extends StatelessWidget {
     return Container(
       child: Column(children: <Widget> [
         const Image(image: AssetImage('assets/images/home-hero.png')),
-        Container(),
+        Container(
+          color: Colors.white70,
+          padding: const EdgeInsets.fromLTRB(16.0, 20.0, 16.0, 8.0),
+          child: Text(
+            "Empowering Teachers, Enhancing Education",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 32.0,
+              color: Color.fromRGBO(13, 18, 28, 0.867),
+              fontFamily: "Lexend",
+              fontWeight: FontWeight.bold,
+            )
+
+          )
+        ),
       ]
         
       )
