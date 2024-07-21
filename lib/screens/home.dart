@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../widgets/home-image-carousel.dart';
+import '../screens/login.dart';
+
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -110,8 +112,11 @@ class HomePageBody extends StatelessWidget {
               child: Row(children: <Widget>[
                 TextButton(
                   onPressed: () {
-                    // Handle login logic here (e.g., form validation, authentication)
-                  },
+                    Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const LoginPage()),
+                  );
+                },
                   child: const Text('Get Started'),
                   style: TextButton.styleFrom(
                     backgroundColor: const Color.fromRGBO(26, 92, 229,
@@ -132,8 +137,11 @@ class HomePageBody extends StatelessWidget {
                 const Spacer(),
                 TextButton(
                   onPressed: () {
-                    // Handle login logic here (e.g., form validation, authentication)
-                  },
+                    Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const LoginPage()),
+                  );
+                },
                   child: const Text('Sign In'),
                   style: TextButton.styleFrom(
                     backgroundColor: const Color.fromRGBO(232, 235, 242,
