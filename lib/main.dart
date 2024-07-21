@@ -182,22 +182,91 @@ class HomePageBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Column(children: <Widget> [
+
         const Image(image: AssetImage('assets/images/home-hero.png')),
+
         Container(
           color: Colors.white70,
-          padding: const EdgeInsets.fromLTRB(16.0, 20.0, 16.0, 8.0),
-          child: Text(
+          padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
+          child: const Text(
             "Empowering Teachers, Enhancing Education",
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 32.0,
               color: Color.fromRGBO(13, 18, 28, 0.867),
               fontFamily: "Lexend",
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w900,
             )
+          )
+        ),
+
+        Container(
+          color: Colors.white70,
+          padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
+          child: const Text(
+            "Gamified, AI-powered training for Math and Science teachers",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 16.0,
+              color: Color.fromRGBO(13, 18, 28, 0.867),
+              fontFamily: "Lexend",
+            )
+          )
+        ),
+
+        // Spacer(),
+
+        Container(
+          color: Colors.white70,
+          padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
+          child: Row( children: <Widget> [
+            TextButton(
+              onPressed: () {
+                // Handle login logic here (e.g., form validation, authentication)
+              },
+              style: TextButton.styleFrom(
+                backgroundColor: const Color.fromRGBO(26, 92, 229, 0.867), // Set your desired background color
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12.0), // Customize button shape
+                ),
+                foregroundColor: const Color.fromRGBO(232, 235, 242, 0.867), // Set your desired color here
+                textStyle: const TextStyle(
+                  fontSize: 12.0, // Set text size
+                  fontFamily: "Lexend",
+                  fontWeight: FontWeight.bold,
+
+                ),
+              ),
+              child: const Text('Get Started'),
+            ),
+
+            const Spacer(),
+
+            TextButton(
+              onPressed: () {
+                // Handle login logic here (e.g., form validation, authentication)
+              },
+              style: TextButton.styleFrom(
+                backgroundColor: const Color.fromRGBO(232, 235, 242, 0.867), // Set your desired background color
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12.0), // Customize button shape
+                ),
+                foregroundColor: const Color.fromRGBO(13, 18, 28, 0.867), // Set your desired color here
+                textStyle: const TextStyle(
+                  fontSize: 12.0, // Set text size
+                  fontFamily: "Lexend",
+                  fontWeight: FontWeight.bold,
+
+                ),
+              ),
+              child: const Text('Sign In'),
+            ),
+            
+          ]
 
           )
         ),
+
       ]
         
       )
