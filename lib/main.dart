@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 import 'screens/home.dart';
 import 'screens/login.dart';
 
-void main() {
-  runApp(MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -27,8 +35,10 @@ class MyApp extends StatelessWidget {
           secondaryContainer: Colors.white70, // Secondary container color
           surface: Colors.white, // Surface color
           error: Colors.red, // Error color
-          onPrimary: Color.fromRGBO(13, 18, 28, 0.867), // Text color on primary color
-          onSecondary: Color.fromRGBO(13, 18, 28, 0.867), // Text color on secondary color
+          onPrimary:
+              Color.fromRGBO(13, 18, 28, 0.867), // Text color on primary color
+          onSecondary: Color.fromRGBO(
+              13, 18, 28, 0.867), // Text color on secondary color
           onSurface: Colors.black, // Text color on surface color
           onError: Colors.white, // Text color on error color
           brightness: Brightness.light, // Brightness of the overall theme

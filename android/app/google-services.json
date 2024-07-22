@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "901871260808",
+    "project_id": "edugaite-473d2",
+    "storage_bucket": "edugaite-473d2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:901871260808:android:3664155a7cf29e387dfb3d",
+        "android_client_info": {
+          "package_name": "com.alicealguorithm.edugaite"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAP0_JjoSGHXfhRNvqVCJfnanGgzJXW9DI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
