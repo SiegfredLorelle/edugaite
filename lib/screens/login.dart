@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -19,15 +20,47 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
-  void _login() {
+  Future<void> _login() async {
     if (_formKey.currentState?.validate() ?? false) {
-      // Handle login logic here (e.g., form validation, authentication)
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Logging in as ${_emailController.text}')),
-      );
+      try {
+        UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: _emailController.text,
+          password: _passwordController.text,
+        );
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Logged in as ${userCredential.user?.email}')),
+        );
+        // Navigate to the home page or another page on successful login
+      } on FirebaseAuthException catch (e) {
+        String message;
+        switch (e.code) {
+          case 'invalid-email':
+            message = "Invalid email";
+            break;
+          case 'user-disabled':
+            message = 'The user corresponding to the given email has been disabled.';
+            break;
+          case 'user-not-found':
+            message = 'No user found for that email.';
+            break;
+          case 'wrong-password':
+            message = 'Wrong password provided.';
+            break;
+          case 'invalid-credential':
+            message = "Incorrect credentials";
+            break;
+          case 'too-many-requests':
+            message = "Too many request. Wait for 3 minutes.";
+            break;
+          default:
+            message = 'An error occurred. Please try again.';
+        }
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(message)),
+        );
+      }
     }
   }
-
 
   Widget HomePageHeader() {
     return Container(
@@ -60,8 +93,7 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
-}
-
+  }
 
   Widget _buildLoginForm() {
     return Form(
@@ -69,40 +101,37 @@ class _LoginPageState extends State<LoginPage> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-            Container(
-              color: Colors.white70,
-              padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 16.0),
-              child: const Text(
-                "Welcome Back",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 32.0,
-                  color: Color.fromRGBO(13, 18, 28, 0.867),
-                  fontFamily: "Lexend",
-                  fontWeight: FontWeight.w900,
-                ),
+          Container(
+            color: Colors.white70,
+            padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 16.0),
+            child: const Text(
+              "Welcome Back",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 32.0,
+                color: Color.fromRGBO(13, 18, 28, 0.867),
+                fontFamily: "Lexend",
+                fontWeight: FontWeight.w900,
               ),
             ),
+          ),
 
           TextFormField(
             controller: _emailController,
             cursorColor: Color.fromRGBO(13, 18, 28, 0.867),
             decoration: InputDecoration(
-              labelText: 'Username',
+              labelText: 'Email',
               labelStyle: TextStyle(color: const Color.fromRGBO(79, 102, 150, 1)), // Label text color
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12.0), // Border radius
-
               ),
               enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: const Color.fromRGBO(232, 235, 242, 0.867)), // Border color when enabled
                 borderRadius: BorderRadius.circular(12.0), // Border radius
-
               ),
               focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: Color.fromRGBO(13, 18, 28, 0.867)), // Border color when focused
                 borderRadius: BorderRadius.circular(12.0), // Border radius
-
               ),
               fillColor: const Color.fromRGBO(232, 235, 242, 0.867), // Background color of the textbox
               filled: true,
@@ -110,7 +139,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'Please enter your username';
+                return 'Please enter your email';
               }
               return null;
             },
@@ -121,7 +150,6 @@ class _LoginPageState extends State<LoginPage> {
           TextFormField(
             controller: _passwordController,
             cursorColor: Color.fromRGBO(13, 18, 28, 0.867),
-
             decoration: InputDecoration(
               labelText: 'Password',
               labelStyle: TextStyle(color: const Color.fromRGBO(79, 102, 150, 1)), // Label text color
@@ -131,12 +159,10 @@ class _LoginPageState extends State<LoginPage> {
               enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: const Color.fromRGBO(232, 235, 242, 0.867)), // Border color when enabled
                 borderRadius: BorderRadius.circular(12.0), // Border radius
-
               ),
               focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: Color.fromRGBO(13, 18, 28, 0.867)), // Border color when focused
                 borderRadius: BorderRadius.circular(12.0), // Border radius
-
               ),
               fillColor: const Color.fromRGBO(232, 235, 242, 0.867), // Background color of the textbox
               filled: true,
@@ -232,7 +258,4 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-  
 }
-
-
