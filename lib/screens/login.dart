@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import '../screens/profile.dart';
 
-
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -26,13 +25,15 @@ class _LoginPageState extends State<LoginPage> {
   Future<void> _login() async {
     if (_formKey.currentState?.validate() ?? false) {
       try {
-        UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        UserCredential userCredential =
+            await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: _emailController.text,
           password: _passwordController.text,
         );
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Logged in as ${userCredential.user?.email}')),
-        );Navigator.push(
+        );
+        Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => const HomePage()),
         );
@@ -44,7 +45,8 @@ class _LoginPageState extends State<LoginPage> {
             message = "Invalid email";
             break;
           case 'user-disabled':
-            message = 'The user corresponding to the given email has been disabled.';
+            message =
+                'The user corresponding to the given email has been disabled.';
             break;
           case 'user-not-found':
             message = 'No user found for that email.';
@@ -121,27 +123,34 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
           ),
-
           TextFormField(
             controller: _emailController,
             cursorColor: Color.fromRGBO(13, 18, 28, 0.867),
             decoration: InputDecoration(
               labelText: 'Email',
-              labelStyle: TextStyle(color: const Color.fromRGBO(79, 102, 150, 1)), // Label text color
+              labelStyle: TextStyle(
+                  color: const Color.fromRGBO(
+                      79, 102, 150, 1)), // Label text color
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12.0), // Border radius
               ),
               enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: const Color.fromRGBO(232, 235, 242, 0.867)), // Border color when enabled
+                borderSide: BorderSide(
+                    color: const Color.fromRGBO(
+                        232, 235, 242, 0.867)), // Border color when enabled
                 borderRadius: BorderRadius.circular(12.0), // Border radius
               ),
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Color.fromRGBO(13, 18, 28, 0.867)), // Border color when focused
+                borderSide: BorderSide(
+                    color: Color.fromRGBO(
+                        13, 18, 28, 0.867)), // Border color when focused
                 borderRadius: BorderRadius.circular(12.0), // Border radius
               ),
-              fillColor: const Color.fromRGBO(232, 235, 242, 0.867), // Background color of the textbox
+              fillColor: const Color.fromRGBO(
+                  232, 235, 242, 0.867), // Background color of the textbox
               filled: true,
-              hintStyle: TextStyle(color: const Color.fromARGB(255, 2, 1, 1)), // Hint text color
+              hintStyle: TextStyle(
+                  color: const Color.fromARGB(255, 2, 1, 1)), // Hint text color
             ),
             validator: (value) {
               if (value == null || value.isEmpty) {
@@ -150,30 +159,36 @@ class _LoginPageState extends State<LoginPage> {
               return null;
             },
           ),
-
           SizedBox(height: 16.0),
-
           TextFormField(
             controller: _passwordController,
             cursorColor: Color.fromRGBO(13, 18, 28, 0.867),
             decoration: InputDecoration(
               labelText: 'Password',
-              labelStyle: TextStyle(color: const Color.fromRGBO(79, 102, 150, 1)), // Label text color
+              labelStyle: TextStyle(
+                  color: const Color.fromRGBO(
+                      79, 102, 150, 1)), // Label text color
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12.0), // Border radius
               ),
               enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: const Color.fromRGBO(232, 235, 242, 0.867)), // Border color when enabled
+                borderSide: BorderSide(
+                    color: const Color.fromRGBO(
+                        232, 235, 242, 0.867)), // Border color when enabled
                 borderRadius: BorderRadius.circular(12.0), // Border radius
               ),
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Color.fromRGBO(13, 18, 28, 0.867)), // Border color when focused
+                borderSide: BorderSide(
+                    color: Color.fromRGBO(
+                        13, 18, 28, 0.867)), // Border color when focused
                 borderRadius: BorderRadius.circular(12.0), // Border radius
               ),
-              fillColor: const Color.fromRGBO(232, 235, 242, 0.867), // Background color of the textbox
+              fillColor: const Color.fromRGBO(
+                  232, 235, 242, 0.867), // Background color of the textbox
               filled: true,
-              hintStyle: TextStyle(color: const Color.fromARGB(255, 2, 1, 1)), // Hint text color
-            ),  
+              hintStyle: TextStyle(
+                  color: const Color.fromARGB(255, 2, 1, 1)), // Hint text color
+            ),
             obscureText: true,
             validator: (value) {
               if (value == null || value.isEmpty) {
@@ -183,7 +198,6 @@ class _LoginPageState extends State<LoginPage> {
             },
           ),
           SizedBox(height: 32.0),
-
           InkWell(
             onTap: () {},
             child: Container(
@@ -201,7 +215,6 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
           ),
-
           Container(
             width: double.infinity,
             height: 48.0,
@@ -211,13 +224,13 @@ class _LoginPageState extends State<LoginPage> {
               onPressed: _login,
               child: const Text('Log In'),
               style: TextButton.styleFrom(
-                backgroundColor: const Color.fromRGBO(26, 92, 229, 0.867), // Set your desired background color
+                backgroundColor: const Color.fromRGBO(
+                    26, 92, 229, 0.867), // Set your desired background color
                 shape: RoundedRectangleBorder(
                   borderRadius:
                       BorderRadius.circular(12.0), // Customize button shape
                 ),
-                foregroundColor: const Color.fromRGBO(
-                  232, 235, 242, 0.867),
+                foregroundColor: const Color.fromRGBO(232, 235, 242, 0.867),
                 textStyle: const TextStyle(
                   fontSize: 16.0, // Set text size
                   fontFamily: "Lexend",
@@ -225,8 +238,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
-          ), 
-
+          ),
           InkWell(
             onTap: () {},
             child: Container(
@@ -245,7 +257,6 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
           ),
-
         ],
       ),
     );
