@@ -4,7 +4,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../widgets/home-image-carousel.dart';
 import '../screens/login.dart';
 
-
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -91,7 +90,6 @@ class HomePageBody extends StatelessWidget {
                 ),
               ),
             ),
-            
             Container(
               color: Colors.white70,
               padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
@@ -105,7 +103,6 @@ class HomePageBody extends StatelessWidget {
                 ),
               ),
             ),
-
             Container(
               color: Colors.white70,
               padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
@@ -113,10 +110,11 @@ class HomePageBody extends StatelessWidget {
                 TextButton(
                   onPressed: () {
                     Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const LoginPage()),
-                  );
-                },
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const LoginPage()),
+                    );
+                  },
                   child: const Text('Get Started'),
                   style: TextButton.styleFrom(
                     backgroundColor: const Color.fromRGBO(26, 92, 229,
@@ -138,10 +136,11 @@ class HomePageBody extends StatelessWidget {
                 TextButton(
                   onPressed: () {
                     Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const LoginPage()),
-                  );
-                },
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const LoginPage()),
+                    );
+                  },
                   child: const Text('Sign In'),
                   style: TextButton.styleFrom(
                     backgroundColor: const Color.fromRGBO(232, 235, 242,
@@ -161,7 +160,29 @@ class HomePageBody extends StatelessWidget {
                 ),
               ]),
             ),
-
+            Container(
+              color: Colors.white70,
+              padding: const EdgeInsets.all(8.0),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/game');
+                },
+                child: const Text('Start Game'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromRGBO(
+                      26, 92, 229, 0.867), // Set your desired background color
+                  shape: RoundedRectangleBorder(
+                    borderRadius:
+                        BorderRadius.circular(12.0), // Customize button shape
+                  ),
+                  textStyle: const TextStyle(
+                    fontSize: 16.0, // Set text size
+                    fontFamily: "Lexend",
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
             Container(
               width: double.infinity,
               color: Colors.white70,
@@ -177,9 +198,7 @@ class HomePageBody extends StatelessWidget {
                 ),
               ),
             ),
-
             const ImageCarousel(),
-
             Container(
               width: double.infinity,
               color: Colors.white70,
@@ -200,7 +219,6 @@ class HomePageBody extends StatelessWidget {
                 ],
               ),
             ),
-
             Container(
               width: double.infinity,
               padding: const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 8.0),
@@ -208,16 +226,16 @@ class HomePageBody extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  FaIcon(
+                  const FaIcon(
                     FontAwesomeIcons.copyright,
                     size: 12.0,
-                    color: const Color.fromRGBO(13, 18, 28, 0.867),
+                    color: Color.fromRGBO(13, 18, 28, 0.867),
                   ),
                   Text(
                     ' $currentYear EduGAIte, Inc. All rights reserved.',
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 12.0,
-                      color: const Color.fromRGBO(13, 18, 28, 0.867),
+                      color: Color.fromRGBO(13, 18, 28, 0.867),
                       fontFamily: "Lexend",
                     ),
                   ),

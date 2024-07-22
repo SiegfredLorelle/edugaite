@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'screens/home.dart';
 import 'screens/login.dart';
+import 'screens/game_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
       routes: {
         "/": (context) => const HomePage(),
         "/login": (context) => const LoginPage(),
+        "/game": (context) => GameScreen(),
       },
       title: 'Flutter Demo',
       theme: ThemeData(
