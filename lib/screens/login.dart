@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import '../screens/profile.dart';
+
+
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -29,6 +32,9 @@ class _LoginPageState extends State<LoginPage> {
         );
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Logged in as ${userCredential.user?.email}')),
+        );Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const HomePage()),
         );
         // Navigate to the home page or another page on successful login
       } on FirebaseAuthException catch (e) {
