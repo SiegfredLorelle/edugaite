@@ -90,6 +90,49 @@ class ProfilePageBody extends StatelessWidget {
                 ),
               ),
             ),
+
+            const Image(image: AssetImage('assets/images/profile/profile.png')),
+            
+             Container(
+              color: Colors.white70,
+              padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
+              child: Column(children: <Widget>[
+              Text(
+                "Mrs. Johnson",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 20.0,
+                  color: Color.fromRGBO(13, 18, 28, 0.867),
+                  fontFamily: "Lexend",
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+
+              Text(
+                "Math Teacher",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 16.0,
+                  color: const Color.fromRGBO( 79, 102, 150, 1), // Label text color,
+                  fontFamily: "Lexend",
+                ),
+              ),
+
+              Text(
+                "Joined 2020, 2nd year",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 16.0,
+                  color: const Color.fromRGBO( 79, 102, 150, 1), // Label text color,
+                  fontFamily: "Lexend",
+                ),
+              ),
+
+              ]),
+            ),
+
+
+
             Container(
               color: Colors.white70,
               padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
