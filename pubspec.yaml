@@ -65,6 +65,7 @@ flutter:
   assets:
     - assets/images/
     - assets/images/home-carousel/
+    - assets/images/profile/profile.png
     - assets/images/game/player.png
     - assets/images/game/obstacle.png
     # - images/a_dot_ham.jpeg
