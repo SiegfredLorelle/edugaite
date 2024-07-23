@@ -35,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
         );
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const HomePage()),
+          MaterialPageRoute(builder: (context) => const ProfilePage()),
         );
         // Navigate to the home page or another page on successful login
       } on FirebaseAuthException catch (e) {
@@ -70,7 +70,7 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
-  Widget HomePageHeader() {
+  Widget LoginPageHeader() {
     return Container(
       height: 60.0, // Set desired height
       color: Colors.white70,
@@ -267,7 +267,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(80.0),
-        child: HomePageHeader(),
+        child: LoginPageHeader(),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

@@ -3,23 +3,23 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../screens/login.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class ProfilePage extends StatelessWidget {
+  const ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(80.0),
-        child: HomePageHeader(),
+        child: ProfilePageHeader(),
       ),
       body: ProfilePageBody(),
     );
   }
 }
 
-class HomePageHeader extends StatelessWidget {
-  const HomePageHeader({super.key});
+class ProfilePageHeader extends StatelessWidget {
+  const ProfilePageHeader({super.key});
 
   void _openSearch() {}
 
@@ -307,6 +307,80 @@ class ProfilePageBody extends StatelessWidget {
               ),
             ),
 
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.white70,
+              border: Border(
+                top: BorderSide(
+                  color: const Color.fromRGBO(232, 235, 242, 0.867), // Border color
+                  width: 1.5, // Border width
+                ),
+              ),
+            ),
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Column(
+                  children: [
+                    IconButton(
+                      icon: const FaIcon(FontAwesomeIcons.house),
+                      color: const Color.fromRGBO(13, 18, 28, 0.867),
+                      onPressed: () {
+                        // Navigate to Home page
+                      },
+                    ),
+                    const Text(
+                      'Home',
+                      style: TextStyle(
+                        color: Color.fromRGBO(13, 18, 28, 0.867),
+                        fontFamily: "Lexend",
+                        fontSize: 12.0,
+                      ),
+                    ),
+                  ],
+                ),
+                Column(
+                  children: [
+                    IconButton(
+                      icon: const FaIcon(FontAwesomeIcons.users),
+                      color: const Color.fromRGBO(13, 18, 28, 0.867),
+                      onPressed: () {
+                        // Navigate to Users page
+                      },
+                    ),
+                    const Text(
+                      'Track',
+                      style: TextStyle(
+                        color: Color.fromRGBO(13, 18, 28, 0.867),
+                        fontFamily: "Lexend",
+                        fontSize: 12.0,
+                      ),
+                    ),
+                  ],
+                ),
+                Column(
+                  children: [
+                    IconButton(
+                      icon: const FaIcon(FontAwesomeIcons.bookOpen),
+                      color: const Color.fromRGBO(13, 18, 28, 0.867),
+                      onPressed: () {
+                        // Navigate to Courses page
+                      },
+                    ),
+                    const Text(
+                      'Courses',
+                      style: TextStyle(
+                        color: Color.fromRGBO(13, 18, 28, 0.867),
+                        fontFamily: "Lexend",
+                        fontSize: 12.0,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
 
 
           ],
