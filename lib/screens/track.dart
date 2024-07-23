@@ -1,28 +1,25 @@
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../screens/track.dart';
-import '../screens/courses.dart';
 
-
-
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+class TrackPage extends StatelessWidget {
+  const TrackPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(80.0),
-        child: ProfilePageHeader(),
+        child: TrackPageHeader(),
       ),
-      body: ProfilePageBody(),
+      body: TrackPageBody(),
     );
   }
 }
 
-class ProfilePageHeader extends StatelessWidget {
-  const ProfilePageHeader({super.key});
+class TrackPageHeader extends StatelessWidget {
+  const TrackPageHeader({super.key});
 
 
   @override
@@ -45,8 +42,8 @@ class ProfilePageHeader extends StatelessWidget {
   }
 }
 
-class ProfilePageBody extends StatelessWidget {
-  const ProfilePageBody({super.key});
+class TrackPageBody extends StatelessWidget {
+  const TrackPageBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +56,7 @@ class ProfilePageBody extends StatelessWidget {
               color: Colors.white70,
               padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
               child: const Text(
-                "Welcome to the new school year!",
+                "TRACK PAGE",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 32.0,
@@ -299,10 +296,7 @@ class ProfilePageBody extends StatelessWidget {
                         icon: const FaIcon(FontAwesomeIcons.house),
                         color: const Color.fromRGBO(13, 18, 28, 0.867),
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => const ProfilePage()),
-                          );
+                          // Navigate to Home page
                         },
                       ),
                       const Text(
@@ -321,11 +315,7 @@ class ProfilePageBody extends StatelessWidget {
                         icon: const FaIcon(FontAwesomeIcons.users),
                         color: const Color.fromRGBO(13, 18, 28, 0.867),
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => const TrackPage(),
-                            ),
-                          );                        
+                          // Navigate to Users page
                         },
                       ),
                       const Text(
@@ -344,11 +334,7 @@ class ProfilePageBody extends StatelessWidget {
                         icon: const FaIcon(FontAwesomeIcons.bookOpen),
                         color: const Color.fromRGBO(13, 18, 28, 0.867),
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => const CoursesPage(),
-                            ),
-                          );
+                          // Navigate to Courses page
                         },
                       ),
                       const Text(
