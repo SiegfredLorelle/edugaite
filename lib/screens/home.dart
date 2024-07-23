@@ -3,7 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../widgets/home-image-carousel.dart';
 import '../screens/login.dart';
-
+import '../screens/game_screen.dart'; // Import the game screen
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -91,7 +91,6 @@ class HomePageBody extends StatelessWidget {
                 ),
               ),
             ),
-            
             Container(
               color: Colors.white70,
               padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
@@ -105,7 +104,6 @@ class HomePageBody extends StatelessWidget {
                 ),
               ),
             ),
-
             Container(
               color: Colors.white70,
               padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
@@ -113,10 +111,11 @@ class HomePageBody extends StatelessWidget {
                 TextButton(
                   onPressed: () {
                     Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const LoginPage()),
-                  );
-                },
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const LoginPage()),
+                    );
+                  },
                   child: const Text('Get Started'),
                   style: TextButton.styleFrom(
                     backgroundColor: const Color.fromRGBO(26, 92, 229,
@@ -138,10 +137,11 @@ class HomePageBody extends StatelessWidget {
                 TextButton(
                   onPressed: () {
                     Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const LoginPage()),
-                  );
-                },
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const LoginPage()),
+                    );
+                  },
                   child: const Text('Sign In'),
                   style: TextButton.styleFrom(
                     backgroundColor: const Color.fromRGBO(232, 235, 242,
@@ -161,7 +161,34 @@ class HomePageBody extends StatelessWidget {
                 ),
               ]),
             ),
-
+            Container(
+              color: Colors.white70,
+              padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
+              child: TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => GameScreen()),
+                  );
+                },
+                child: const Text('Go to Game'),
+                style: TextButton.styleFrom(
+                  backgroundColor: const Color.fromRGBO(
+                      26, 92, 229, 0.867), // Set your desired background color
+                  shape: RoundedRectangleBorder(
+                    borderRadius:
+                        BorderRadius.circular(12.0), // Customize button shape
+                  ),
+                  foregroundColor: const Color.fromRGBO(
+                      232, 235, 242, 0.867), // Set your desired color here
+                  textStyle: const TextStyle(
+                    fontSize: 12.0, // Set text size
+                    fontFamily: "Lexend",
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
             Container(
               width: double.infinity,
               color: Colors.white70,
@@ -177,9 +204,7 @@ class HomePageBody extends StatelessWidget {
                 ),
               ),
             ),
-
             const ImageCarousel(),
-
             Container(
               width: double.infinity,
               color: Colors.white70,
@@ -200,7 +225,6 @@ class HomePageBody extends StatelessWidget {
                 ],
               ),
             ),
-
             Container(
               width: double.infinity,
               padding: const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 8.0),
