@@ -31,7 +31,16 @@ class _LoginPageState extends State<LoginPage> {
           password: _passwordController.text,
         );
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Logged in as ${userCredential.user?.email}')),
+          SnackBar(
+            // backgroundColor: const Color.fromARGB(255, 230, 176, 176),
+            behavior: SnackBarBehavior.floating,
+            content: Text(
+              'Logged in as ${userCredential.user?.email}',
+              style: const TextStyle(
+                fontSize: 12,
+              ),
+            ),
+          ),
         );
         Navigator.push(
           context,
@@ -58,13 +67,22 @@ class _LoginPageState extends State<LoginPage> {
             message = "Incorrect credentials";
             break;
           case 'too-many-requests':
-            message = "Too many request. Wait for 3 minutes.";
+            message = "Too many requests. Wait for 3 minutes.";
             break;
           default:
             message = 'An error occurred. Please try again.';
         }
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(message)),
+          SnackBar(
+            // backgroundColor: const Color.fromARGB(255, 230, 176, 176),
+            behavior: SnackBarBehavior.floating,
+            content: Text(
+              message,
+              style: const TextStyle(
+                fontSize: 12,
+              ),
+            ),
+          ),
         );
       }
     }
