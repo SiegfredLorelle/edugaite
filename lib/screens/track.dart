@@ -45,7 +45,7 @@ class TrackPageBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      // height: MediaQuery.of(context).size.height,
+      height: MediaQuery.of(context).size.height,
       child: Stack(
         alignment: Alignment.center,
         children: <Widget>[
@@ -56,7 +56,32 @@ class TrackPageBody extends StatelessWidget {
             height: MediaQuery.of(context).size.height,
             fit: BoxFit.cover,
           ),
-          // Add other widgets on top of the image here
+          // Button over the image
+          Positioned(
+            bottom: 50.0, // Position the button at the bottom with some offset
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/game');
+              },
+              child: const Text(
+                'Start',
+                style: TextStyle(
+                  color: Color.fromRGBO(13, 18, 28, 0.867),
+                ),
+              ),
+              style: ElevatedButton.styleFrom(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
+                textStyle: const TextStyle(
+                  fontSize: 20.0,
+                  fontFamily: "Lexend",
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
