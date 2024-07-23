@@ -10,7 +10,7 @@ class ImageCarousel extends StatelessWidget {
     return Container(
       color: Colors.white70, // Set your desired background color here
       child: CarouselSlider(
-        items: [
+        items: const [
           CarouselItem(
               imagePath: 'assets/images/home-carousel/carousel-1.png',
               caption: 'Learn New Skills'),
@@ -63,7 +63,7 @@ class CarouselItem extends StatelessWidget {
           child: Text(
             caption,
             style: const TextStyle(
-              color: const Color.fromRGBO(13, 18, 28, 0.867),
+              color: Color.fromRGBO(13, 18, 28, 0.867),
               fontSize: 16.0,
               backgroundColor: Colors.white70,
               fontFamily: "Lexend",

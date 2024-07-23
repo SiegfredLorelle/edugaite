@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../screens/login.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -71,7 +70,7 @@ class ProfilePageBody extends StatelessWidget {
             Container(
               color: Colors.white70,
               padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
-              child: Column(children: <Widget>[
+              child: const Column(children: <Widget>[
                 Text(
                   "Mrs. Johnson",
                   textAlign: TextAlign.center,
@@ -87,7 +86,7 @@ class ProfilePageBody extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 16.0,
-                    color: const Color.fromRGBO(
+                    color: Color.fromRGBO(
                         79, 102, 150, 1), // Label text color,
                     fontFamily: "Lexend",
                   ),
@@ -97,7 +96,7 @@ class ProfilePageBody extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 16.0,
-                    color: const Color.fromRGBO(
+                    color: Color.fromRGBO(
                         79, 102, 150, 1), // Label text color,
                     fontFamily: "Lexend",
                   ),
@@ -112,7 +111,6 @@ class ProfilePageBody extends StatelessWidget {
                   Expanded(
                     child: TextButton(
                       onPressed: () {},
-                      child: const Text('Share profile'),
                       style: TextButton.styleFrom(
                         backgroundColor: const Color.fromRGBO(232, 235, 242,
                             0.867), // Set your desired background color
@@ -128,13 +126,13 @@ class ProfilePageBody extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
+                      child: const Text('Share profile'),
                     ),
                   ),
-                  SizedBox(width: 8.0), // Add some spacing between the buttons
+                  const SizedBox(width: 8.0), // Add some spacing between the buttons
                   Expanded(
                     child: TextButton(
                       onPressed: () {},
-                      child: const Text('Add Note'),
                       style: TextButton.styleFrom(
                         backgroundColor: const Color.fromRGBO(26, 92, 229,
                             0.867), // Set your desired background color
@@ -150,6 +148,7 @@ class ProfilePageBody extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
+                      child: const Text('Add Note'),
                     ),
                   ),
                 ],
@@ -158,7 +157,7 @@ class ProfilePageBody extends StatelessWidget {
             Container(
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 0.0),
-              child: Text(
+              child: const Text(
                 "Quick Access",
                 style: TextStyle(
                   fontSize: 20.0,
@@ -190,14 +189,14 @@ class ProfilePageBody extends StatelessWidget {
                     ),
                   ),
 
-                  SizedBox(width: 8.0), // Add some spacing between the buttons
+                  const SizedBox(width: 8.0), // Add some spacing between the buttons
 
-                  Text(
+                  const Text(
                     "Math Curriculum",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 16.0,
-                      color: const Color.fromRGBO(13, 18, 28, 0.867), // Se
+                      color: Color.fromRGBO(13, 18, 28, 0.867), // Se
                       fontFamily: "Lexend",
                     ),
                   ),
@@ -226,14 +225,14 @@ class ProfilePageBody extends StatelessWidget {
                     ),
                   ),
 
-                  SizedBox(width: 8.0), // Add some spacing between the buttons
+                  const SizedBox(width: 8.0), // Add some spacing between the buttons
 
-                  Text(
+                  const Text(
                     "New Course",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 16.0,
-                      color: const Color.fromRGBO(13, 18, 28, 0.867), // Se
+                      color: Color.fromRGBO(13, 18, 28, 0.867), // Se
                       fontFamily: "Lexend",
                     ),
                   ),
@@ -262,14 +261,14 @@ class ProfilePageBody extends StatelessWidget {
                     ),
                   ),
 
-                  SizedBox(width: 8.0), // Add some spacing between the buttons
+                  const SizedBox(width: 8.0), // Add some spacing between the buttons
 
-                  Text(
+                  const Text(
                     "Add Track",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 16.0,
-                      color: const Color.fromRGBO(13, 18, 28, 0.867), // Se
+                      color: Color.fromRGBO(13, 18, 28, 0.867), // Se
                       fontFamily: "Lexend",
                     ),
                   ),
@@ -277,11 +276,11 @@ class ProfilePageBody extends StatelessWidget {
               ),
             ),
             Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white70,
                 border: Border(
                   top: BorderSide(
-                    color: const Color.fromRGBO(
+                    color: Color.fromRGBO(
                         232, 235, 242, 0.867), // Border color
                     width: 1.5, // Border width
                   ),

@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       routes: {
         "/": (context) => const HomePage(),
         "/login": (context) => const LoginPage(),
-        "/game": (context) => GameScreen(),
+        "/game": (context) => const GameScreen(),
       },
       title: 'Flutter Demo',
       theme: ThemeData(
