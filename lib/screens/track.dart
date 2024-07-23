@@ -11,10 +11,6 @@ class TrackPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(80.0),
-        child: TrackPageHeader(),
-      ),
       body: Column(
         children: [
           Expanded(
@@ -41,11 +37,6 @@ class TrackPageHeader extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          IconButton(
-            icon: const FaIcon(FontAwesomeIcons.bell, size: 20),
-            color: const Color.fromRGBO(13, 18, 28, 0.867),
-            onPressed: () {},
-          ),
         ],
       ),
     );
@@ -62,20 +53,32 @@ class TrackPageBody extends StatelessWidget {
       child: Container(
         child: Column(
           children: <Widget>[
-            Container(
-              color: Colors.white70,
-              padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
-              child: const Text(
-                "TRACK PAGE",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 32.0,
-                  color: Color.fromRGBO(13, 18, 28, 0.867),
-                  fontFamily: "Lexend",
-                  fontWeight: FontWeight.bold,
+            Stack(
+              alignment: Alignment.center,
+              children: <Widget>[
+                // Bottom image
+                Image.asset(
+                  'assets/images/track/background-2.png',
                 ),
-              ),
+                // Top image
+              ],
             ),
+            // const Image(image: AssetImage('assets/images/home-hero.png')),
+
+            // Container(
+            //   color: Colors.white70,
+            //   padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
+            //   child: const Text(
+            //     "TRACK PAGE",
+            //     textAlign: TextAlign.center,
+            //     style: TextStyle(
+            //       fontSize: 32.0,
+            //       color: Color.fromRGBO(13, 18, 28, 0.867),
+            //       fontFamily: "Lexend",
+            //       fontWeight: FontWeight.bold,
+            //     ),
+            //   ),
+            // ),
 
           ],
         ),

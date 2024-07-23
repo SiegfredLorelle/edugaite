@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../screens/profile.dart';
-import '../screens/track.dart';
-import '../screens/courses.dart';
 
 class NavFooter extends StatelessWidget {
   const NavFooter({super.key});

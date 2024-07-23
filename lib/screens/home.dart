@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../widgets/home-image-carousel.dart';
-import '../screens/login.dart';
 import '../screens/game_screen.dart'; // Import the game screen
 
 class HomePage extends StatelessWidget {
