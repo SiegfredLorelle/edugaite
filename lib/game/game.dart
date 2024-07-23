@@ -23,9 +23,4 @@ class EndlessRunnerGame extends FlameGame {
     _obstacles.add(obstacle);
   }
 
-  @override
-  void update(double dt) {
-    super.update(dt);
-    // Update game logic here
-  }
 }

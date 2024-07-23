@@ -12,9 +12,4 @@ class Player extends SpriteComponent with HasGameRef<FlameGame> {
     position = Vector2(100, gameRef.size.y - size.y - 50);
   }
 
-  @override
-  void update(double dt) {
-    super.update(dt);
-    // Update player logic here
-  }
 }
