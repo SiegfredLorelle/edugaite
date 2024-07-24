@@ -110,12 +110,8 @@ class HomePageBody extends StatelessWidget {
               child: Row(children: <Widget>[
                 TextButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const LoginPage()),
-                    );
-                  },
+                    Navigator.pushNamed(context, '/login');
+                },
                   child: const Text('Get Started'),
                   style: TextButton.styleFrom(
                     backgroundColor: const Color.fromRGBO(26, 92, 229,
@@ -136,12 +132,8 @@ class HomePageBody extends StatelessWidget {
                 const Spacer(),
                 TextButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const LoginPage()),
-                    );
-                  },
+                    Navigator.pushNamed(context, '/login');
+                },
                   child: const Text('Sign In'),
                   style: TextButton.styleFrom(
                     backgroundColor: const Color.fromRGBO(232, 235, 242,
@@ -171,7 +163,6 @@ class HomePageBody extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => const GameScreen()),
                   );
                 },
-                child: const Text('Go to Game'),
                 style: TextButton.styleFrom(
                   backgroundColor: const Color.fromRGBO(
                       26, 92, 229, 0.867), // Set your desired background color
@@ -187,6 +178,7 @@ class HomePageBody extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+                child: const Text('Go to Game'),
               ),
             ),
             Container(
@@ -232,16 +224,16 @@ class HomePageBody extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  FaIcon(
+                  const FaIcon(
                     FontAwesomeIcons.copyright,
                     size: 12.0,
-                    color: const Color.fromRGBO(13, 18, 28, 0.867),
+                    color: Color.fromRGBO(13, 18, 28, 0.867),
                   ),
                   Text(
                     ' $currentYear EduGAIte, Inc. All rights reserved.',
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 12.0,
-                      color: const Color.fromRGBO(13, 18, 28, 0.867),
+                      color: Color.fromRGBO(13, 18, 28, 0.867),
                       fontFamily: "Lexend",
                     ),
                   ),

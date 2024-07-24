@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import '../screens/profile.dart';
-
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  const LoginPage({super.key});
 
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -31,18 +29,25 @@ class _LoginPageState extends State<LoginPage> {
           password: _passwordController.text,
         );
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Logged in as ${userCredential.user?.email}')),
-        );
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const HomePage()),
+          SnackBar(
+            // backgroundColor: const Color.fromARGB(255, 230, 176, 176),
+            behavior: SnackBarBehavior.floating,
+            content: Text(
+              'Logged in as ${userCredential.user?.email}',
+              style: const TextStyle(
+                fontSize: 12,
+              ),
+            ),
+          ),
         );
         // Navigate to the home page or another page on successful login
+        Navigator.pushNamed(context, '/profile');
+        
       } on FirebaseAuthException catch (e) {
         String message;
         switch (e.code) {
           case 'invalid-email':
-            message = "Invalid email";
+            message = "Invalid email format";
             break;
           case 'user-disabled':
             message =
@@ -58,24 +63,33 @@ class _LoginPageState extends State<LoginPage> {
             message = "Incorrect credentials";
             break;
           case 'too-many-requests':
-            message = "Too many request. Wait for 3 minutes.";
+            message = "Too many requests. Wait for 3 minutes.";
             break;
           default:
             message = 'An error occurred. Please try again.';
         }
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(message)),
+          SnackBar(
+            // backgroundColor: const Color.fromARGB(255, 230, 176, 176),
+            behavior: SnackBarBehavior.floating,
+            content: Text(
+              message,
+              style: const TextStyle(
+                fontSize: 12,
+              ),
+            ),
+          ),
         );
       }
     }
   }
 
-  Widget HomePageHeader() {
+  Widget LoginPageHeader() {
     return Container(
       height: 60.0, // Set desired height
       color: Colors.white70,
       padding: const EdgeInsets.fromLTRB(16.0, 20.0, 16.0, 8.0),
-      child: Center(
+      child: const Center(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -125,23 +139,23 @@ class _LoginPageState extends State<LoginPage> {
           ),
           TextFormField(
             controller: _emailController,
-            cursorColor: Color.fromRGBO(13, 18, 28, 0.867),
+            cursorColor: const Color.fromRGBO(13, 18, 28, 0.867),
             decoration: InputDecoration(
               labelText: 'Email',
-              labelStyle: TextStyle(
-                  color: const Color.fromRGBO(
+              labelStyle: const TextStyle(
+                  color: Color.fromRGBO(
                       79, 102, 150, 1)), // Label text color
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12.0), // Border radius
               ),
               enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(
-                    color: const Color.fromRGBO(
+                borderSide: const BorderSide(
+                    color: Color.fromRGBO(
                         232, 235, 242, 0.867)), // Border color when enabled
                 borderRadius: BorderRadius.circular(12.0), // Border radius
               ),
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                     color: Color.fromRGBO(
                         13, 18, 28, 0.867)), // Border color when focused
                 borderRadius: BorderRadius.circular(12.0), // Border radius
@@ -149,8 +163,8 @@ class _LoginPageState extends State<LoginPage> {
               fillColor: const Color.fromRGBO(
                   232, 235, 242, 0.867), // Background color of the textbox
               filled: true,
-              hintStyle: TextStyle(
-                  color: const Color.fromARGB(255, 2, 1, 1)), // Hint text color
+              hintStyle: const TextStyle(
+                  color: Color.fromARGB(255, 2, 1, 1)), // Hint text color
             ),
             validator: (value) {
               if (value == null || value.isEmpty) {
@@ -159,26 +173,26 @@ class _LoginPageState extends State<LoginPage> {
               return null;
             },
           ),
-          SizedBox(height: 16.0),
+          const SizedBox(height: 16.0),
           TextFormField(
             controller: _passwordController,
-            cursorColor: Color.fromRGBO(13, 18, 28, 0.867),
+            cursorColor: const Color.fromRGBO(13, 18, 28, 0.867),
             decoration: InputDecoration(
               labelText: 'Password',
-              labelStyle: TextStyle(
-                  color: const Color.fromRGBO(
+              labelStyle: const TextStyle(
+                  color: Color.fromRGBO(
                       79, 102, 150, 1)), // Label text color
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12.0), // Border radius
               ),
               enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(
-                    color: const Color.fromRGBO(
+                borderSide: const BorderSide(
+                    color: Color.fromRGBO(
                         232, 235, 242, 0.867)), // Border color when enabled
                 borderRadius: BorderRadius.circular(12.0), // Border radius
               ),
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                     color: Color.fromRGBO(
                         13, 18, 28, 0.867)), // Border color when focused
                 borderRadius: BorderRadius.circular(12.0), // Border radius
@@ -186,8 +200,8 @@ class _LoginPageState extends State<LoginPage> {
               fillColor: const Color.fromRGBO(
                   232, 235, 242, 0.867), // Background color of the textbox
               filled: true,
-              hintStyle: TextStyle(
-                  color: const Color.fromARGB(255, 2, 1, 1)), // Hint text color
+              hintStyle: const TextStyle(
+                  color: Color.fromARGB(255, 2, 1, 1)), // Hint text color
             ),
             obscureText: true,
             validator: (value) {
@@ -197,7 +211,7 @@ class _LoginPageState extends State<LoginPage> {
               return null;
             },
           ),
-          SizedBox(height: 32.0),
+          const SizedBox(height: 32.0),
           InkWell(
             onTap: () {},
             child: Container(
@@ -222,7 +236,6 @@ class _LoginPageState extends State<LoginPage> {
             margin: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
             child: TextButton(
               onPressed: _login,
-              child: const Text('Log In'),
               style: TextButton.styleFrom(
                 backgroundColor: const Color.fromRGBO(
                     26, 92, 229, 0.867), // Set your desired background color
@@ -237,6 +250,7 @@ class _LoginPageState extends State<LoginPage> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
+              child: const Text('Log In'),
             ),
           ),
           InkWell(
@@ -266,8 +280,8 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(80.0),
-        child: HomePageHeader(),
+        preferredSize: const Size.fromHeight(80.0),
+        child: LoginPageHeader(),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

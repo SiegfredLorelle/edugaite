@@ -79,6 +79,8 @@ flutter:
   assets:
     - assets/images/
     - assets/images/home-carousel/
+    - assets/images/profile/
+    - assets/images/track/
     - assets/map/
     - assets/map/anim/
     - assets/map/tiles/
