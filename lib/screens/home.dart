@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../widgets/home-image-carousel.dart';
-import '../screens/game_screen.dart'; // Import the game screen
+import '../screens/login.dart';
+import '../game/view/game_view.dart'; // Import the game screen
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -110,7 +111,8 @@ class HomePageBody extends StatelessWidget {
                 TextButton(
                   onPressed: () {
                     Navigator.pushNamed(context, '/login');
-                  },
+                },
+                  child: const Text('Get Started'),
                   style: TextButton.styleFrom(
                     backgroundColor: const Color.fromRGBO(26, 92, 229,
                         0.867), // Set your desired background color
@@ -126,13 +128,13 @@ class HomePageBody extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  child: const Text('Get Started'),
                 ),
                 const Spacer(),
                 TextButton(
                   onPressed: () {
                     Navigator.pushNamed(context, '/login');
-                  },
+                },
+                  child: const Text('Sign In'),
                   style: TextButton.styleFrom(
                     backgroundColor: const Color.fromRGBO(232, 235, 242,
                         0.867), // Set your desired background color
@@ -148,7 +150,6 @@ class HomePageBody extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  child: const Text('Sign In'),
                 ),
               ]),
             ),

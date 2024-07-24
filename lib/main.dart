@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-
+import 'package:provider/provider.dart';
+import 'package:EduGAIte/audio/audio.dart';
 import 'firebase_options.dart';
 import 'screens/home.dart';
 import 'screens/login.dart';
-import 'screens/game_screen.dart';
+import 'game/view/game_view.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:EduGAIte/game/game.dart';
 import 'screens/profile.dart';
 import 'screens/track.dart';
 import 'screens/courses.dart';
@@ -24,34 +27,40 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      initialRoute: "/",
-      routes: {
-        "/": (context) => const HomePage(),
-        "/login": (context) => const LoginPage(),
-        "/game": (context) => const GameScreen(),
-        "/profile": (context) => const ProfilePage(),
+    return MultiProvider(
+      providers: [
+        Provider(create: (_) => AudioController()),
+        BlocProvider(create: (_) => GameBloc()),
+      ],
+      child: MaterialApp(
+        initialRoute: "/",
+        routes: {
+          "/": (context) => const HomePage(),
+          "/login": (context) => const LoginPage(),
+          "/game": (context) => const GameScreen(),
+          "/profile": (context) => const ProfilePage(),
         "/track": (context) => const TrackPage(),
         "/courses": (context) => const CoursesPage(),
       },
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: const ColorScheme(
-          primary: Colors.white70, // Primary color
-          primaryContainer: Colors.white70, // Primary container color
-          secondary: Colors.white70, // Secondary color
-          secondaryContainer: Colors.white70, // Secondary container color
-          surface: Colors.white, // Surface color
-          error: Colors.red, // Error color
-          onPrimary:
-              Color.fromRGBO(13, 18, 28, 0.867), // Text color on primary color
-          onSecondary: Color.fromRGBO(
-              13, 18, 28, 0.867), // Text color on secondary color
-          onSurface: Colors.black, // Text color on surface color
-          onError: Colors.white, // Text color on error color
-          brightness: Brightness.light, // Brightness of the overall theme
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          colorScheme: const ColorScheme(
+            primary: Colors.white70, // Primary color
+            primaryContainer: Colors.white70, // Primary container color
+            secondary: Colors.white70, // Secondary color
+            secondaryContainer: Colors.white70, // Secondary container color
+            surface: Colors.white, // Surface color
+            error: Colors.red, // Error color
+            onPrimary: Color.fromRGBO(
+                13, 18, 28, 0.867), // Text color on primary color
+            onSecondary: Color.fromRGBO(
+                13, 18, 28, 0.867), // Text color on secondary color
+            onSurface: Colors.black, // Text color on surface color
+            onError: Colors.white, // Text color on error color
+            brightness: Brightness.light, // Brightness of the overall theme
+          ),
+          useMaterial3: true,
         ),
-        useMaterial3: true,
       ),
     );
   }

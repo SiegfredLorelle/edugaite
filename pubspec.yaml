@@ -33,6 +33,20 @@ dependencies:
   carousel_slider: ^4.2.1 # Replace with the latest version if desired
   font_awesome_flutter: ">= 4.7.0"
   flame: ^1.0.0 # Ensure you use the latest version available
+  flame_behaviors: ^1.0.0
+  flame_tiled: ^1.20.2
+  leap: ^0.2.1
+  audioplayers: ^5.2.0
+  flutter_bloc: ^8.1.3
+  pathxp: ^0.4.0
+  logging: ^1.2.0
+  equatable: ^2.0.5
+  bloc: ^8.1.2
+  ordered_set: ^5.0.2
+  url_launcher: ^6.2.1
+  shared_preferences: ^2.2.2
+  app_ui:
+    path: packages/app_ui
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -67,9 +81,13 @@ flutter:
     - assets/images/home-carousel/
     - assets/images/profile/
     - assets/images/track/
-    - assets/images/game/player.png
-    - assets/images/game/obstacle.png
-    # - images/a_dot_ham.jpeg
+    - assets/map/
+    - assets/map/anim/
+    - assets/map/tiles/
+    - assets/map/objects/
+    - assets/music/
+    - assets/sfx/
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
