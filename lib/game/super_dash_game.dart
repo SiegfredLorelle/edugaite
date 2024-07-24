@@ -34,7 +34,7 @@ class SuperDashGame extends LeapGame
         );
 
   static final _cameraViewport = Vector2(592, 1024);
-  static const prefix = 'assets/game/map/';
+  static const prefix = 'assets/map/';
   static const _sections = [
     'flutter_runnergame_map_A.tmx',
     'flutter_runnergame_map_B.tmx',
@@ -113,10 +113,9 @@ class SuperDashGame extends LeapGame
     );
 
     itemsSpritesheet = SpriteSheet(
-      image: await images.load('assets/images/game/objects/tile_items_v2.png'),
+      image: await images.load('objects/tile_items_v2.png'),
       srcSize: Vector2.all(tileSize),
     );
-
     await loadWorldAndMap(
       images: images,
       prefix: prefix,

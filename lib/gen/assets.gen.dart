@@ -467,7 +467,6 @@ class $AssetsMapObjectsGen {
 
   /// File path: assets/map/objects/tile_gate_lvl7.tsx
   String get tileGateLvl7Tsx => 'assets/map/objects/tile_gate_lvl7.tsx';
-
   /// File path: assets/map/objects/tile_items_v2.png
   AssetGenImage get tileItemsV2Png =>
       const AssetGenImage('assets/map/objects/tile_items_v2.png');
