@@ -82,13 +82,26 @@ class CoursesPageBody extends StatelessWidget {
               color: Colors.white70,
               padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
               child: const Text(
-                "COURSES PAGE",
+                "Welcome to the fun part of your learning journey!",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 32.0,
+                  fontSize: 24.0,
                   color: Color.fromRGBO(13, 18, 28, 0.867),
                   fontFamily: "Lexend",
                   fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            Container(
+              color: Colors.white70,
+              padding: const EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 8.0),
+              child: const Text(
+                "You'll find challenges that are designed to keep you engaged and motivated. Each challenge has a different theme and a set of questions.",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 16.0,
+                  color: Color.fromRGBO(13, 18, 28, 0.867),
+                  fontFamily: "Lexend",
                 ),
               ),
             ),
