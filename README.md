@@ -14,3 +14,12 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+## TODO
+- Sign up page
+- Logout every punta sa login page
+- Backend ng account info, courses, etc
+- AI API
+- Game
+- Gawing link ung title na EduGAIte
+- App title, app logo pag apk na
