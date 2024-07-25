@@ -16,7 +16,7 @@ class Player extends JumperCharacter<SuperDashGame> {
   });
 
   static const initialHealth = 1;
-  static const speed = 5.0;
+  static const speed = 1.0;
   static const jumpImpulse = .6;
 
   final Vector2 levelSize;
