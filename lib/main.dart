@@ -11,6 +11,7 @@ import 'package:EduGAIte/game/game.dart';
 import 'screens/profile.dart';
 import 'screens/track.dart';
 import 'screens/courses.dart';
+import 'screens/lesson.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,8 +42,9 @@ class MyApp extends StatelessWidget {
           "/profile": (context) => const ProfilePage(),
         "/track": (context) => const TrackPage(),
         "/courses": (context) => const CoursesPage(),
+        "/lesson": (context) => const LessonPage(),
       },
-        title: 'Flutter Demo',
+        title: 'EduGAIte',
         theme: ThemeData(
           colorScheme: const ColorScheme(
             primary: Colors.white70, // Primary color
