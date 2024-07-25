@@ -203,6 +203,21 @@ class Player extends JumperCharacter<SuperDashGame> {
         return respawn();
       }
     }
+
+    // Make player walk when a certain condition is met
+    // For example, let's say the player should walk when a key is pressed
+    if (shouldWalk()) {
+      walking = true;
+    } else {
+      walking = false;
+    }
+  }
+
+  bool shouldWalk() {
+    // Implement the condition that makes the player walk
+    // Example: return true when a certain key is pressed
+    // return someKeyPressed;
+    return false; // Placeholder condition
   }
 
   void _checkPlayerStuck(double dt) {
