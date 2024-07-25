@@ -44,6 +44,7 @@ class LessonPageHeader extends StatelessWidget {
               icon: const FaIcon(FontAwesomeIcons.arrowLeft, size: 20),
               color: const Color.fromRGBO(13, 18, 28, 0.867),
               onPressed: () {
+                Navigator.pop(context);
                 // Define your action here
               },
             ),
@@ -57,6 +58,7 @@ class LessonPageHeader extends StatelessWidget {
                 fontFamily: "Lexend",
                 fontWeight: FontWeight.bold,
               ),
+              textAlign: TextAlign.center, // Center the header text
             ),
           ),
         ],
@@ -73,13 +75,14 @@ class LessonPageBody extends StatelessWidget {
     return SingleChildScrollView(
       child: Container(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start, // Align all text to the left
           children: <Widget>[
             Container(
               color: Colors.white70,
               padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
               child: const Text(
-                "LESSON APGE!",
-                textAlign: TextAlign.center,
+                "Let's explore how to visualize a fraction.",
+                textAlign: TextAlign.left, // Align text to the left
                 style: TextStyle(
                   fontSize: 24.0,
                   color: Color.fromRGBO(13, 18, 28, 0.867),
@@ -92,132 +95,12 @@ class LessonPageBody extends StatelessWidget {
               color: Colors.white70,
               padding: const EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 8.0),
               child: const Text(
-                "You'll find challenges that are designed to keep you engaged and motivated. Each challenge has a different theme and a set of questions.",
-                textAlign: TextAlign.center,
+                "We can use different shapes and colors to represent the fraction.",
+                textAlign: TextAlign.left, // Align text to the left
                 style: TextStyle(
                   fontSize: 16.0,
                   color: Color.fromRGBO(13, 18, 28, 0.867),
                   fontFamily: "Lexend",
-                ),
-              ),
-            ),
-            Container(
-              color: Colors.white70,
-              padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 4.0),
-              child: Row(
-                children: <Widget>[
-                  Container(
-                    decoration: BoxDecoration(
-                      color: const Color.fromRGBO(232, 235, 242, 0.867), // Set your desir,
-                      borderRadius: BorderRadius.circular(12.0), // Border radius
-                    ),
-                    child: IconButton(
-                      icon: const FaIcon(
-                        FontAwesomeIcons.bookOpen,
-                        size: 16,
-                      ),
-                      color: const Color.fromRGBO(13, 18, 28, 0.867),
-                      onPressed: () {},
-                    ),
-                  ),
-                  const SizedBox(width: 8.0), // Add some spacing between the buttons
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text(
-                        "Time to Complete",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 16.0,
-                          color: Color.fromRGBO(13, 18, 28, 0.867), // Se
-                          fontFamily: "Lexend",
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        "5 minutes",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 12.0,
-                          color: Color.fromRGBO(79, 102, 150, 1), // Label text color
-                          fontFamily: "Lexend",
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              color: Colors.white70,
-              padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 4.0),
-              child: Row(
-                children: <Widget>[
-                  Container(
-                    decoration: BoxDecoration(
-                      color: const Color.fromRGBO(232, 235, 242, 0.867), // Set your desir,
-                      borderRadius: BorderRadius.circular(12.0), // Border radius
-                    ),
-                    child: IconButton(
-                      icon: const FaIcon(
-                        FontAwesomeIcons.circlePlus,
-                        size: 16,
-                      ),
-                      color: const Color.fromRGBO(13, 18, 28, 0.867),
-                      onPressed: () {},
-                    ),
-                  ),
-                  const SizedBox(width: 8.0), // Add some spacing between the buttons
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text(
-                        "Question Type",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 16.0,
-                          color: Color.fromRGBO(13, 18, 28, 0.867), // Se
-                          fontFamily: "Lexend",
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        "multiple choice, true or false",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 12.0,
-                          color: Color.fromRGBO(79, 102, 150, 1), // Label text color
-                          fontFamily: "Lexend",
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-              child: TextButton(
-                onPressed: () {
-                  // Define the button action here
-                },
-                style: TextButton.styleFrom(
-                  backgroundColor: const Color.fromRGBO(26, 92, 229,
-                        0.867), // Set your desired background color, // Set button color
-                  padding: const EdgeInsets.symmetric(vertical: 16.0), // Set padding
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(36.0), // Rounded edges
-                  ),
-                ),
-                child: const Text(
-                  'Get Started',
-                  style: TextStyle(
-                    color: Colors.white, // Set text color
-                    fontSize: 16.0, // Set text size
-                    fontFamily: "Lexend",
-                    fontWeight: FontWeight.bold,
-                  ),
                 ),
               ),
             ),
