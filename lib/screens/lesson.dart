@@ -108,6 +108,83 @@ class LessonPageBody extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: ImageGallery(),
           ),
+            Container(
+              color: Colors.white70,
+              padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 4.0),
+              child: Row(
+                children: <Widget>[
+                  Container(
+                    decoration: BoxDecoration(
+                      color: const Color.fromRGBO(232, 235, 242, 0.867), // Set your desir,
+                      borderRadius: BorderRadius.circular(12.0), // Border radius
+                    ),
+                    child: IconButton(
+                      icon: const FaIcon(
+                        FontAwesomeIcons.circleCheck,
+                        size: 16,
+                      ),
+                      color: const Color.fromRGBO(13, 18, 28, 0.867),
+                      onPressed: () {},
+                    ),
+                  ),
+                  const SizedBox(width: 8.0), // Add some spacing between the buttons
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      Text(
+                        "Fraction",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          fontFamily: "Lexend",
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        "1/2 - 1 out of 2 slices are shaded.",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 12.0,
+                          color: Color.fromRGBO(79, 102, 150, 1), // Label text color
+                          fontFamily: "Lexend",
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
+              child: TextButton(
+                onPressed: () {
+                  // TODO
+                },
+                style: TextButton.styleFrom(
+                  backgroundColor: const Color.fromRGBO(26, 92, 229,
+                        0.867), // Set your desired background color, // Set button color
+                  padding: const EdgeInsets.symmetric(vertical: 4.0), // Set padding
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(36.0), // Rounded edges
+                  ),
+                ),
+                child: const Text(
+                  'Start Activity',
+                  style: TextStyle(
+                    color: Colors.white, // Set text color
+                    fontSize: 16.0, // Set text size
+                    fontFamily: "Lexend",
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+
+
+
+
         ],
       ),
     );

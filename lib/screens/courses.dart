@@ -197,7 +197,7 @@ class CoursesPageBody extends StatelessWidget {
             ),
             Container(
               width: double.infinity,
-              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+              padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
               child: TextButton(
                 onPressed: () {
                   Navigator.pushNamed(context, '/lesson');
@@ -205,7 +205,7 @@ class CoursesPageBody extends StatelessWidget {
                 style: TextButton.styleFrom(
                   backgroundColor: const Color.fromRGBO(26, 92, 229,
                         0.867), // Set your desired background color, // Set button color
-                  padding: const EdgeInsets.symmetric(vertical: 16.0), // Set padding
+                  padding: const EdgeInsets.symmetric(vertical: 4.0), // Set padding
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(36.0), // Rounded edges
                   ),
