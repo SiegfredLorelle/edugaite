@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class SignUpPage extends StatefulWidget {
+  const SignUpPage ({super.key});
 
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _SignUpPageState createState() => _SignUpPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignUpPageState extends State<SignUpPage> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -20,71 +20,8 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
-  Future<void> _login() async {
-    if (_formKey.currentState?.validate() ?? false) {
-      try {
-        UserCredential userCredential =
-            await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: _emailController.text,
-          password: _passwordController.text,
-        );
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            // backgroundColor: const Color.fromARGB(255, 230, 176, 176),
-            behavior: SnackBarBehavior.floating,
-            content: Text(
-              'Logged in as ${userCredential.user?.email}',
-              style: const TextStyle(
-                fontSize: 12,
-              ),
-            ),
-          ),
-        );
-        // Navigate to the home page or another page on successful login
-        Navigator.pushNamed(context, '/profile');
-        
-      } on FirebaseAuthException catch (e) {
-        String message;
-        switch (e.code) {
-          case 'invalid-email':
-            message = "Invalid email format";
-            break;
-          case 'user-disabled':
-            message =
-                'The user corresponding to the given email has been disabled.';
-            break;
-          case 'user-not-found':
-            message = 'No user found for that email.';
-            break;
-          case 'wrong-password':
-            message = 'Wrong password provided.';
-            break;
-          case 'invalid-credential':
-            message = "Incorrect credentials";
-            break;
-          case 'too-many-requests':
-            message = "Too many requests. Wait for 3 minutes.";
-            break;
-          default:
-            message = 'An error occurred. Please try again.';
-        }
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            // backgroundColor: const Color.fromARGB(255, 230, 176, 176),
-            behavior: SnackBarBehavior.floating,
-            content: Text(
-              message,
-              style: const TextStyle(
-                fontSize: 12,
-              ),
-            ),
-          ),
-        );
-      }
-    }
-  }
 
-  Widget LoginPageHeader() {
+  Widget SignUpPageHeader() {
     return Container(
       height: 60.0, // Set desired height
       color: Colors.white70,
@@ -127,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
             color: Colors.white70,
             padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 16.0),
             child: const Text(
-              "Welcome Back",
+              "Create an Account",
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 32.0,
@@ -235,7 +172,7 @@ class _LoginPageState extends State<LoginPage> {
             color: Colors.white70,
             margin: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
             child: TextButton(
-              onPressed: _login,
+              onPressed: () {},
               style: TextButton.styleFrom(
                 backgroundColor: const Color.fromRGBO(
                     26, 92, 229, 0.867), // Set your desired background color
@@ -254,10 +191,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
           InkWell(
-            onTap: () {
-              Navigator.pushNamed(context, '/signup');
-
-            },
+            onTap: () {},
             child: Container(
               color: Colors.white70,
               padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
@@ -284,7 +218,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(80.0),
-        child: LoginPageHeader(),
+        child: SignUpPageHeader(),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
