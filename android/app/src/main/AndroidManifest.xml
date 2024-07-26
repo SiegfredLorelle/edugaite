@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.alicealguorithm.edugaite">
     <application
-        android:label="edugaite"
+        android:label="EduGAIte"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
