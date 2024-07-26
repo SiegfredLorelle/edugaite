@@ -16,9 +16,14 @@ For help getting started with Flutter development, view the
 samples, guidance on mobile development, and a full API reference.
 
 ## TODO
-- Sign up page
-- Logout every punta sa login page
-- Backend ng account info, courses, etc
+- Sign up page/Login page
+    - catch error before sending to firebase
+    - highlight red erros caught y firebase
+    - Logout every punta sa login page
+- Edit Profile
+    - UI for asking ng profile, name
+    - Backend ng account info
+- Backend ng courses/quizzes/etc
 - AI API
 - Game
 - Gawing link ung title na EduGAIte
