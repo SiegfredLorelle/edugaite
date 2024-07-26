@@ -12,6 +12,7 @@ import 'screens/profile.dart';
 import 'screens/track.dart';
 import 'screens/courses.dart';
 import 'screens/lesson.dart';
+import 'screens/signup.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
         routes: {
           "/": (context) => const HomePage(),
           "/login": (context) => const LoginPage(),
+          "/signup": (context) => const SignUpPage(),
           "/game": (context) => const GameScreen(),
           "/profile": (context) => const ProfilePage(),
         "/track": (context) => const TrackPage(),
