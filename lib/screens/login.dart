@@ -47,7 +47,7 @@ class _LoginPageState extends State<LoginPage> {
         String message;
         switch (e.code) {
           case 'invalid-email':
-            message = "Invalid email format";
+            message = "Invalid email format.";
             break;
           case 'user-disabled':
             message =
@@ -70,7 +70,6 @@ class _LoginPageState extends State<LoginPage> {
         }
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            // backgroundColor: const Color.fromARGB(255, 230, 176, 176),
             behavior: SnackBarBehavior.floating,
             content: Text(
               message,
