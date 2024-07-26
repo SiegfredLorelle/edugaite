@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class SignUpPage extends StatefulWidget {
-  const SignUpPage ({super.key});
+  const SignUpPage({super.key});
 
   @override
   _SignUpPageState createState() => _SignUpPageState();
@@ -12,14 +12,66 @@ class _SignUpPageState extends State<SignUpPage> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
 
   @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
+    _confirmPasswordController.dispose();
     super.dispose();
   }
 
+  Future<void> _signUp() async {
+    if (_formKey.currentState!.validate()) {
+      try {
+        UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: _emailController.text.trim(),
+          password: _passwordController.text.trim(),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            // backgroundColor: const Color.fromARGB(255, 230, 176, 176),
+            behavior: SnackBarBehavior.floating,
+            content: Text(
+              'Created account for ${userCredential.user?.email}',
+              style: const TextStyle(
+                fontSize: 12,
+              ),
+            ),
+          ),
+        );
+        Navigator.pushNamed(context, '/login'); 
+      } on FirebaseAuthException catch (e) {
+        String message;
+        switch (e.code) {
+          case 'invalid-email':
+            message = "Invalid email format.";
+            break;
+          case 'user-disabled':
+            message = 'The user corresponding to the given email has been disabled.';
+            break;
+          case 'email-already-in-use':
+            message = 'The email is already in use by another account.';
+            break;
+          case 'weak-password':
+            message = 'The password provided is too weak.';
+            break;
+          default:
+            message = 'An error occurred. Please try again.';
+        }
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            behavior: SnackBarBehavior.floating,
+            content: Text(
+              message,
+              style: const TextStyle(fontSize: 12),
+            ),
+          ),
+        );
+      }
+    }
+  }
 
   Widget SignUpPageHeader() {
     return Container(
@@ -148,31 +200,54 @@ class _SignUpPageState extends State<SignUpPage> {
               return null;
             },
           ),
-          const SizedBox(height: 32.0),
-          InkWell(
-            onTap: () {},
-            child: Container(
-              color: Colors.white70,
-              padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
-              alignment: Alignment.centerLeft,
-              child: const Text(
-                "Forget Password?",
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                  fontSize: 12.0,
-                  color: Color.fromRGBO(13, 18, 28, 0.867),
-                  fontFamily: "Lexend",
-                ),
+          const SizedBox(height: 16.0),
+          TextFormField(
+            controller: _confirmPasswordController,
+            cursorColor: const Color.fromRGBO(13, 18, 28, 0.867),
+            decoration: InputDecoration(
+              labelText: 'Confirm Password',
+              labelStyle: const TextStyle(
+                  color: Color.fromRGBO(
+                      79, 102, 150, 1)), // Label text color
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12.0), // Border radius
               ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: const BorderSide(
+                    color: Color.fromRGBO(
+                        232, 235, 242, 0.867)), // Border color when enabled
+                borderRadius: BorderRadius.circular(12.0), // Border radius
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: const BorderSide(
+                    color: Color.fromRGBO(
+                        13, 18, 28, 0.867)), // Border color when focused
+                borderRadius: BorderRadius.circular(12.0), // Border radius
+              ),
+              fillColor: const Color.fromRGBO(
+                  232, 235, 242, 0.867), // Background color of the textbox
+              filled: true,
+              hintStyle: const TextStyle(
+                  color: Color.fromARGB(255, 2, 1, 1)), // Hint text color
             ),
+            obscureText: true,
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please confirm your password';
+              } else if (value != _passwordController.text) {
+                return 'Passwords do not match';
+              }
+              return null;
+            },
           ),
+          const SizedBox(height: 32.0),
           Container(
             width: double.infinity,
             height: 48.0,
             color: Colors.white70,
             margin: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
             child: TextButton(
-              onPressed: () {},
+              onPressed: _signUp,
               style: TextButton.styleFrom(
                 backgroundColor: const Color.fromRGBO(
                     26, 92, 229, 0.867), // Set your desired background color
@@ -187,17 +262,19 @@ class _SignUpPageState extends State<SignUpPage> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              child: const Text('Log In'),
+              child: const Text('Sign Up'),
             ),
           ),
           InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, '/login');
+            },
             child: Container(
               color: Colors.white70,
               padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
               alignment: Alignment.center,
               child: const Text(
-                "New User? Sign Up",
+                "Already have an account? Log In",
                 textAlign: TextAlign.left,
                 style: TextStyle(
                   fontSize: 12.0,
@@ -216,13 +293,16 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(80.0),
         child: SignUpPageHeader(),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: _buildLoginForm(),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(16.0),
+          child: _buildLoginForm(),
+        ),
       ),
     );
   }
