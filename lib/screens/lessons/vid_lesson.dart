@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../widgets/nav-footer.dart';
+import '../../widgets/nav-footer.dart';
 
-class LessonPage extends StatelessWidget {
-  const LessonPage({super.key});
+class VidLessonPage extends StatelessWidget {
+  const VidLessonPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(80.0),
-        child: LessonPageHeader(),
+        child: VidLessonPageHeader(),
       ),
       body: Column(
         children: [
           Expanded(
             child: SingleChildScrollView(
-              child: LessonPageBody(),
+              child: VidLessonPageBody(),
             ),
           ),
           const NavFooter(),
@@ -27,8 +27,8 @@ class LessonPage extends StatelessWidget {
   }
 }
 
-class LessonPageHeader extends StatelessWidget {
-  const LessonPageHeader({super.key});
+class VidLessonPageHeader extends StatelessWidget {
+  const VidLessonPageHeader({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -67,8 +67,8 @@ class LessonPageHeader extends StatelessWidget {
   }
 }
 
-class LessonPageBody extends StatelessWidget {
-  const LessonPageBody({super.key});
+class VidLessonPageBody extends StatelessWidget {
+  const VidLessonPageBody({super.key});
 
   @override
   Widget build(BuildContext context) {

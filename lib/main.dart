@@ -11,7 +11,7 @@ import 'package:EduGAIte/game/game.dart';
 import 'screens/profile.dart';
 import 'screens/track.dart';
 import 'screens/courses.dart';
-import 'screens/lesson.dart';
+import 'screens/lessons/vid_lesson.dart';
 import 'screens/signup.dart';
 
 Future<void> main() async {
@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
           "/profile": (context) => const ProfilePage(),
         "/track": (context) => const TrackPage(),
         "/courses": (context) => const CoursesPage(),
-        "/lesson": (context) => const LessonPage(),
+        "/lesson": (context) => const VidLessonPage(),
       },
         title: 'EduGAIte',
         theme: ThemeData(
