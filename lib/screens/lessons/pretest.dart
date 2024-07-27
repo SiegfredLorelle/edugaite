@@ -158,7 +158,7 @@ class PretestPageHeader extends StatelessWidget {
                 fontFamily: "Lexend",
                 fontWeight: FontWeight.bold,
               ),
-              textAlign: TextAlign.center, // Center the header text
+              textAlign: TextAlign.center,
             ),
           ),
         ],
@@ -192,12 +192,12 @@ class PretestPageBody extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 0.0),
               child: Text(
                 'Question $questionNumber',
                 style: const TextStyle(
                   fontSize: 12.0,
-                  color: Color.fromRGBO(13, 18, 28, 0.867),
+                  color: Color.fromRGBO(26, 92, 229, 0.867),
                   fontFamily: "Lexend",
                   fontWeight: FontWeight.bold,
                 ),
@@ -207,7 +207,7 @@ class PretestPageBody extends StatelessWidget {
         ),
         Container(
           color: Colors.white70,
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 8.0),
           child: Text(
             question.text,
             textAlign: TextAlign.left, // Align text to the left
@@ -224,14 +224,11 @@ class PretestPageBody extends StatelessWidget {
             onTap: () => onSelectChoice(question.choices[i]),
             child: Container(
               width: double.infinity,
+              height: 70.0, // Increase the height of each choice container
               padding: const EdgeInsets.all(8.0),
               margin: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
               decoration: BoxDecoration(
-                color: selectedChoice == question.choices[i] ? const Color.fromRGBO(26, 92, 229, 0.3) : Colors.white,
-                border: Border.all(
-                  color: selectedChoice == question.choices[i] ? const Color.fromRGBO(26, 92, 229, 0.867) : Colors.grey,
-                  width: 1.0,
-                ),
+                color: selectedChoice == question.choices[i] ? const Color.fromRGBO(26, 92, 229, 0.867) : const Color.fromRGBO(232, 235, 242, 0.867), // Set your desired background color, // Change background color
                 borderRadius: BorderRadius.circular(12.0),
               ),
               child: Row(
@@ -239,7 +236,7 @@ class PretestPageBody extends StatelessWidget {
                   Text(
                     '${choiceLabels[i]}. ',
                     style: TextStyle(
-                      color: selectedChoice == question.choices[i] ? const Color.fromRGBO(26, 92, 229, 0.867) : const Color.fromRGBO(13, 18, 28, 0.867),
+                      color: selectedChoice == question.choices[i] ? Colors.white70 : const Color.fromRGBO(13, 18, 28, 0.867),
                       fontFamily: "Lexend",
                       fontSize: 16.0,
                       fontWeight: FontWeight.bold,
@@ -249,7 +246,7 @@ class PretestPageBody extends StatelessWidget {
                     child: Text(
                       question.choices[i],
                       style: TextStyle(
-                        color: selectedChoice == question.choices[i] ? const Color.fromRGBO(26, 92, 229, 0.867) : const Color.fromRGBO(13, 18, 28, 0.867),
+                        color: selectedChoice == question.choices[i] ? Colors.white70 : const Color.fromRGBO(13, 18, 28, 0.867),
                         fontFamily: "Lexend",
                         fontSize: 16.0,
                         fontWeight: FontWeight.bold,
