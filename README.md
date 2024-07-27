@@ -36,4 +36,5 @@ samples, guidance on mobile development, and a full API reference.
 - Add pages for math curriculum, new course, add track
 - Edit Profile page btn redirects to learning progress
 - Create challenge pg, learning path pg, feedback pg, send feedback pg, teacher community pg
+- Rename courses to lessons
 

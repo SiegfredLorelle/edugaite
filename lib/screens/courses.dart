@@ -200,7 +200,7 @@ class CoursesPageBody extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
               child: TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/lesson');
+                  Navigator.pushNamed(context, '/courses/pretest');
                 },
                 style: TextButton.styleFrom(
                   backgroundColor: const Color.fromRGBO(26, 92, 229,
