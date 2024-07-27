@@ -51,7 +51,7 @@ class VidLessonPageHeader extends StatelessWidget {
           ),
           Center(
             child: Text(
-              'AI Visualization',
+              'VARK Learning Style',
               style: TextStyle(
                 fontSize: 24.0,
                 color: const Color.fromRGBO(13, 18, 28, 0.867),
@@ -171,7 +171,7 @@ class VidLessonPageBody extends StatelessWidget {
                   ),
                 ),
                 child: const Text(
-                  'Start Activity',
+                  'Go Next',
                   style: TextStyle(
                     color: Colors.white, // Set text color
                     fontSize: 16.0, // Set text size
