@@ -55,6 +55,15 @@ class TrackPageBody extends StatelessWidget {
             height: MediaQuery.of(context).size.height,
             fit: BoxFit.cover,
           ),
+          // Centered image spanning the entire width
+          Positioned(
+            top: MediaQuery.of(context).size.height * 0.3,
+            child: Image.asset(
+              'assets/images/track/title.png', // replace with your image path
+              width: MediaQuery.of(context).size.width,
+              fit: BoxFit.cover,
+            ),
+          ),
           // Button over the image
           Positioned(
             bottom: 50.0, // Position the button at the bottom with some offset
