@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:video_player/video_player.dart';
 
 import '../../widgets/nav-footer.dart';
 
@@ -106,128 +107,183 @@ class VidLessonPageBody extends StatelessWidget {
           Container(
             color: Colors.white70,
             padding: const EdgeInsets.all(8.0),
-            child: ImageGallery(),
+            child: VideoGallery(),
           ),
-            Container(
-              color: Colors.white70,
-              padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 4.0),
-              child: Row(
-                children: <Widget>[
-                  Container(
-                    decoration: BoxDecoration(
-                      color: const Color.fromRGBO(232, 235, 242, 0.867), // Set your desir,
-                      borderRadius: BorderRadius.circular(12.0), // Border radius
-                    ),
-                    child: IconButton(
-                      icon: const FaIcon(
-                        FontAwesomeIcons.circleCheck,
-                        size: 16,
-                      ),
-                      color: const Color.fromRGBO(13, 18, 28, 0.867),
-                      onPressed: () {},
-                    ),
+          Container(
+            color: Colors.white70,
+            padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 4.0),
+            child: Row(
+              children: <Widget>[
+                Container(
+                  decoration: BoxDecoration(
+                    color: const Color.fromRGBO(232, 235, 242, 0.867), // Set your desired color,
+                    borderRadius: BorderRadius.circular(12.0), // Border radius
                   ),
-                  const SizedBox(width: 8.0), // Add some spacing between the buttons
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text(
-                        "Fraction",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 16.0,
-                          fontFamily: "Lexend",
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        "1/2 - 1 out of 2 slices are shaded.",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 12.0,
-                          color: Color.fromRGBO(79, 102, 150, 1), // Label text color
-                          fontFamily: "Lexend",
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
-              child: TextButton(
-                onPressed: () {
-                  // TODO
-                },
-                style: TextButton.styleFrom(
-                  backgroundColor: const Color.fromRGBO(26, 92, 229,
-                        0.867), // Set your desired background color, // Set button color
-                  padding: const EdgeInsets.symmetric(vertical: 4.0), // Set padding
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(36.0), // Rounded edges
+                  child: IconButton(
+                    icon: const FaIcon(
+                      FontAwesomeIcons.circleCheck,
+                      size: 16,
+                    ),
+                    color: const Color.fromRGBO(13, 18, 28, 0.867),
+                    onPressed: () {},
                   ),
                 ),
-                child: const Text(
-                  'Go Next',
-                  style: TextStyle(
-                    color: Colors.white, // Set text color
-                    fontSize: 16.0, // Set text size
-                    fontFamily: "Lexend",
-                    fontWeight: FontWeight.bold,
-                  ),
+                const SizedBox(width: 8.0), // Add some spacing between the buttons
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text(
+                      "Fraction",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 16.0,
+                        fontFamily: "Lexend",
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      "1/2 - 1 out of 2 slices are shaded.",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 12.0,
+                        color: Color.fromRGBO(79, 102, 150, 1), // Label text color
+                        fontFamily: "Lexend",
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
+            child: TextButton(
+              onPressed: () {
+                // TODO
+              },
+              style: TextButton.styleFrom(
+                backgroundColor: const Color.fromRGBO(26, 92, 229, 0.867), // Set your desired background color, // Set button color
+                padding: const EdgeInsets.symmetric(vertical: 4.0), // Set padding
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(36.0), // Rounded edges
+                ),
+              ),
+              child: const Text(
+                'Go Next',
+                style: TextStyle(
+                  color: Colors.white, // Set text color
+                  fontSize: 16.0, // Set text size
+                  fontFamily: "Lexend",
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
-
-
-
-
+          ),
         ],
       ),
     );
   }
 }
 
-class ImageGallery extends StatelessWidget {
-  const ImageGallery({super.key});
+class VideoGallery extends StatelessWidget {
+  const VideoGallery({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // Replace these paths with your image asset paths
-    final List<String> imagePaths = [
-      'assets/images/collect_eggs_acorns_instruction.png',
-      'assets/images/home-carousel/carousel-1.png',
-      'assets/images/game_logo.png',
-      'assets/images/game_over_bg.png',
-      'assets/images/portalInstruction.png',
-      // Add new image paths here
+    // Replace these paths with your video asset paths or URLs
+    final List<String> videoPaths = [
+      'assets/videos/edugaite-presentation.mp4',
+      'assets/videos/edugaite-presentation.mp4',
+      'assets/videos/edugaite-presentation.mp4',
+      'assets/videos/edugaite-presentation.mp4',
+      'assets/videos/edugaite-presentation.mp4',
     ];
 
     return GridView.builder(
       shrinkWrap: true, // Important to use in nested scrollable widgets
       physics: NeverScrollableScrollPhysics(), // Prevent grid view from scrolling
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2, // 2 images per row
-        crossAxisSpacing: 12.0, // Smaller gap between images
-        mainAxisSpacing: 12.0, // Smaller gap between images
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2, // 2 videos per row
+        crossAxisSpacing: 12.0, // Smaller gap between videos
+        mainAxisSpacing: 12.0, // Smaller gap between videos
       ),
-      itemCount: imagePaths.length,
+      itemCount: videoPaths.length,
       itemBuilder: (context, index) {
-        return ClipRRect(
-          borderRadius: BorderRadius.circular(10.0), // Round the corners
-          child: SizedBox(
-            width: 100, // Set desired width
-            height: 100, // Set desired height
-            child: Image.asset(
-              imagePaths[index],
-              fit: BoxFit.cover, // Ensure the image fits within the bounds
-            ),
-          ),
-        );
+        return VideoPlayerWidget(videoPath: videoPaths[index]);
       },
+    );
+  }
+}
+
+class VideoPlayerWidget extends StatefulWidget {
+  final String videoPath;
+
+  const VideoPlayerWidget({required this.videoPath, super.key});
+
+  @override
+  _VideoPlayerWidgetState createState() => _VideoPlayerWidgetState();
+}
+
+class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
+  late VideoPlayerController _controller;
+  late Future<void> _initializeVideoPlayerFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = VideoPlayerController.asset(widget.videoPath);
+    _initializeVideoPlayerFuture = _controller.initialize().catchError((error) {
+      print('Error initializing video: $error');
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(10.0), // Round the corners
+      child: FutureBuilder(
+        future: _initializeVideoPlayerFuture,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            return AspectRatio(
+              aspectRatio: _controller.value.aspectRatio,
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  VideoPlayer(_controller),
+                  IconButton(
+                    icon: Icon(
+                      _controller.value.isPlaying
+                          ? Icons.pause_circle_filled
+                          : Icons.play_circle_filled,
+                      size: 48.0,
+                      color: Colors.white,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _controller.value.isPlaying
+                            ? _controller.pause()
+                            : _controller.play();
+                      });
+                    },
+                  ),
+                ],
+              ),
+            );
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else {
+            return Center(child: CircularProgressIndicator());
+          }
+        },
+      ),
     );
   }
 }
