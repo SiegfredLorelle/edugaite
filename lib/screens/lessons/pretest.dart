@@ -50,6 +50,18 @@ class _PretestPageState extends State<PretestPage> {
     }
   }
 
+  void _previousQuestion() {
+    if (_currentQuestionIndex > 0) {
+      setState(() {
+        _currentQuestionIndex--;
+        _selectedChoice = null;
+        _showNextButton = false;
+      });
+    } else {
+      Navigator.pop(context);
+    }
+  }
+
   void _startQuestions() {
     setState(() {
       _showQuestions = true;
@@ -61,7 +73,10 @@ class _PretestPageState extends State<PretestPage> {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(80.0),
-        child: const PretestPageHeader(),
+        child: PretestPageHeader(
+          onBackButtonPressed: _previousQuestion,
+          isFirstQuestion: _currentQuestionIndex == 0,
+        ),
       ),
       body: Column(
         children: [
@@ -70,6 +85,7 @@ class _PretestPageState extends State<PretestPage> {
                 ? SingleChildScrollView(
                     child: PretestPageBody(
                       question: _questions[_currentQuestionIndex],
+                      questionNumber: _currentQuestionIndex + 1,
                       selectedChoice: _selectedChoice,
                       onSelectChoice: _selectChoice,
                     ),
@@ -108,7 +124,14 @@ class _PretestPageState extends State<PretestPage> {
 }
 
 class PretestPageHeader extends StatelessWidget {
-  const PretestPageHeader({super.key});
+  final VoidCallback onBackButtonPressed;
+  final bool isFirstQuestion;
+
+  const PretestPageHeader({
+    required this.onBackButtonPressed,
+    required this.isFirstQuestion,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -123,17 +146,15 @@ class PretestPageHeader extends StatelessWidget {
             child: IconButton(
               icon: const FaIcon(FontAwesomeIcons.arrowLeft, size: 20),
               color: const Color.fromRGBO(13, 18, 28, 0.867),
-              onPressed: () {
-                Navigator.pop(context);
-              },
+              onPressed: onBackButtonPressed,
             ),
           ),
           Center(
             child: Text(
               'Pretest',
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 24.0,
-                color: const Color.fromRGBO(13, 18, 28, 0.867),
+                color: Color.fromRGBO(13, 18, 28, 0.867),
                 fontFamily: "Lexend",
                 fontWeight: FontWeight.bold,
               ),
@@ -148,11 +169,13 @@ class PretestPageHeader extends StatelessWidget {
 
 class PretestPageBody extends StatelessWidget {
   final Question question;
+  final int questionNumber;
   final String? selectedChoice;
   final void Function(String?) onSelectChoice;
 
   const PretestPageBody({
     required this.question,
+    required this.questionNumber,
     required this.selectedChoice,
     required this.onSelectChoice,
     super.key,
@@ -160,9 +183,28 @@ class PretestPageBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final choiceLabels = ['A', 'B', 'C', 'D'];
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start, // Align all text to the left
       children: <Widget>[
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'Question $questionNumber',
+                style: const TextStyle(
+                  fontSize: 12.0,
+                  color: Color.fromRGBO(13, 18, 28, 0.867),
+                  fontFamily: "Lexend",
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        ),
         Container(
           color: Colors.white70,
           padding: const EdgeInsets.all(8.0),
@@ -177,12 +219,46 @@ class PretestPageBody extends StatelessWidget {
             ),
           ),
         ),
-        for (var choice in question.choices)
-          RadioListTile<String>(
-            title: Text(choice),
-            value: choice,
-            groupValue: selectedChoice,
-            onChanged: onSelectChoice,
+        for (var i = 0; i < question.choices.length; i++)
+          InkWell(
+            onTap: () => onSelectChoice(question.choices[i]),
+            child: Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(8.0),
+              margin: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
+              decoration: BoxDecoration(
+                color: selectedChoice == question.choices[i] ? const Color.fromRGBO(26, 92, 229, 0.3) : Colors.white,
+                border: Border.all(
+                  color: selectedChoice == question.choices[i] ? const Color.fromRGBO(26, 92, 229, 0.867) : Colors.grey,
+                  width: 1.0,
+                ),
+                borderRadius: BorderRadius.circular(12.0),
+              ),
+              child: Row(
+                children: [
+                  Text(
+                    '${choiceLabels[i]}. ',
+                    style: TextStyle(
+                      color: selectedChoice == question.choices[i] ? const Color.fromRGBO(26, 92, 229, 0.867) : const Color.fromRGBO(13, 18, 28, 0.867),
+                      fontFamily: "Lexend",
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Expanded(
+                    child: Text(
+                      question.choices[i],
+                      style: TextStyle(
+                        color: selectedChoice == question.choices[i] ? const Color.fromRGBO(26, 92, 229, 0.867) : const Color.fromRGBO(13, 18, 28, 0.867),
+                        fontFamily: "Lexend",
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
       ],
     );
