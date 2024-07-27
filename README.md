@@ -37,4 +37,10 @@ samples, guidance on mobile development, and a full API reference.
 - Edit Profile page btn redirects to learning progress
 - Create challenge pg, learning path pg, feedback pg, send feedback pg, teacher community pg
 - Rename courses to lessons
+- Check na tama font ng lahat
+- Gawan ng widget ung madalas gamitin
+    - logo/title
+    - icon, text, subtext
+- gawing signup pg redirect ung isang btn sa home pg
+- logout btn?
 
