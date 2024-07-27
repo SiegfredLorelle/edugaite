@@ -13,6 +13,7 @@ import 'screens/track.dart';
 import 'screens/courses.dart';
 import 'screens/lessons/vid_lesson.dart';
 import 'screens/signup.dart';
+import 'screens/lessons/pretest.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -44,7 +45,8 @@ class MyApp extends StatelessWidget {
           "/profile": (context) => const ProfilePage(),
         "/track": (context) => const TrackPage(),
         "/courses": (context) => const CoursesPage(),
-        "/lesson": (context) => const VidLessonPage(),
+        "/courses/pretest": (context) => const PretestPage(),
+        "/courses/vid_lesson": (context) => const VidLessonPage(),
       },
         title: 'EduGAIte',
         theme: ThemeData(
