@@ -1,6 +1,6 @@
-# edugaite
+# EduGAIte
 
-A new Flutter project.
+Empowering Teachers, Enhancing Education.
 
 ## Getting Started
 
@@ -27,4 +27,13 @@ samples, guidance on mobile development, and a full API reference.
 - AI API
 - Game
 - Gawing link ung title na EduGAIte
-- App title, app logo pag apk na
+- On App Start, check if logged in already
+- VARK
+    - Pretest/posttest
+    - oral
+    - reading
+- Remove course pg sa navfooter
+- Add pages for math curriculum, new course, add track
+- Edit Profile page btn redirects to learning progress
+- Create challenge pg, learning path pg, feedback pg, send feedback pg, teacher community pg
+
