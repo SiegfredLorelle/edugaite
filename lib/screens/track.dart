@@ -63,7 +63,7 @@ class TrackPageBody extends StatelessWidget {
                 Navigator.pushNamed(context, '/game');
               },
               child: const Text(
-                'Start',
+                'Tap to Start',
                 style: TextStyle(
                   color: Color.fromRGBO(13, 18, 28, 0.867),
                 ),
