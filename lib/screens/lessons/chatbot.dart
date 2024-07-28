@@ -3,21 +3,67 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../widgets/nav-footer.dart';
 
-class ChatbotPage extends StatelessWidget {
+class ChatbotPage extends StatefulWidget {
   const ChatbotPage({super.key});
+
+  @override
+  _ChatbotPageState createState() => _ChatbotPageState();
+}
+
+class _ChatbotPageState extends State<ChatbotPage> {
+  final TextEditingController _controller = TextEditingController();
+  final List<String> _messages = [];
+
+  void _sendMessage() {
+    if (_controller.text.isNotEmpty) {
+      setState(() {
+        _messages.add(_controller.text);
+      });
+      _controller.clear();
+      // Integrate Gemini API call here
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(80.0),
-        child: ChatbotPageHeader(),
+        child: const ChatbotPageHeader(),
       ),
       body: Column(
         children: [
           Expanded(
-            child: SingleChildScrollView(
-              child: ChatbotPageBody(),
+            child: ListView.builder(
+              padding: const EdgeInsets.all(16.0),
+              itemCount: _messages.length,
+              itemBuilder: (context, index) {
+                return ChatMessage(
+                  message: _messages[index],
+                  isUserMessage: index % 2 == 0,
+                );
+              },
+            ),
+          ),
+          const Divider(height: 1.0),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            color: Theme.of(context).cardColor,
+            child: Row(
+              children: <Widget>[
+                Flexible(
+                  child: TextField(
+                    controller: _controller,
+                    decoration: const InputDecoration.collapsed(
+                      hintText: "Send a message",
+                    ),
+                  ),
+                ),
+                IconButton(
+                  icon: const Icon(Icons.send),
+                  onPressed: _sendMessage,
+                ),
+              ],
             ),
           ),
           const NavFooter(),
@@ -39,11 +85,12 @@ class ChatbotPageHeader extends StatelessWidget {
       child: Stack(
         children: [
           Align(
-            alignment: Alignment.bottomRight,
+            alignment: Alignment.topLeft,
             child: IconButton(
-              icon: const FaIcon(FontAwesomeIcons.angleDown, size: 20),
+              icon: const FaIcon(FontAwesomeIcons.arrowLeft, size: 20),
               color: const Color.fromRGBO(13, 18, 28, 0.867),
               onPressed: () {
+                Navigator.pop(context);
                 // Define your action here
               },
             ),
@@ -57,6 +104,7 @@ class ChatbotPageHeader extends StatelessWidget {
                 fontFamily: "Lexend",
                 fontWeight: FontWeight.bold,
               ),
+              textAlign: TextAlign.center, // Center the header text
             ),
           ),
         ],
@@ -65,43 +113,55 @@ class ChatbotPageHeader extends StatelessWidget {
   }
 }
 
-class ChatbotPageBody extends StatelessWidget {
-  const ChatbotPageBody({super.key});
+class ChatMessage extends StatelessWidget {
+  final String message;
+  final bool isUserMessage;
+
+  const ChatMessage({
+    required this.message,
+    required this.isUserMessage,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        child: Column(
-          children: <Widget>[
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
-              child: TextButton(
-                onPressed: () {
-                  // TODO
-                },
-                style: TextButton.styleFrom(
-                  backgroundColor: const Color.fromRGBO(26, 92, 229,
-                        0.867), // Set your desired background color, // Set button color
-                  padding: const EdgeInsets.symmetric(vertical: 4.0), // Set padding
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(36.0), // Rounded edges
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 10.0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          isUserMessage
+              ? Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: <Widget>[
+                      Text(
+                        "You",
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(top: 5.0),
+                        child: Text(message),
+                      ),
+                    ],
+                  ),
+                )
+              : Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        "Bot",
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(top: 5.0),
+                        child: Text(message),
+                      ),
+                    ],
                   ),
                 ),
-                child: const Text(
-                  'Get Started',
-                  style: TextStyle(
-                    color: Colors.white, // Set text color
-                    fontSize: 16.0, // Set text size
-                    fontFamily: "Lexend",
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
+        ],
       ),
     );
   }
