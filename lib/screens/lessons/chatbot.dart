@@ -13,8 +13,29 @@ class _ChatbotPageState extends State<ChatbotPage> {
   final TextEditingController _controller = TextEditingController();
   final List<String> _messages = [];
   bool _isLoading = false;
+  bool _isServiceInitialized = false;
+  bool _showInstructions = true;
+  bool _showNextButton = false;
 
-  final GeminiService geminiService = GeminiService();
+  late final GeminiService geminiService;
+
+  @override
+  void initState() {
+    super.initState();
+    _initializeService();
+  }
+
+  void _initializeService() async {
+    setState(() {
+      _isServiceInitialized = false;
+    });
+    geminiService = GeminiService();
+    // Simulate service initialization
+    await Future.delayed(const Duration(seconds: 2));
+    setState(() {
+      _isServiceInitialized = true;
+    });
+  }
 
   void _sendMessage() async {
     if (_controller.text.isNotEmpty) {
@@ -23,6 +44,7 @@ class _ChatbotPageState extends State<ChatbotPage> {
         _messages.add(userMessage);
         _messages.add("Bot is typing..."); // Add a temporary message
         _isLoading = true;
+        _showInstructions = false; // Hide instructions after sending the first message
       });
       _controller.clear();
 
@@ -32,6 +54,7 @@ class _ChatbotPageState extends State<ChatbotPage> {
           _messages.removeLast(); // Remove the temporary message
           _messages.add(botResponse);
           _isLoading = false;
+          _showNextButton = true; // Show the next button after the first chat
         });
       } catch (e) {
         print('Error fetching bot response: $e');
@@ -51,46 +74,78 @@ class _ChatbotPageState extends State<ChatbotPage> {
         preferredSize: Size.fromHeight(80.0),
         child: const ChatbotPageHeader(),
       ),
-      body: Column(
+      body: Stack(
         children: [
-          Expanded(
-            child: ListView.builder(
-              padding: const EdgeInsets.all(16.0),
-              itemCount: _messages.length,
-              itemBuilder: (context, index) {
-                return ChatMessage(
-                  message: _messages[index],
-                  isUserMessage: index % 2 == 0,
-                );
-              },
-            ),
-          ),
-          if (_isLoading)
-            const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: CircularProgressIndicator(),
-            ),
-          const Divider(height: 1.0),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            color: Theme.of(context).cardColor,
-            child: Row(
-              children: <Widget>[
-                Flexible(
-                  child: TextField(
-                    controller: _controller,
-                    decoration: const InputDecoration.collapsed(
-                      hintText: "Send a message",
+          Column(
+            children: [
+              if (_isServiceInitialized && _showInstructions)
+                Expanded(
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Text(
+                        'Type your message below to start chatting with the bot.',
+                        style: TextStyle(fontSize: 16.0, color: Colors.grey[600]),
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                   ),
+                )
+              else
+                Expanded(
+                  child: ListView.builder(
+                    padding: const EdgeInsets.all(16.0),
+                    itemCount: _messages.length,
+                    itemBuilder: (context, index) {
+                      return ChatMessage(
+                        message: _messages[index],
+                        isUserMessage: index % 2 == 0,
+                      );
+                    },
+                  ),
                 ),
-                IconButton(
-                  icon: const Icon(Icons.send),
-                  onPressed: _sendMessage,
+              const Divider(height: 1.0),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                color: Theme.of(context).cardColor,
+                child: Row(
+                  children: <Widget>[
+                    Flexible(
+                      child: TextField(
+                        controller: _controller,
+                        decoration: const InputDecoration.collapsed(
+                          hintText: "Send a message",
+                        ),
+                      ),
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.send),
+                      onPressed: _sendMessage,
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+              if (_showNextButton)
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromRGBO(35, 89, 197, 0.867), // Change this to your desired color
+                    ),
+                    child: const Text("Proceed to Next?"),
+                  ),
+                ),
+            ],
           ),
+          if (!_isServiceInitialized)
+            const Center(
+              child: CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(Color.fromRGBO(35, 89, 197, 0.867)),
+              ),
+            ),
         ],
       ),
     );
