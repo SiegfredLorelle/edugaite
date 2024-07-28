@@ -160,7 +160,7 @@ class VidLessonPageBody extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
             child: TextButton(
               onPressed: () {
-                // TODO
+                Navigator.pushNamed(context, '/courses/chat_lesson');
               },
               style: TextButton.styleFrom(
                 backgroundColor: const Color.fromRGBO(26, 92, 229, 0.867), // Set your desired background color, // Set button color
