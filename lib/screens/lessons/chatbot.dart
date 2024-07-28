@@ -20,13 +20,7 @@ class _ChatbotPageState extends State<ChatbotPage> {
 
   final GeminiService geminiService = GeminiService();
 
-  // Load the API key and URL, providing default values if they are not found
-  // final String apiKey = dotenv.env['GEMINI_API_KEY'] ?? 'default_api_key';
-  final String apiKey = 'default_api_key';
-  final String apiUrl = 'https://api.gemini.com/chatbot';
-
   void _sendMessage() async {
-    geminiService.prompt("Hello");
     if (_controller.text.isNotEmpty) {
       String userMessage = _controller.text;
       setState(() {
@@ -36,7 +30,7 @@ class _ChatbotPageState extends State<ChatbotPage> {
       _controller.clear();
 
       try {
-        String botResponse = await fetchBotResponse(userMessage);
+        String botResponse = await geminiService.prompt(userMessage);
         setState(() {
           _messages.add(botResponse);
           _isLoading = false;
@@ -44,32 +38,10 @@ class _ChatbotPageState extends State<ChatbotPage> {
       } catch (e) {
         print('Error fetching bot response: $e');
         setState(() {
+          _messages.add('Sorry, I couldn\'t process that request.');
           _isLoading = false;
         });
       }
-    }
-  }
-
-  Future<String> fetchBotResponse(String message) async {
-    final response = await http.post(
-      Uri.parse(apiUrl), // Use the API URL from .env
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization': 'Bearer $apiKey', // Use the API key from .env
-      },
-      body: jsonEncode(<String, String>{
-        'message': message,
-      }),
-    );
-
-    print('Response status: ${response.statusCode}');
-    print('Response body: ${response.body}');
-
-    if (response.statusCode == 200) {
-      final Map<String, dynamic> data = json.decode(response.body);
-      return data['response']; // Adjust according to your API response structure
-    } else {
-      throw Exception('Failed to load response: ${response.statusCode}');
     }
   }
 
@@ -145,7 +117,6 @@ class ChatbotPageHeader extends StatelessWidget {
               color: const Color.fromRGBO(13, 18, 28, 0.867),
               onPressed: () {
                 Navigator.pop(context);
-                // Define your action here
               },
             ),
           ),
