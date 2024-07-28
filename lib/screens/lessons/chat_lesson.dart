@@ -111,7 +111,7 @@ class ChatLessonPageBody extends StatelessWidget {
           SizedBox(height: 32.0),
           ElevatedButton(
             onPressed: () {
-              // Action to start the chatbot session
+              Navigator.pushNamed(context, "/courses/chatbot");
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: const Color.fromRGBO(26, 92, 229, 0.867), // Set button background color
