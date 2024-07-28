@@ -26,6 +26,7 @@ class _ChatbotPageState extends State<ChatbotPage> {
   final String apiUrl = 'https://api.gemini.com/chatbot';
 
   void _sendMessage() async {
+    geminiService.prompt("Hello");
     if (_controller.text.isNotEmpty) {
       String userMessage = _controller.text;
       setState(() {
