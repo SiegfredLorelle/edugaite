@@ -43,4 +43,6 @@ samples, guidance on mobile development, and a full API reference.
     - icon, text, subtext
 - gawing signup pg redirect ung isang btn sa home pg
 - logout btn?
+- randomize question/choices in pretest/postest?
+- fix on device backbutton on pretest/postest
 
