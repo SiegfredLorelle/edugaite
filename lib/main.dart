@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'package:EduGAIte/audio/audio.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+
 import 'firebase_options.dart';
 import 'screens/home.dart';
 import 'screens/login.dart';
@@ -20,6 +23,10 @@ Future<void> main() async {
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  FirebaseFirestore.instance.settings = const Settings(
+    persistenceEnabled: true,
   );
 
   runApp(const MyApp());
@@ -43,11 +50,11 @@ class MyApp extends StatelessWidget {
           "/signup": (context) => const SignUpPage(),
           "/game": (context) => const GameScreen(),
           "/profile": (context) => const ProfilePage(),
-        "/track": (context) => const TrackPage(),
-        "/courses": (context) => const CoursesPage(),
-        "/courses/pretest": (context) => const PretestPage(),
-        "/courses/vid_lesson": (context) => const VidLessonPage(),
-      },
+          "/track": (context) => const TrackPage(),
+          "/courses": (context) => const CoursesPage(),
+          "/courses/pretest": (context) => const PretestPage(),
+          "/courses/vid_lesson": (context) => const VidLessonPage(),
+        },
         title: 'EduGAIte',
         theme: ThemeData(
           colorScheme: const ColorScheme(
