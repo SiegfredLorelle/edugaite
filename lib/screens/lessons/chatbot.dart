@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../../services/gemini_prompt.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 import '../../widgets/nav-footer.dart';
 
@@ -13,14 +16,59 @@ class ChatbotPage extends StatefulWidget {
 class _ChatbotPageState extends State<ChatbotPage> {
   final TextEditingController _controller = TextEditingController();
   final List<String> _messages = [];
+  bool _isLoading = false;
 
-  void _sendMessage() {
+  final GeminiService geminiService = GeminiService();
+
+  // Load the API key and URL, providing default values if they are not found
+  // final String apiKey = dotenv.env['GEMINI_API_KEY'] ?? 'default_api_key';
+  final String apiKey = 'default_api_key';
+  final String apiUrl = 'https://api.gemini.com/chatbot';
+
+  void _sendMessage() async {
     if (_controller.text.isNotEmpty) {
+      String userMessage = _controller.text;
       setState(() {
-        _messages.add(_controller.text);
+        _messages.add(userMessage);
+        _isLoading = true;
       });
       _controller.clear();
-      // Integrate Gemini API call here
+
+      try {
+        String botResponse = await fetchBotResponse(userMessage);
+        setState(() {
+          _messages.add(botResponse);
+          _isLoading = false;
+        });
+      } catch (e) {
+        print('Error fetching bot response: $e');
+        setState(() {
+          _isLoading = false;
+        });
+      }
+    }
+  }
+
+  Future<String> fetchBotResponse(String message) async {
+    final response = await http.post(
+      Uri.parse(apiUrl), // Use the API URL from .env
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'Bearer $apiKey', // Use the API key from .env
+      },
+      body: jsonEncode(<String, String>{
+        'message': message,
+      }),
+    );
+
+    print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> data = json.decode(response.body);
+      return data['response']; // Adjust according to your API response structure
+    } else {
+      throw Exception('Failed to load response: ${response.statusCode}');
     }
   }
 
@@ -45,6 +93,11 @@ class _ChatbotPageState extends State<ChatbotPage> {
               },
             ),
           ),
+          if (_isLoading)
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: CircularProgressIndicator(),
+            ),
           const Divider(height: 1.0),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
