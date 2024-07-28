@@ -25,17 +25,27 @@ class _PretestPageState extends State<PretestPage> {
     _loadQuestions();
   }
 
-  Future<void> _loadQuestions() async {
-    try {
-      final questions = await DatabaseService().fetchQuestions();
-      setState(() {
-        _questions = questions;
-        _isLoading = false;
-      });
-    } catch (e) {
-      print('Failed to load questions: $e');
-    }
+Future<void> _loadQuestions() async {
+  try {
+    // Update these values to match your desired path
+    final String grade = '7';
+    final String subject = 'mathematics';
+    final String topic = 'geometry';
+    final String level = 'basic';
+
+    final questions = await DatabaseService().fetchQuestions(grade, subject, topic, level);
+    setState(() {
+      _questions = questions;
+      _isLoading = false;
+    });
+  } catch (e) {
+    print('Failed to load questions: $e');
+    setState(() {
+      _isLoading = false;
+    });
   }
+}
+
 
   void _selectChoice(String? choice) {
     setState(() {
