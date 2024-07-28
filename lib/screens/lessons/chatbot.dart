@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../services/gemini_prompt.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-
-import '../../widgets/nav-footer.dart';
 
 class ChatbotPage extends StatefulWidget {
   const ChatbotPage({super.key});
@@ -25,6 +21,7 @@ class _ChatbotPageState extends State<ChatbotPage> {
       String userMessage = _controller.text;
       setState(() {
         _messages.add(userMessage);
+        _messages.add("Bot is typing..."); // Add a temporary message
         _isLoading = true;
       });
       _controller.clear();
@@ -32,12 +29,14 @@ class _ChatbotPageState extends State<ChatbotPage> {
       try {
         String botResponse = await geminiService.prompt(userMessage);
         setState(() {
+          _messages.removeLast(); // Remove the temporary message
           _messages.add(botResponse);
           _isLoading = false;
         });
       } catch (e) {
         print('Error fetching bot response: $e');
         setState(() {
+          _messages.removeLast(); // Remove the temporary message
           _messages.add('Sorry, I couldn\'t process that request.');
           _isLoading = false;
         });
@@ -92,7 +91,6 @@ class _ChatbotPageState extends State<ChatbotPage> {
               ],
             ),
           ),
-          const NavFooter(),
         ],
       ),
     );
@@ -154,38 +152,31 @@ class ChatMessage extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 10.0),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment:
+            isUserMessage ? MainAxisAlignment.end : MainAxisAlignment.start,
         children: <Widget>[
-          isUserMessage
-              ? Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: <Widget>[
-                      Text(
-                        "You",
-                        style: Theme.of(context).textTheme.titleMedium,
-                      ),
-                      Container(
-                        margin: const EdgeInsets.only(top: 5.0),
-                        child: Text(message),
-                      ),
-                    ],
+          Expanded(
+            child: Column(
+              crossAxisAlignment:
+                  isUserMessage ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  margin: const EdgeInsets.only(top: 5.0),
+                  padding: const EdgeInsets.all(10.0),
+                  decoration: BoxDecoration(
+                    color: isUserMessage ? Colors.blueAccent : Colors.grey[300],
+                    borderRadius: BorderRadius.circular(10.0),
                   ),
-                )
-              : Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        "Bot",
-                        style: Theme.of(context).textTheme.titleMedium,
-                      ),
-                      Container(
-                        margin: const EdgeInsets.only(top: 5.0),
-                        child: Text(message),
-                      ),
-                    ],
+                  child: Text(
+                    message,
+                    style: TextStyle(
+                      color: isUserMessage ? Colors.white : Colors.black,
+                    ),
                   ),
                 ),
+              ],
+            ),
+          ),
         ],
       ),
     );
