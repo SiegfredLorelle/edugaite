@@ -45,4 +45,4 @@ samples, guidance on mobile development, and a full API reference.
 - logout btn?
 - randomize question/choices in pretest/postest?
 - fix on device backbutton on pretest/postest
-
+- add loading spinner for pretest/postest
