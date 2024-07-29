@@ -7,11 +7,14 @@ import 'package:flutter/widgets.dart';
 import 'package:leap/leap.dart';
 import 'package:EduGAIte/audio/audio.dart';
 import 'package:EduGAIte/game/game.dart';
+import 'package:EduGAIte/game/bloc/navigation_bloc.dart';
+import 'package:EduGAIte/game/bloc/navigation_event.dart';
 
 class Player extends JumperCharacter<EdugaiteGame> {
   Player({
     required this.levelSize,
     required this.cameraViewport,
+    required this.navigationBloc, // Add this line
     super.health = initialHealth,
   });
 
@@ -21,6 +24,7 @@ class Player extends JumperCharacter<EdugaiteGame> {
 
   final Vector2 levelSize;
   final Vector2 cameraViewport;
+  final NavigationBloc navigationBloc; // Add this line
   late Vector2 spawn;
   late List<Vector2> respawnPoints;
   late final PlayerCameraAnchor cameraAnchor;
@@ -169,7 +173,8 @@ class Player extends JumperCharacter<EdugaiteGame> {
     for (final collision in collisions) {
       if (collision is Item) {
         switch (collision.type) {
-          case ItemType.acorn || ItemType.egg:
+          case ItemType.acorn:
+          case ItemType.egg:
             gameRef.audioController.playSfx(
               collision.type == ItemType.acorn
                   ? Sfx.acornPickup
@@ -178,9 +183,14 @@ class Player extends JumperCharacter<EdugaiteGame> {
             gameRef.gameBloc.add(
               GameScoreIncreased(by: collision.type.points),
             );
+            if (collision.type == ItemType.acorn) {
+              _navigateToCoursePage(); // Navigate to the course page
+            }
+            break;
           case ItemType.goldenFeather:
             addPowerUp();
             gameRef.audioController.playSfx(Sfx.featherPowerup);
+            break;
         }
         gameRef.world.add(
           ItemEffect(
@@ -288,5 +298,9 @@ class Player extends JumperCharacter<EdugaiteGame> {
   void sectionCleared() {
     isPlayerTeleporting = true;
     gameRef.sectionCleared();
+  }
+
+  void _navigateToCoursePage() {
+    navigationBloc.add(NavigateToCoursePage());
   }
 }
