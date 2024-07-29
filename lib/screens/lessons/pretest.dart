@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import '../../widgets/nav-footer.dart';
+import '../../services/database_service.dart';
+import '../../models/question_model.dart';
 
 class PretestPage extends StatefulWidget {
   const PretestPage({super.key});
@@ -11,24 +12,40 @@ class PretestPage extends StatefulWidget {
 }
 
 class _PretestPageState extends State<PretestPage> {
-  final List<Question> _questions = [
-    Question(
-      text: 'What is 1/2?',
-      choices: ['0.2', '0.5', '0.75', '1.0'],
-      correctAnswer: '0.5',
-    ),
-    Question(
-      text: 'What is 2/4?',
-      choices: ['0.2', '0.4', '0.5', '0.75'],
-      correctAnswer: '0.5',
-    ),
-    // Add more questions here
-  ];
-
+  List<Question> _questions = [];
   int _currentQuestionIndex = 0;
   String? _selectedChoice;
   bool _showNextButton = false;
   bool _showQuestions = false;
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadQuestions();
+  }
+
+Future<void> _loadQuestions() async {
+  try {
+    // Update these values to match your desired path
+    final String grade = '7';
+    final String subject = 'mathematics';
+    final String topic = 'geometry';
+    final String level = 'basic';
+
+    final questions = await DatabaseService().fetchQuestions(grade, subject, topic, level);
+    setState(() {
+      _questions = questions;
+      _isLoading = false;
+    });
+  } catch (e) {
+    print('Failed to load questions: $e');
+    setState(() {
+      _isLoading = false;
+    });
+  }
+}
+
 
   void _selectChoice(String? choice) {
     setState(() {
@@ -38,16 +55,16 @@ class _PretestPageState extends State<PretestPage> {
   }
 
   Future<void> _nextQuestion() async {
-    if (_currentQuestionIndex < _questions.length - 1) {
+    int lastQuestionNumber = _questions.length - 1;
+    if (_currentQuestionIndex < lastQuestionNumber) {
       setState(() {
         _currentQuestionIndex++;
         _selectedChoice = null;
         _showNextButton = false;
       });
     } else {
-      // All questions answered, navigate to results or another page
-      final bool? result = await _showExitConfirmationDialog(
-          context, 'This marks the last question in pretest.\nDo you want to submit?',
+      final bool? result = await _showExitConfirmationDialog(context,
+          'This marks the last question in pretest.\nDo you want to submit?',
           invertColors: false);
       if (result == true) {
         Navigator.pushNamed(context, '/courses/vid_lesson');
@@ -68,8 +85,8 @@ class _PretestPageState extends State<PretestPage> {
         _showNextButton = false;
       });
     } else {
-      final bool? result = await _showExitConfirmationDialog(
-          context, 'Are you sure you want to leave?\nYour progress will be lost?',
+      final bool? result = await _showExitConfirmationDialog(context,
+          'Are you sure you want to leave?\nYour progress will be lost?',
           invertColors: true);
       if (result == true) {
         setState(() {
@@ -87,7 +104,9 @@ class _PretestPageState extends State<PretestPage> {
     });
   }
 
-  Future<bool?> _showExitConfirmationDialog(BuildContext context, String message, {required bool invertColors}) {
+  Future<bool?> _showExitConfirmationDialog(
+      BuildContext context, String message,
+      {required bool invertColors}) {
     return showDialog<bool>(
       context: context,
       builder: (context) {
@@ -108,16 +127,24 @@ class _PretestPageState extends State<PretestPage> {
           actions: [
             TextButton(
               style: TextButton.styleFrom(
-                backgroundColor: invertColors ? const Color.fromRGBO(26, 92, 229, 0.867) : Colors.transparent,
-                foregroundColor: invertColors ? Colors.white : const Color.fromRGBO(13, 18, 28, 0.867),
+                backgroundColor: invertColors
+                    ? const Color.fromRGBO(26, 92, 229, 0.867)
+                    : Colors.transparent,
+                foregroundColor: invertColors
+                    ? Colors.white
+                    : const Color.fromRGBO(13, 18, 28, 0.867),
               ),
               onPressed: () => Navigator.of(context).pop(false),
               child: const Text('Cancel'),
             ),
             TextButton(
               style: TextButton.styleFrom(
-                backgroundColor: invertColors ? Colors.transparent : const Color.fromRGBO(26, 92, 229, 0.867),
-                foregroundColor: invertColors ? const Color.fromRGBO(13, 18, 28, 0.867) : Colors.white,
+                backgroundColor: invertColors
+                    ? Colors.transparent
+                    : const Color.fromRGBO(26, 92, 229, 0.867),
+                foregroundColor: invertColors
+                    ? const Color.fromRGBO(13, 18, 28, 0.867)
+                    : Colors.white,
               ),
               onPressed: () => Navigator.of(context).pop(true),
               child: const Text('Confirm'),
@@ -129,8 +156,8 @@ class _PretestPageState extends State<PretestPage> {
   }
 
   Future<bool?> _showExitConfirmationForNavLinks(BuildContext context) {
-    return _showExitConfirmationDialog(
-        context, 'Are you sure you want to leave pretest?\nYour progress will be lost.',
+    return _showExitConfirmationDialog(context,
+        'Are you sure you want to leave pretest?\nYour progress will be lost.',
         invertColors: true);
   }
 
@@ -149,85 +176,95 @@ class _PretestPageState extends State<PretestPage> {
             isFirstQuestion: _currentQuestionIndex == 0 && _showQuestions,
           ),
         ),
-        body: Column(
-          children: [
-            Expanded(
-              child: _showQuestions
-                  ? SingleChildScrollView(
-                      child: PretestPageBody(
-                        question: _questions[_currentQuestionIndex],
-                        questionNumber: _currentQuestionIndex + 1,
-                        selectedChoice: _selectedChoice,
-                        onSelectChoice: _selectChoice,
-                      ),
-                    )
-                  : Padding(
+        body: _isLoading
+            ? Center(child: CircularProgressIndicator())
+            : Column(
+                children: [
+                  Expanded(
+                    child: _showQuestions
+                        ? SingleChildScrollView(
+                            child: PretestPageBody(
+                              question: _questions[_currentQuestionIndex],
+                              questionNumber: _currentQuestionIndex + 1,
+                              selectedChoice: _selectedChoice,
+                              onSelectChoice: _selectChoice,
+                            ),
+                          )
+                        : Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                Text(
+                                  'Welcome to the Pretest',
+                                  style: TextStyle(
+                                    fontSize: 24.0,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: "Lexend",
+                                    color:
+                                        const Color.fromRGBO(13, 18, 28, 0.867),
+                                  ),
+                                  textAlign: TextAlign.left,
+                                ),
+                                SizedBox(height: 16.0),
+                                Text(
+                                  'This pretest will help us understand your current knowledge level.',
+                                  style: TextStyle(
+                                    fontSize: 16.0,
+                                    fontFamily: "Lexend",
+                                    color:
+                                        const Color.fromRGBO(13, 18, 28, 0.867),
+                                  ),
+                                  textAlign: TextAlign.left,
+                                ),
+                                SizedBox(height: 16.0),
+                                Text(
+                                  'Please answer the following questions to the best of your ability.',
+                                  style: TextStyle(
+                                    fontSize: 16.0,
+                                    fontFamily: "Lexend",
+                                    color:
+                                        const Color.fromRGBO(13, 18, 28, 0.867),
+                                  ),
+                                  textAlign: TextAlign.left,
+                                ),
+                                SizedBox(height: 32.0),
+                                ElevatedButton(
+                                  onPressed: _startQuestions,
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: const Color.fromRGBO(
+                                        26,
+                                        92,
+                                        229,
+                                        0.867), // Set button background color
+                                    textStyle: const TextStyle(
+                                      fontFamily: "Lexend",
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16.0,
+                                    ),
+                                  ),
+                                  child: const Text('Start test'),
+                                ),
+                              ],
+                            ),
+                          ),
+                  ),
+                  if (!_showQuestions) const NavFooter(),
+                  if (_showNextButton && _showQuestions)
+                    Padding(
                       padding: const EdgeInsets.all(16.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Text(
-                            'Welcome to the Pretest',
-                            style: TextStyle(
-                              fontSize: 24.0,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: "Lexend",
-                              color: const Color.fromRGBO(13, 18, 28, 0.867),
-                            ),
-                            textAlign: TextAlign.left,
-                          ),
-                          SizedBox(height: 16.0),
-                          Text(
-                            'This pretest will help us understand your current knowledge level.',
-                            style: TextStyle(
-                              fontSize: 16.0,
-                              fontFamily: "Lexend",
-                              color: const Color.fromRGBO(13, 18, 28, 0.867),
-                            ),
-                            textAlign: TextAlign.left,
-                          ),
-                          SizedBox(height: 16.0),
-                          Text(
-                            'Please answer the following questions to the best of your ability.',
-                            style: TextStyle(
-                              fontSize: 16.0,
-                              fontFamily: "Lexend",
-                              color: const Color.fromRGBO(13, 18, 28, 0.867),
-                            ),
-                            textAlign: TextAlign.left,
-                          ),
-                          SizedBox(height: 32.0),
-                          ElevatedButton(
-                            onPressed: _startQuestions,
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color.fromRGBO(26, 92, 229, 0.867), // Set button background color
-                              textStyle: const TextStyle(
-                                fontFamily: "Lexend",
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16.0,
-                              ),
-                            ),
-                            child: const Text('Start test'),
-                          ),
-                        ],
+                      child: ElevatedButton(
+                        onPressed: _nextQuestion,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color.fromRGBO(26, 92, 229,
+                              0.867), // Set button background color
+                        ),
+                        child: const Text('Next'),
                       ),
                     ),
-            ),
-            if (!_showQuestions) const NavFooter(),
-            if (_showNextButton && _showQuestions)
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: ElevatedButton(
-                  onPressed: _nextQuestion,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color.fromRGBO(26, 92, 229, 0.867), // Set button background color
-                  ),
-                  child: const Text('Next'),
-                ),
+                ],
               ),
-          ],
-        ),
       ),
     );
   }
@@ -255,7 +292,9 @@ class PretestPageHeader extends StatelessWidget {
             alignment: Alignment.topLeft,
             child: IconButton(
               icon: FaIcon(
-                isFirstQuestion ? FontAwesomeIcons.times : FontAwesomeIcons.arrowLeft,
+                isFirstQuestion
+                    ? FontAwesomeIcons.times
+                    : FontAwesomeIcons.arrowLeft,
                 size: 20,
               ),
               color: const Color.fromRGBO(13, 18, 28, 0.867),
@@ -299,7 +338,8 @@ class PretestPageBody extends StatelessWidget {
     final choiceLabels = ['A', 'B', 'C', 'D'];
 
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start, // Align all text to the left
+      crossAxisAlignment:
+          CrossAxisAlignment.start,
       children: <Widget>[
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -322,7 +362,7 @@ class PretestPageBody extends StatelessWidget {
           color: Colors.white70,
           padding: const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 8.0),
           child: Text(
-            question.text,
+            question.question,
             textAlign: TextAlign.left, // Align text to the left
             style: const TextStyle(
               fontSize: 24.0,
@@ -339,9 +379,13 @@ class PretestPageBody extends StatelessWidget {
               width: double.infinity,
               height: 70.0, // Increase the height of each choice container
               padding: const EdgeInsets.all(8.0),
-              margin: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
+              margin:
+                  const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
               decoration: BoxDecoration(
-                color: selectedChoice == question.choices[i] ? const Color.fromRGBO(26, 92, 229, 0.867) : const Color.fromRGBO(232, 235, 242, 0.867), // Set your desired background color
+                color: selectedChoice == question.choices[i]
+                    ? const Color.fromRGBO(26, 92, 229, 0.867)
+                    : const Color.fromRGBO(232, 235, 242,
+                        0.867), // Set your desired background color
                 borderRadius: BorderRadius.circular(12.0),
               ),
               child: Row(
@@ -349,7 +393,9 @@ class PretestPageBody extends StatelessWidget {
                   Text(
                     '${choiceLabels[i]}. ',
                     style: TextStyle(
-                      color: selectedChoice == question.choices[i] ? Colors.white70 : const Color.fromRGBO(13, 18, 28, 0.867),
+                      color: selectedChoice == question.choices[i]
+                          ? Colors.white70
+                          : const Color.fromRGBO(13, 18, 28, 0.867),
                       fontFamily: "Lexend",
                       fontSize: 16.0,
                       fontWeight: FontWeight.bold,
@@ -359,7 +405,9 @@ class PretestPageBody extends StatelessWidget {
                     child: Text(
                       question.choices[i],
                       style: TextStyle(
-                        color: selectedChoice == question.choices[i] ? Colors.white70 : const Color.fromRGBO(13, 18, 28, 0.867),
+                        color: selectedChoice == question.choices[i]
+                            ? Colors.white70
+                            : const Color.fromRGBO(13, 18, 28, 0.867),
                         fontFamily: "Lexend",
                         fontSize: 16.0,
                         fontWeight: FontWeight.bold,
@@ -373,16 +421,4 @@ class PretestPageBody extends StatelessWidget {
       ],
     );
   }
-}
-
-class Question {
-  final String text;
-  final List<String> choices;
-  final String correctAnswer;
-
-  Question({
-    required this.text,
-    required this.choices,
-    required this.correctAnswer,
-  });
 }

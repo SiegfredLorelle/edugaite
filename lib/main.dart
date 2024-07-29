@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'package:EduGAIte/audio/audio.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 import 'firebase_options.dart';
 import 'screens/home.dart';
 import 'screens/login.dart';
@@ -14,12 +17,21 @@ import 'screens/courses.dart';
 import 'screens/lessons/vid_lesson.dart';
 import 'screens/signup.dart';
 import 'screens/lessons/pretest.dart';
+import 'screens/lessons/chat_lesson.dart';
+import 'screens/lessons/chatbot.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  // Load environment variables from the root .env file
+  await dotenv.load(fileName: ".env");
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  FirebaseFirestore.instance.settings = const Settings(
+    persistenceEnabled: true,
   );
 
   runApp(const MyApp());
@@ -43,11 +55,13 @@ class MyApp extends StatelessWidget {
           "/signup": (context) => const SignUpPage(),
           "/game": (context) => const GameScreen(),
           "/profile": (context) => const ProfilePage(),
-        "/track": (context) => const TrackPage(),
-        "/courses": (context) => const CoursesPage(),
-        "/courses/pretest": (context) => const PretestPage(),
-        "/courses/vid_lesson": (context) => const VidLessonPage(),
-      },
+          "/track": (context) => const TrackPage(),
+          "/courses": (context) => const CoursesPage(),
+          "/courses/pretest": (context) => const PretestPage(),
+          "/courses/vid_lesson": (context) => const VidLessonPage(),
+          "/courses/chat_lesson": (context) => const ChatLessonPage(),
+          "/courses/chatbot": (context) => const ChatbotPage(),
+        },
         title: 'EduGAIte',
         theme: ThemeData(
           colorScheme: const ColorScheme(
