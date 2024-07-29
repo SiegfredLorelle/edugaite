@@ -4,7 +4,7 @@ import 'package:flame/components.dart';
 import 'package:EduGAIte/game/game.dart';
 
 class ItemEffect extends SpriteAnimationComponent
-    with HasGameRef<SuperDashGame> {
+    with HasGameRef<EdugaiteGame> {
   ItemEffect({
     required this.type,
     super.position,

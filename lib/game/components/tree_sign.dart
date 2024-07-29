@@ -3,9 +3,9 @@ import 'dart:ui';
 
 import 'package:flame/components.dart';
 import 'package:flame/text.dart';
-import 'package:EduGAIte/game/super_dash_game.dart';
+import 'package:EduGAIte/game/edugaite_game.dart';
 
-class TreeSign extends TextComponent with HasGameRef<SuperDashGame> {
+class TreeSign extends TextComponent with HasGameRef<EdugaiteGame> {
   TreeSign({
     super.position,
   }) : super(
