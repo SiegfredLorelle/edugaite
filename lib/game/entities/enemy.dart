@@ -34,7 +34,7 @@ enum EnemyType {
   }
 }
 
-class Enemy extends PhysicalEntity<SuperDashGame> {
+class Enemy extends PhysicalEntity<EdugaiteGame> {
   Enemy({
     required this.tiledObject,
     this.enemyDamage = 1,

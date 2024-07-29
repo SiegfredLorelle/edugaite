@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:EduGAIte/audio/audio.dart';
 import 'package:EduGAIte/game/game.dart';
+import 'package:EduGAIte/game/bloc/navigation_bloc.dart';
 
 class GameScreen extends StatelessWidget {
   const GameScreen({super.key});
@@ -17,8 +18,11 @@ class GameScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocProvider.value(
-        value: context.read<GameBloc>(),
+      body: MultiProvider(
+        providers: [
+          BlocProvider.value(value: context.read<GameBloc>()),
+          BlocProvider.value(value: context.read<NavigationBloc>()),
+        ],
         child: const GameView(),
       ),
     );
@@ -37,9 +41,10 @@ class GameView extends StatelessWidget {
           loadingBuilder: (context) =>
               const Center(child: CircularProgressIndicator()),
           backgroundBuilder: (context) => const SizedBox.shrink(),
-          gameFactory: () => SuperDashGame(
+          gameFactory: () => EdugaiteGame(
             gameBloc: context.read<GameBloc>(),
             audioController: context.read<AudioController>(),
+            navigationBloc: context.read<NavigationBloc>(),
           ),
           overlayBuilderMap: {
             'tapToJump': (context, game) => const TapToJumpOverlay(),

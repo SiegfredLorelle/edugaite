@@ -12,6 +12,7 @@ import 'package:flutter/services.dart';
 import 'package:leap/leap.dart';
 import 'package:EduGAIte/audio/audio.dart';
 import 'package:EduGAIte/game/game.dart';
+import 'package:EduGAIte/game/bloc/navigation_bloc.dart';
 
 Paint _layerPaintFactory(double opacity) {
   return Paint()
@@ -19,11 +20,12 @@ Paint _layerPaintFactory(double opacity) {
     ..isAntiAlias = false;
 }
 
-class SuperDashGame extends LeapGame
+class EdugaiteGame extends LeapGame
     with TapDetector, HasKeyboardHandlerComponents {
-  SuperDashGame({
+  EdugaiteGame({
     required this.gameBloc,
     required this.audioController,
+    required this.navigationBloc, // Add this line
     this.customBundle,
     this.inMapTester = false,
   }) : super(
@@ -49,6 +51,7 @@ class SuperDashGame extends LeapGame
   final GameBloc gameBloc;
   final AssetBundle? customBundle;
   final AudioController audioController;
+  final NavigationBloc navigationBloc; // Add this line
   final List<VoidCallback> _inputListener = [];
 
   late final SpriteSheet itemsSpritesheet;
@@ -127,6 +130,7 @@ class SuperDashGame extends LeapGame
     final player = Player(
       levelSize: leapMap.tiledMap.size.clone(),
       cameraViewport: _cameraViewport,
+      navigationBloc: navigationBloc, // Add this line
     );
     unawaited(
       world.addAll([player]),
@@ -212,6 +216,7 @@ class SuperDashGame extends LeapGame
         final newPlayer = Player(
           levelSize: leapMap.tiledMap.size.clone(),
           cameraViewport: _cameraViewport,
+          navigationBloc: navigationBloc, // Add this line
         );
         await world.add(newPlayer);
 

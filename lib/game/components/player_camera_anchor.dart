@@ -1,7 +1,7 @@
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 import 'package:flutter/material.dart';
-import 'package:EduGAIte/game/super_dash_game.dart';
+import 'package:EduGAIte/game/edugaite_game.dart';
 
 class CameraBounds extends PositionComponent {
   CameraBounds({
@@ -113,7 +113,7 @@ class CameraBounds extends PositionComponent {
 }
 
 class PlayerCameraAnchor extends Component
-    with ParentIsA<PositionComponent>, HasGameRef<SuperDashGame>
+    with ParentIsA<PositionComponent>, HasGameRef<EdugaiteGame>
     implements ReadOnlyPositionProvider {
   PlayerCameraAnchor({
     required this.levelSize,

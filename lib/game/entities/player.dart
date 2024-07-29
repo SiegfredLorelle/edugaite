@@ -7,20 +7,24 @@ import 'package:flutter/widgets.dart';
 import 'package:leap/leap.dart';
 import 'package:EduGAIte/audio/audio.dart';
 import 'package:EduGAIte/game/game.dart';
+import 'package:EduGAIte/game/bloc/navigation_bloc.dart';
+import 'package:EduGAIte/game/bloc/navigation_event.dart';
 
-class Player extends JumperCharacter<SuperDashGame> {
+class Player extends JumperCharacter<EdugaiteGame> {
   Player({
     required this.levelSize,
     required this.cameraViewport,
+    required this.navigationBloc,
     super.health = initialHealth,
   });
 
   static const initialHealth = 1;
-  static const speed = 1.0;
+  static const speed = 5.0;
   static const jumpImpulse = .6;
 
   final Vector2 levelSize;
   final Vector2 cameraViewport;
+  final NavigationBloc navigationBloc;
   late Vector2 spawn;
   late List<Vector2> respawnPoints;
   late final PlayerCameraAnchor cameraAnchor;
@@ -169,18 +173,19 @@ class Player extends JumperCharacter<SuperDashGame> {
     for (final collision in collisions) {
       if (collision is Item) {
         switch (collision.type) {
-          case ItemType.acorn || ItemType.egg:
-            gameRef.audioController.playSfx(
-              collision.type == ItemType.acorn
-                  ? Sfx.acornPickup
-                  : Sfx.eggPickup,
-            );
-            gameRef.gameBloc.add(
-              GameScoreIncreased(by: collision.type.points),
-            );
+          case ItemType.acorn:
+            gameRef.audioController.playSfx(Sfx.acornPickup);
+            gameRef.gameBloc.add(GameScoreIncreased(by: collision.type.points));
+            _navigateToCoursePage(); // Navigate to the course page
+            break;
+          case ItemType.egg:
+            gameRef.audioController.playSfx(Sfx.eggPickup);
+            gameRef.gameBloc.add(GameScoreIncreased(by: collision.type.points));
+            break;
           case ItemType.goldenFeather:
             addPowerUp();
             gameRef.audioController.playSfx(Sfx.featherPowerup);
+            break;
         }
         gameRef.world.add(
           ItemEffect(
@@ -288,5 +293,9 @@ class Player extends JumperCharacter<SuperDashGame> {
   void sectionCleared() {
     isPlayerTeleporting = true;
     gameRef.sectionCleared();
+  }
+
+  void _navigateToCoursePage() {
+    navigationBloc.add(NavigateToCoursePage());
   }
 }

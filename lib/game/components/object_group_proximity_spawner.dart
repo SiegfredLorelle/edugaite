@@ -12,7 +12,7 @@ typedef ObjectGroupProximitySpawner = PositionComponent Function({
 });
 
 class ObjectGroupProximityBuilder<Reference extends PositionComponent>
-    extends Component with HasGameRef<SuperDashGame> {
+    extends Component with HasGameRef<EdugaiteGame> {
   ObjectGroupProximityBuilder({
     required this.proximity,
     required this.tileLayerName,
