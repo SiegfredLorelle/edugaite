@@ -7,8 +7,4 @@ abstract class NavigationState extends Equatable {
   List<Object> get props => [];
 }
 
-class HomePageState extends NavigationState {}
-
 class CoursePageState extends NavigationState {}
-
-class ProfilePageState extends NavigationState {}

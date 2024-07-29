@@ -14,17 +14,17 @@ class Player extends JumperCharacter<EdugaiteGame> {
   Player({
     required this.levelSize,
     required this.cameraViewport,
-    required this.navigationBloc, // Add this line
+    required this.navigationBloc,
     super.health = initialHealth,
   });
 
   static const initialHealth = 1;
-  static const speed = 1.0;
+  static const speed = 5.0;
   static const jumpImpulse = .6;
 
   final Vector2 levelSize;
   final Vector2 cameraViewport;
-  final NavigationBloc navigationBloc; // Add this line
+  final NavigationBloc navigationBloc;
   late Vector2 spawn;
   late List<Vector2> respawnPoints;
   late final PlayerCameraAnchor cameraAnchor;
@@ -174,18 +174,13 @@ class Player extends JumperCharacter<EdugaiteGame> {
       if (collision is Item) {
         switch (collision.type) {
           case ItemType.acorn:
+            gameRef.audioController.playSfx(Sfx.acornPickup);
+            gameRef.gameBloc.add(GameScoreIncreased(by: collision.type.points));
+            _navigateToCoursePage(); // Navigate to the course page
+            break;
           case ItemType.egg:
-            gameRef.audioController.playSfx(
-              collision.type == ItemType.acorn
-                  ? Sfx.acornPickup
-                  : Sfx.eggPickup,
-            );
-            gameRef.gameBloc.add(
-              GameScoreIncreased(by: collision.type.points),
-            );
-            if (collision.type == ItemType.acorn) {
-              _navigateToCoursePage(); // Navigate to the course page
-            }
+            gameRef.audioController.playSfx(Sfx.eggPickup);
+            gameRef.gameBloc.add(GameScoreIncreased(by: collision.type.points));
             break;
           case ItemType.goldenFeather:
             addPowerUp();

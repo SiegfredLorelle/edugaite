@@ -7,8 +7,4 @@ abstract class NavigationEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class NavigateToHomePage extends NavigationEvent {}
-
 class NavigateToCoursePage extends NavigationEvent {}
-
-class NavigateToProfilePage extends NavigationEvent {}
