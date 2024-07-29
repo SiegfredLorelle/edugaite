@@ -44,7 +44,8 @@ class _ChatbotPageState extends State<ChatbotPage> {
         _messages.add(userMessage);
         _messages.add("Bot is typing..."); // Add a temporary message
         _isLoading = true;
-        _showInstructions = false; // Hide instructions after sending the first message
+        _showInstructions =
+            false; // Hide instructions after sending the first message
       });
       _controller.clear();
 
@@ -85,7 +86,8 @@ class _ChatbotPageState extends State<ChatbotPage> {
                       padding: const EdgeInsets.all(16.0),
                       child: Text(
                         'Type your message below to start chatting with the bot.',
-                        style: TextStyle(fontSize: 16.0, color: Colors.grey[600]),
+                        style:
+                            TextStyle(fontSize: 16.0, color: Colors.grey[600]),
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -130,10 +132,11 @@ class _ChatbotPageState extends State<ChatbotPage> {
                   padding: const EdgeInsets.all(8.0),
                   child: ElevatedButton(
                     onPressed: () {
-
+                      Navigator.pushNamed(context, "/courses/read_lesson");
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromRGBO(35, 89, 197, 0.867), // Change this to your desired color
+                      backgroundColor: Color.fromRGBO(35, 89, 197,
+                          0.867), // Change this to your desired color
                     ),
                     child: const Text("Proceed to Next?"),
                   ),
@@ -143,7 +146,8 @@ class _ChatbotPageState extends State<ChatbotPage> {
           if (!_isServiceInitialized)
             const Center(
               child: CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(Color.fromRGBO(35, 89, 197, 0.867)),
+                valueColor: AlwaysStoppedAnimation<Color>(
+                    Color.fromRGBO(35, 89, 197, 0.867)),
               ),
             ),
         ],
@@ -212,8 +216,9 @@ class ChatMessage extends StatelessWidget {
         children: <Widget>[
           Expanded(
             child: Column(
-              crossAxisAlignment:
-                  isUserMessage ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+              crossAxisAlignment: isUserMessage
+                  ? CrossAxisAlignment.end
+                  : CrossAxisAlignment.start,
               children: <Widget>[
                 Container(
                   margin: const EdgeInsets.only(top: 5.0),
