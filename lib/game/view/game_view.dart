@@ -37,7 +37,7 @@ class GameView extends StatelessWidget {
           loadingBuilder: (context) =>
               const Center(child: CircularProgressIndicator()),
           backgroundBuilder: (context) => const SizedBox.shrink(),
-          gameFactory: () => SuperDashGame(
+          gameFactory: () => EdugaiteGame(
             gameBloc: context.read<GameBloc>(),
             audioController: context.read<AudioController>(),
           ),

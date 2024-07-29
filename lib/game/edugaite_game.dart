@@ -19,9 +19,9 @@ Paint _layerPaintFactory(double opacity) {
     ..isAntiAlias = false;
 }
 
-class SuperDashGame extends LeapGame
+class EdugaiteGame extends LeapGame
     with TapDetector, HasKeyboardHandlerComponents {
-  SuperDashGame({
+  EdugaiteGame({
     required this.gameBloc,
     required this.audioController,
     this.customBundle,

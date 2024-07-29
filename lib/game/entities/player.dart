@@ -8,7 +8,7 @@ import 'package:leap/leap.dart';
 import 'package:EduGAIte/audio/audio.dart';
 import 'package:EduGAIte/game/game.dart';
 
-class Player extends JumperCharacter<SuperDashGame> {
+class Player extends JumperCharacter<EdugaiteGame> {
   Player({
     required this.levelSize,
     required this.cameraViewport,
