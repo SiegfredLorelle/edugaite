@@ -19,9 +19,8 @@ import 'screens/signup.dart';
 import 'screens/lessons/pretest.dart';
 import 'screens/lessons/chat_lesson.dart';
 import 'screens/lessons/chatbot.dart';
-import 'package:EduGAIte/navigation/navigation_bloc.dart';
-import 'package:EduGAIte/navigation/navigation_event.dart';
-import 'package:EduGAIte/navigation/navigation_state.dart';
+import 'package:EduGAIte/game/bloc/navigation_bloc.dart';
+import 'package:EduGAIte/game/bloc/navigation_state.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
@@ -58,10 +57,6 @@ class MyApp extends StatelessWidget {
           final navigator = navigatorKey.currentState!;
           if (state is CoursePageState) {
             navigator.pushNamed('/courses');
-          } else if (state is HomePageState) {
-            navigator.pushNamed('/');
-          } else if (state is ProfilePageState) {
-            navigator.pushNamed('/profile');
           }
         },
         child: MaterialApp(
