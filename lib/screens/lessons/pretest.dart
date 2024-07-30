@@ -5,14 +5,14 @@ import '../../services/database_service.dart';
 import '../../models/question_model.dart';
 import './pretest-result.dart';  // Import the ResultPage
 
-class PretestPage extends StatefulWidget {
-  const PretestPage({super.key});
+class PretestResultPage extends StatefulWidget {
+  const PretestResultPage({super.key});
 
   @override
-  _PretestPageState createState() => _PretestPageState();
+  _PretestResultPageState createState() => _PretestResultPageState();
 }
 
-class _PretestPageState extends State<PretestPage> {
+class _PretestResultPageState extends State<PretestResultPage> {
   List<Question> _questions = [];
   int _currentQuestionIndex = 0;
   String? _selectedChoice;
@@ -186,7 +186,7 @@ class _PretestPageState extends State<PretestPage> {
       child: Scaffold(
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(80.0),
-          child: PretestPageHeader(
+          child: PretestResultPageHeader(
             onBackButtonPressed: _previousQuestion,
             isFirstQuestion: _currentQuestionIndex == 0 && _showQuestions,
           ),
@@ -198,7 +198,7 @@ class _PretestPageState extends State<PretestPage> {
                   Expanded(
                     child: _showQuestions
                         ? SingleChildScrollView(
-                            child: PretestPageBody(
+                            child: PretestResultPageBody(
                               question: _questions[_currentQuestionIndex],
                               questionNumber: _currentQuestionIndex + 1,
                               selectedChoice: _selectedChoice,
@@ -285,11 +285,11 @@ class _PretestPageState extends State<PretestPage> {
   }
 }
 
-class PretestPageHeader extends StatelessWidget {
+class PretestResultPageHeader extends StatelessWidget {
   final VoidCallback onBackButtonPressed;
   final bool isFirstQuestion;
 
-  const PretestPageHeader({
+  const PretestResultPageHeader({
     required this.onBackButtonPressed,
     required this.isFirstQuestion,
     super.key,
@@ -334,13 +334,13 @@ class PretestPageHeader extends StatelessWidget {
   }
 }
 
-class PretestPageBody extends StatelessWidget {
+class PretestResultPageBody extends StatelessWidget {
   final Question question;
   final int questionNumber;
   final String? selectedChoice;
   final void Function(String?) onSelectChoice;
 
-  const PretestPageBody({
+  const PretestResultPageBody({
     required this.question,
     required this.questionNumber,
     required this.selectedChoice,
