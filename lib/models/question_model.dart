@@ -5,17 +5,17 @@ class Question {
   final String id;
   final String question;
   final List<String> choices;
-  final String answer;
-  final Timestamp createdAt;
-  final Timestamp updatedAt;
+  final String correct_answer;
+  final Timestamp created_at;
+  final Timestamp updated_at;
 
   Question({
     required this.id,
     required this.question,
     required this.choices,
-    required this.answer,
-    required this.createdAt,
-    required this.updatedAt,
+    required this.correct_answer,
+    required this.created_at,
+    required this.updated_at,
   });
 
   factory Question.fromDocument(DocumentSnapshot doc) {
@@ -25,9 +25,9 @@ class Question {
       id: doc.id,
       question: data['question'] ?? '',
       choices: List<String>.from(data['choices'] ?? []),
-      answer: data['answer'] ?? '',
-      createdAt: data['createdAt'] ?? Timestamp.now(),
-      updatedAt: data['updatedAt'] ?? Timestamp.now(),
+      correct_answer: data['correct_answer'] ?? '',
+      created_at: data['created_at'] ?? Timestamp.now(),
+      updated_at: data['updated_at'] ?? Timestamp.now(),
     );
   }
 
@@ -35,9 +35,9 @@ class Question {
     return {
       'question': question,
       'choices': choices,
-      'answer': answer,
-      'createdAt': createdAt,
-      'updatedAt': updatedAt,
+      'answer': correct_answer,
+      'createdAt': created_at,
+      'updatedAt': updated_at,
     };
   }
 }

@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../widgets/nav-footer.dart';
 import '../../services/database_service.dart';
 import '../../models/question_model.dart';
+import './pretest-result.dart';  // Import the ResultPage
 
 class PretestPage extends StatefulWidget {
   const PretestPage({super.key});
@@ -18,6 +19,7 @@ class _PretestPageState extends State<PretestPage> {
   bool _showNextButton = false;
   bool _showQuestions = false;
   bool _isLoading = true;
+  int _correctAnswers = 0;  // Add a variable to track correct answers
 
   @override
   void initState() {
@@ -25,27 +27,26 @@ class _PretestPageState extends State<PretestPage> {
     _loadQuestions();
   }
 
-Future<void> _loadQuestions() async {
-  try {
-    // Update these values to match your desired path
-    final String grade = '7';
-    final String subject = 'mathematics';
-    final String topic = 'geometry';
-    final String level = 'basic';
+  Future<void> _loadQuestions() async {
+    try {
+      // Update these values to match your desired path
+      final String grade = '7';
+      final String subject = 'mathematics';
+      final String topic = 'geometry';
+      final String level = 'basic';
 
-    final questions = await DatabaseService().fetchQuestions(grade, subject, topic, level);
-    setState(() {
-      _questions = questions;
-      _isLoading = false;
-    });
-  } catch (e) {
-    print('Failed to load questions: $e');
-    setState(() {
-      _isLoading = false;
-    });
+      final questions = await DatabaseService().fetchQuestions(grade, subject, topic, level);
+      setState(() {
+        _questions = questions;
+        _isLoading = false;
+      });
+    } catch (e) {
+      print('Failed to load questions: $e');
+      setState(() {
+        _isLoading = false;
+      });
+    }
   }
-}
-
 
   void _selectChoice(String? choice) {
     setState(() {
@@ -55,6 +56,11 @@ Future<void> _loadQuestions() async {
   }
 
   Future<void> _nextQuestion() async {
+    print('${_selectedChoice}\n${_questions[_currentQuestionIndex].correct_answer}');
+    if (_selectedChoice == _questions[_currentQuestionIndex].correct_answer) {
+      _correctAnswers++;  // Increment the correct answers count if the answer is correct
+    }
+
     int lastQuestionNumber = _questions.length - 1;
     if (_currentQuestionIndex < lastQuestionNumber) {
       setState(() {
@@ -67,7 +73,16 @@ Future<void> _loadQuestions() async {
           'This marks the last question in pretest.\nDo you want to submit?',
           invertColors: false);
       if (result == true) {
-        Navigator.pushNamed(context, '/courses/vid_lesson');
+        // Navigate to the ResultPage with the score data
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ResultPage(
+              correctAnswers: _correctAnswers,
+              totalQuestions: _questions.length,
+            ),
+          ),
+        );
       }
     }
   }
