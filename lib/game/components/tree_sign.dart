@@ -11,7 +11,7 @@ class TreeSign extends TextComponent with HasGameRef<EdugaiteGame> {
   }) : super(
           textRenderer: TextPaint(
             style: const TextStyle(
-              color: Color(0xffffffff),
+              color: Color.fromARGB(255, 0, 0, 0),
               fontSize: 24,
               fontFamily: 'Google Sans',
             ),
@@ -22,7 +22,11 @@ class TreeSign extends TextComponent with HasGameRef<EdugaiteGame> {
   FutureOr<void> onLoad() async {
     await super.onLoad();
 
+    // Move text lower and to the left by adjusting the position
+    position =
+        Vector2(position.x - 50, position.y + 8); // Adjust the values as needed
+
     final currentLevel = gameRef.state.currentLevel;
-    text = 'DAY $currentLevel';
+    text = 'LEVEL $currentLevel';
   }
 }
