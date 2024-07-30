@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../widgets/nav-footer.dart';
 import '../../services/database_service.dart';
 import '../../models/question_model.dart';
+import './posttest-result.dart';  // Import the ResultPage
 
 class PosttestPage extends StatefulWidget {
   const PosttestPage({super.key});
@@ -18,6 +19,7 @@ class _PosttestPageState extends State<PosttestPage> {
   bool _showNextButton = false;
   bool _showQuestions = false;
   bool _isLoading = true;
+  int _correctAnswers = 0;  // Add a variable to track correct answers
 
   @override
   void initState() {
@@ -25,27 +27,26 @@ class _PosttestPageState extends State<PosttestPage> {
     _loadQuestions();
   }
 
-Future<void> _loadQuestions() async {
-  try {
-    // Update these values to match your desired path
-    final String grade = '7';
-    final String subject = 'mathematics';
-    final String topic = 'geometry';
-    final String level = 'basic';
+  Future<void> _loadQuestions() async {
+    try {
+      // Update these values to match your desired path
+      final String grade = '7';
+      final String subject = 'mathematics';
+      final String topic = 'geometry';
+      final String level = 'basic';
 
-    final questions = await DatabaseService().fetchQuestions(grade, subject, topic, level);
-    setState(() {
-      _questions = questions;
-      _isLoading = false;
-    });
-  } catch (e) {
-    print('Failed to load questions: $e');
-    setState(() {
-      _isLoading = false;
-    });
+      final questions = await DatabaseService().fetchQuestions(grade, subject, topic, level);
+      setState(() {
+        _questions = questions;
+        _isLoading = false;
+      });
+    } catch (e) {
+      print('Failed to load questions: $e');
+      setState(() {
+        _isLoading = false;
+      });
+    }
   }
-}
-
 
   void _selectChoice(String? choice) {
     setState(() {
@@ -55,6 +56,10 @@ Future<void> _loadQuestions() async {
   }
 
   Future<void> _nextQuestion() async {
+    if (_selectedChoice == _questions[_currentQuestionIndex].correct_answer) {
+      _correctAnswers++;  // Increment the correct answers count if the answer is correct
+    }
+
     int lastQuestionNumber = _questions.length - 1;
     if (_currentQuestionIndex < lastQuestionNumber) {
       setState(() {
@@ -67,7 +72,16 @@ Future<void> _loadQuestions() async {
           'This marks the last question in your test.\nDo you want to submit?',
           invertColors: false);
       if (result == true) {
-        Navigator.pushNamed(context, '/courses/vid_lesson');
+        // Navigate to the ResultPage with the score data
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => PosttestResultPage(
+              correctAnswers: _correctAnswers,
+              totalQuestions: _questions.length,
+            ),
+          ),
+        );
       }
     }
   }
@@ -209,7 +223,7 @@ Future<void> _loadQuestions() async {
                                 ),
                                 SizedBox(height: 16.0),
                                 Text(
-                                  'This pretest will help us understand your current knowledge level.',
+                                  'This posttest will help us understand your knowledge level after the course.',
                                   style: TextStyle(
                                     fontSize: 16.0,
                                     fontFamily: "Lexend",
@@ -338,8 +352,7 @@ class PosttestPageBody extends StatelessWidget {
     final choiceLabels = ['A', 'B', 'C', 'D'];
 
     return Column(
-      crossAxisAlignment:
-          CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -379,13 +392,11 @@ class PosttestPageBody extends StatelessWidget {
               width: double.infinity,
               height: 70.0, // Increase the height of each choice container
               padding: const EdgeInsets.all(8.0),
-              margin:
-                  const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
+              margin: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
               decoration: BoxDecoration(
                 color: selectedChoice == question.choices[i]
                     ? const Color.fromRGBO(26, 92, 229, 0.867)
-                    : const Color.fromRGBO(232, 235, 242,
-                        0.867), // Set your desired background color
+                    : const Color.fromRGBO(232, 235, 242, 0.867),
                 borderRadius: BorderRadius.circular(12.0),
               ),
               child: Row(

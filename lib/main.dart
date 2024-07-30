@@ -17,10 +17,13 @@ import 'screens/courses.dart';
 import 'screens/lessons/vid_lesson.dart';
 import 'screens/signup.dart';
 import 'screens/lessons/pretest.dart';
+import 'screens/lessons/pretest-result.dart';
 import 'screens/lessons/chat_lesson.dart';
 import 'screens/lessons/chatbot.dart';
 import 'screens/lessons/read_lesson.dart';
 import 'screens/lessons/posttest.dart';
+import 'screens/lessons/posttest-result.dart';
+
 import 'package:EduGAIte/game/bloc/navigation_bloc.dart';
 import 'package:EduGAIte/game/bloc/navigation_state.dart';
 
@@ -72,12 +75,15 @@ class MyApp extends StatelessWidget {
             "/profile": (context) => const ProfilePage(),
             "/track": (context) => const TrackPage(),
             "/courses": (context) => const CoursesPage(),
-            "/courses/pretest": (context) => const PretestPage(),
+            "/courses/pretest": (context) => const PretestResultPage(),
+            // "/courses/pretest-result": (context) => const PretestResultPage(),
             "/courses/vid_lesson": (context) => const VidLessonPage(),
             "/courses/chat_lesson": (context) => const ChatLessonPage(),
             "/courses/chatbot": (context) => const ChatbotPage(),
             "/courses/read_lesson": (context) => const ReadLessonPage(),
             "/courses/posttest": (context) => const PosttestPage(),
+            // "/courses/posttest-result": (context) => const PosttestResultPage(),
+            
           },
           title: 'EduGAIte',
           theme: ThemeData(
