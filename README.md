@@ -16,22 +16,25 @@ For help getting started with Flutter development, view the
 samples, guidance on mobile development, and a full API reference.
 
 ## TODO
+
 - Sign up page/Login page
-    - catch error before sending to firebase
-    - highlight red erros caught y firebase
-    - Logout every punta sa login page
+  - catch error before sending to firebase
+  - highlight red erros caught y firebase
+  - Logout every punta sa login page
 - Edit Profile
-    - UI for asking ng profile, name
-    - Backend ng account info
+  - UI for asking ng profile, name
+  - Backend ng account info
 - Backend ng courses/quizzes/etc
 - AI API
 - Game
+  - baguhin asset ng obstacle, related sa arithmetic??
+  - connect level db galing sa firebase
 - Gawing link ung title na EduGAIte
 - On App Start, check if logged in already
 - VARK
-    - Pretest/posttest
-    - oral
-    - reading
+  - Pretest/posttest
+  - oral
+  - reading
 - Remove course pg sa navfooter
 - Add pages for math curriculum, new course, add track
 - Edit Profile page btn redirects to learning progress
@@ -39,8 +42,8 @@ samples, guidance on mobile development, and a full API reference.
 - Rename courses to lessons
 - Check na tama font ng lahat
 - Gawan ng widget ung madalas gamitin
-    - logo/title
-    - icon, text, subtext
+  - logo/title
+  - icon, text, subtext
 - gawing signup pg redirect ung isang btn sa home pg
 - logout btn?
 - randomize question/choices in pretest/postest?
