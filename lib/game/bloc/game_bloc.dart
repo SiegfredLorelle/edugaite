@@ -6,32 +6,8 @@ part 'game_state.dart';
 
 class GameBloc extends Bloc<GameEvent, GameState> {
   GameBloc() : super(const GameState.initial()) {
-    on<GameScoreIncreased>(_onGameScoreIncreased);
-    on<GameScoreDecreased>(_onGameScoreDecreased);
     on<GameOver>(_onGameOver);
     on<GameSectionCompleted>(_onGameSectionCompleted);
-  }
-
-  void _onGameScoreIncreased(
-    GameScoreIncreased event,
-    Emitter<GameState> emit,
-  ) {
-    emit(
-      state.copyWith(
-        score: state.score + event.by,
-      ),
-    );
-  }
-
-  void _onGameScoreDecreased(
-    GameScoreDecreased event,
-    Emitter<GameState> emit,
-  ) {
-    emit(
-      state.copyWith(
-        score: state.score - event.by,
-      ),
-    );
   }
 
   void _onGameOver(

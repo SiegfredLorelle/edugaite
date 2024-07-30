@@ -175,12 +175,10 @@ class Player extends JumperCharacter<EdugaiteGame> {
         switch (collision.type) {
           case ItemType.acorn:
             gameRef.audioController.playSfx(Sfx.acornPickup);
-            gameRef.gameBloc.add(GameScoreIncreased(by: collision.type.points));
             _navigateToCoursePage(); // Navigate to the course page
             break;
           case ItemType.egg:
             gameRef.audioController.playSfx(Sfx.eggPickup);
-            gameRef.gameBloc.add(GameScoreIncreased(by: collision.type.points));
             break;
           case ItemType.goldenFeather:
             addPowerUp();

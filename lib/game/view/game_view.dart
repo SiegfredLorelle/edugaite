@@ -17,10 +17,13 @@ class GameScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final gameBloc = context.read<GameBloc>();
+    gameBloc.add(GameSectionCompleted(sectionCount: 1)); // Increment level here
+
     return Scaffold(
       body: MultiProvider(
         providers: [
-          BlocProvider.value(value: context.read<GameBloc>()),
+          BlocProvider.value(value: gameBloc),
           BlocProvider.value(value: context.read<NavigationBloc>()),
         ],
         child: const GameView(),
