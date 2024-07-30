@@ -75,7 +75,8 @@ class VidLessonPageBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start, // Align all text to the left
+        crossAxisAlignment:
+            CrossAxisAlignment.start, // Align all text to the left
         children: <Widget>[
           Container(
             color: Colors.white70,
@@ -116,7 +117,8 @@ class VidLessonPageBody extends StatelessWidget {
               children: <Widget>[
                 Container(
                   decoration: BoxDecoration(
-                    color: const Color.fromRGBO(232, 235, 242, 0.867), // Set your desired color,
+                    color: const Color.fromRGBO(
+                        232, 235, 242, 0.867), // Set your desired color,
                     borderRadius: BorderRadius.circular(12.0), // Border radius
                   ),
                   child: IconButton(
@@ -128,7 +130,8 @@ class VidLessonPageBody extends StatelessWidget {
                     onPressed: () {},
                   ),
                 ),
-                const SizedBox(width: 8.0), // Add some spacing between the buttons
+                const SizedBox(
+                    width: 8.0), // Add some spacing between the buttons
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: const [
@@ -146,7 +149,8 @@ class VidLessonPageBody extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 12.0,
-                        color: Color.fromRGBO(79, 102, 150, 1), // Label text color
+                        color:
+                            Color.fromRGBO(79, 102, 150, 1), // Label text color
                         fontFamily: "Lexend",
                       ),
                     ),
@@ -157,14 +161,17 @@ class VidLessonPageBody extends StatelessWidget {
           ),
           Container(
             width: double.infinity,
-            padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
             child: TextButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/courses/chat_lesson');
               },
               style: TextButton.styleFrom(
-                backgroundColor: const Color.fromRGBO(26, 92, 229, 0.867), // Set your desired background color, // Set button color
-                padding: const EdgeInsets.symmetric(vertical: 4.0), // Set padding
+                backgroundColor: const Color.fromRGBO(26, 92, 229,
+                    0.867), // Set your desired background color, // Set button color
+                padding:
+                    const EdgeInsets.symmetric(vertical: 4.0), // Set padding
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(36.0), // Rounded edges
                 ),
@@ -193,18 +200,15 @@ class VideoGallery extends StatelessWidget {
   Widget build(BuildContext context) {
     // Replace these paths with your video asset paths or URLs
     final List<String> videoPaths = [
-      'assets/videos/edugaite-presentation.mp4',
-      'assets/videos/edugaite-presentation.mp4',
-      'assets/videos/edugaite-presentation.mp4',
-      'assets/videos/edugaite-presentation.mp4',
-      'assets/videos/edugaite-presentation.mp4',
+      'assets/videos/algebra-sample-video.mp4',
     ];
 
     return GridView.builder(
       shrinkWrap: true, // Important to use in nested scrollable widgets
-      physics: NeverScrollableScrollPhysics(), // Prevent grid view from scrolling
+      physics:
+          NeverScrollableScrollPhysics(), // Prevent grid view from scrolling
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2, // 2 videos per row
+        crossAxisCount: 1,
         crossAxisSpacing: 12.0, // Smaller gap between videos
         mainAxisSpacing: 12.0, // Smaller gap between videos
       ),
