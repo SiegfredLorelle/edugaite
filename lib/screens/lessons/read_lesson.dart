@@ -98,7 +98,7 @@ class ReadLessonPageBody extends StatelessWidget {
           SizedBox(height: 32.0),
           ElevatedButton(
             onPressed: () {
-              Navigator.pushNamed(context, "/courses/geometry");
+              Navigator.pushNamed(context, "/courses/posttest");
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: const Color.fromRGBO(26, 92, 229, 0.867),

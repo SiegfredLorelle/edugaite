@@ -20,6 +20,7 @@ import 'screens/lessons/pretest.dart';
 import 'screens/lessons/chat_lesson.dart';
 import 'screens/lessons/chatbot.dart';
 import 'screens/lessons/read_lesson.dart';
+import 'screens/lessons/posttest.dart';
 import 'package:EduGAIte/game/bloc/navigation_bloc.dart';
 import 'package:EduGAIte/game/bloc/navigation_state.dart';
 
@@ -76,6 +77,7 @@ class MyApp extends StatelessWidget {
             "/courses/chat_lesson": (context) => const ChatLessonPage(),
             "/courses/chatbot": (context) => const ChatbotPage(),
             "/courses/read_lesson": (context) => const ReadLessonPage(),
+            "/courses/posttest": (context) => const PosttestPage(),
           },
           title: 'EduGAIte',
           theme: ThemeData(
