@@ -80,7 +80,6 @@ class NavFooter extends StatelessWidget {
           //       'Courses',
           //       style: TextStyle(
           //         color: Color.fromRGBO(13, 18, 28, 0.867),
-          //         fontFamily: "Lexend",
           //         fontSize: 12.0,
           //       ),
           //     ),
