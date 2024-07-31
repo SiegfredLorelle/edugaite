@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import '../widgets/home-image-carousel.dart';
 import '../game/view/game_view.dart'; // Import the game screen
-import '../screens/feedback.dart'; // Import the feedback screen
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -181,17 +179,13 @@ class HomePageBody extends StatelessWidget {
                 child: const Text('Go to Game'),
               ),
             ),
+            // Add new button for community page
             Container(
               color: Colors.white70,
               padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
               child: TextButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            FeedbackPage()), // Removed 'const'
-                  );
+                  Navigator.pushNamed(context, '/community');
                 },
                 style: TextButton.styleFrom(
                   backgroundColor: const Color.fromRGBO(
@@ -208,7 +202,7 @@ class HomePageBody extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                child: const Text('Go to Feedback'),
+                child: const Text('Go to Community'),
               ),
             ),
             Container(
