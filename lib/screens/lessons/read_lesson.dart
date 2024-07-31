@@ -68,7 +68,7 @@ class ReadLessonPageHeader extends StatelessWidget {
 
 class ReadLessonPageBody extends StatelessWidget {
   const ReadLessonPageBody({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -88,12 +88,24 @@ class ReadLessonPageBody extends StatelessWidget {
           ),
           SizedBox(height: 16.0),
           Text(
-            'Geometry is a branch of mathematics that deals with shapes, sizes, and properties of space. In this lesson, you will explore various geometric shapes such as quadrilaterals, which are four-sided figures including squares, rectangles, and trapezoids. Understanding angles is crucial, as the sum of the interior angles of a triangle is always 180 degrees. You will also learn to calculate the perimeter of shapes, such as a square, which is four times the length of one side. Different types of angles include acute angles, which are less than 90 degrees. Symmetry is another important concept, with shapes like a regular pentagon having five lines of symmetry. You will identify polygons based on the number of sides they have, such as a hexagon which has six sides. The sum of the interior angles of a quadrilateral is always 360 degrees. In the study of circles, the diameter is twice the length of the radius. Parallel lines, which never meet and are always the same distance apart, are another key topic. Finally, you will learn about different types of triangles, including scalene triangles, which have all sides of different lengths.',
+            """
+Algebra is a branch of mathematics that deals with symbols and the rules for manipulating those symbols to solve equations and understand relationships between quantities. In this lesson, you will explore various algebraic concepts such as simplifying expressions, solving equations, and evaluating expressions. Understanding variables is crucial, as they represent unknown values that we aim to solve for.
+
+You will learn to combine like terms, which is essential for simplifying expressions like 2x + 3x to 5x. Solving equations involves finding the value of the variable that makes the equation true, such as solving x + 5 = 10 to get x = 5. Evaluating expressions means substituting given values for variables, like evaluating 3a when a = 4 to get 12.
+
+You will also learn to distribute terms, a process used to simplify expressions like 3(x + 4) to 3x + 12. Combining like terms, such as in the expression 4y + 3 - 2y + 5, results in 2y + 8. Understanding and solving linear equations, like 2y - 4 = 10, helps in finding the value of y.
+
+In addition, substitution is a key concept where you replace variables with their values, such as finding the value of 4x + 1 when x = 2, resulting in 9. Working with exponents, like simplifying 2^3 to 8, is another fundamental algebraic skill. Finally, you will explore inequalities, such as solving x - 3 > 2 to get x > 5, which involves understanding the relationships between different quantities.
+
+Algebra is not just about finding the correct answer; it’s about understanding the processes and relationships that help us model and solve real-world problems.
+            """,
             style: TextStyle(
               fontSize: 16.0,
               fontFamily: "Lexend",
               color: const Color.fromRGBO(13, 18, 28, 0.867),
+              height: 1.5, // Adjust line height for readability
             ),
+            textAlign: TextAlign.justify, // Justify text alignment
           ),
           SizedBox(height: 32.0),
           ElevatedButton(
