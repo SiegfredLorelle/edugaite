@@ -11,11 +11,7 @@ class VidLessonPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(80.0),
-        child: VidLessonPageHeader(),
-      ),
-      body: VidLessonPageBody(),
+      body: const VidLessonPageBody(),
     );
   }
 }
@@ -72,154 +68,142 @@ class _VidLessonPageBodyState extends State<VidLessonPageBody> {
   void _toggleFullscreen() {
     setState(() {
       _isFullscreen = !_isFullscreen;
+      if (_isFullscreen) {
+        SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+        SystemChrome.setPreferredOrientations([
+          DeviceOrientation.landscapeLeft,
+          DeviceOrientation.landscapeRight,
+        ]);
+      } else {
+        SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+        SystemChrome.setPreferredOrientations([
+          DeviceOrientation.portraitUp,
+          DeviceOrientation.portraitDown,
+        ]);
+      }
     });
-
-    if (_isFullscreen) {
-      SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
-      SystemChrome.setPreferredOrientations([
-        DeviceOrientation.landscapeLeft,
-        DeviceOrientation.landscapeRight,
-      ]);
-    } else {
-      SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-      SystemChrome.setPreferredOrientations([
-        DeviceOrientation.portraitUp,
-        DeviceOrientation.portraitDown,
-      ]);
-    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          if (!_isFullscreen)
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Container(
-                      color: Colors.white70,
-                      padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
+    return Column(
+      children: [
+        if (!_isFullscreen) const VidLessonPageHeader(),
+        Expanded(
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                if (!_isFullscreen) ...[
+                  Container(
+                    color: Colors.white70,
+                    padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
+                    child: const Text(
+                      "Let's explore how to visualize a fraction.",
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontSize: 24.0,
+                        color: Color.fromRGBO(13, 18, 28, 0.867),
+                        fontFamily: "Lexend",
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    color: Colors.white70,
+                    padding: const EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 8.0),
+                    child: const Text(
+                      "We can use different shapes and colors to represent the fraction.",
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontSize: 16.0,
+                        color: Color.fromRGBO(13, 18, 28, 0.867),
+                        fontFamily: "Lexend",
+                      ),
+                    ),
+                  ),
+                ],
+                Container(
+                  color: Colors.white70,
+                  padding: const EdgeInsets.all(8.0),
+                  child: VideoGallery(toggleFullscreen: _toggleFullscreen),
+                ),
+                if (!_isFullscreen) ...[
+                  Container(
+                    color: Colors.white70,
+                    padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 4.0),
+                    child: Row(
+                      children: <Widget>[
+                        Container(
+                          decoration: BoxDecoration(
+                            color: const Color.fromRGBO(232, 235, 242, 0.867),
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          child: IconButton(
+                            icon: const FaIcon(FontAwesomeIcons.circleCheck, size: 16),
+                            color: const Color.fromRGBO(13, 18, 28, 0.867),
+                            onPressed: () {},
+                          ),
+                        ),
+                        const SizedBox(width: 8.0),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: const [
+                            Text(
+                              "Fraction",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 16.0,
+                                fontFamily: "Lexend",
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              "1/2 - 1 out of 2 slices are shaded.",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 12.0,
+                                color: Color.fromRGBO(79, 102, 150, 1),
+                                fontFamily: "Lexend",
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
+                    child: TextButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/courses/chat_lesson');
+                      },
+                      style: TextButton.styleFrom(
+                        backgroundColor: const Color.fromRGBO(26, 92, 229, 0.867),
+                        padding: const EdgeInsets.symmetric(vertical: 4.0),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(36.0),
+                        ),
+                      ),
                       child: const Text(
-                        "Let's explore how to visualize a fraction.",
-                        textAlign: TextAlign.left,
+                        'Go Next',
                         style: TextStyle(
-                          fontSize: 24.0,
-                          color: Color.fromRGBO(13, 18, 28, 0.867),
+                          color: Colors.white,
+                          fontSize: 16.0,
                           fontFamily: "Lexend",
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
-                    Container(
-                      color: Colors.white70,
-                      padding: const EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 8.0),
-                      child: const Text(
-                        "We can use different shapes and colors to represent the fraction.",
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontSize: 16.0,
-                          color: Color.fromRGBO(13, 18, 28, 0.867),
-                          fontFamily: "Lexend",
-                        ),
-                      ),
-                    ),
-                    Container(
-                      color: Colors.white70,
-                      padding: const EdgeInsets.all(8.0),
-                      child: VideoGallery(toggleFullscreen: _toggleFullscreen),
-                    ),
-                    Container(
-                      color: Colors.white70,
-                      padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 4.0),
-                      child: Row(
-                        children: <Widget>[
-                          Container(
-                            decoration: BoxDecoration(
-                              color: const Color.fromRGBO(
-                                  232, 235, 242, 0.867), // Set your desired color,
-                              borderRadius: BorderRadius.circular(12.0), // Border radius
-                            ),
-                            child: IconButton(
-                              icon: const FaIcon(
-                                FontAwesomeIcons.circleCheck,
-                                size: 16,
-                              ),
-                              color: const Color.fromRGBO(13, 18, 28, 0.867),
-                              onPressed: () {},
-                            ),
-                          ),
-                          const SizedBox(width: 8.0),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
-                              Text(
-                                "Fraction",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 16.0,
-                                  fontFamily: "Lexend",
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              Text(
-                                "1/2 - 1 out of 2 slices are shaded.",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 12.0,
-                                  color: Color.fromRGBO(79, 102, 150, 1),
-                                  fontFamily: "Lexend",
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
-                      child: TextButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, '/courses/chat_lesson');
-                        },
-                        style: TextButton.styleFrom(
-                          backgroundColor: const Color.fromRGBO(26, 92, 229, 0.867),
-                          padding: const EdgeInsets.symmetric(vertical: 4.0),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(36.0),
-                          ),
-                        ),
-                        child: const Text(
-                          'Go Next',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16.0,
-                            fontFamily: "Lexend",
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+                  ),
+                ],
+              ],
             ),
-          if (_isFullscreen)
-            Expanded(
-              child: Center(
-                child: VideoPlayerWidget(
-                  videoPath: 'assets/videos/algebra-sample-video.mp4',
-                  toggleFullscreen: _toggleFullscreen,
-                ),
-              ),
-            ),
-          if (!_isFullscreen) const NavFooter(),
-        ],
-      ),
+          ),
+        ),
+        if (!_isFullscreen) const NavFooter(),
+      ],
     );
   }
 }
@@ -238,7 +222,7 @@ class VideoGallery extends StatelessWidget {
 
     return GridView.builder(
       shrinkWrap: true, // Important to use in nested scrollable widgets
-      physics: NeverScrollableScrollPhysics(), // Prevent grid view from scrolling
+      physics: const NeverScrollableScrollPhysics(), // Prevent grid view from scrolling
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 1,
         crossAxisSpacing: 12.0, // Smaller gap between videos
@@ -266,6 +250,7 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
   late VideoPlayerController _controller;
   late Future<void> _initializeVideoPlayerFuture;
   double _volume = 0.5;
+  bool _showPlayButton = true;
 
   @override
   void initState() {
@@ -290,6 +275,17 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
     });
   }
 
+  void _togglePlayPause() {
+    setState(() {
+      if (_controller.value.isPlaying) {
+        _controller.pause();
+        _showPlayButton = true;
+      } else {
+        _controller.play();
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -304,22 +300,22 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
                 alignment: Alignment.center,
                 children: [
                   VideoPlayer(_controller),
-                  IconButton(
-                    icon: Icon(
-                      _controller.value.isPlaying ? Icons.pause_circle_filled : Icons.play_circle_filled,
-                      size: 48.0,
-                      color: Colors.black, // Change the color of the control
+                  if (_showPlayButton)
+                    Positioned(
+                      bottom: 10.0,
+                      left: 10.0,
+                      child: IconButton(
+                        icon: Icon(
+                          _controller.value.isPlaying ? Icons.pause_circle_filled : Icons.play_circle_filled,
+                          size: 24.0,
+                          color: Colors.black, // Change the color of the control
+                        ),
+                        onPressed: _togglePlayPause,
+                      ),
                     ),
-                    onPressed: () {
-                      setState(() {
-                        _controller.value.isPlaying ? _controller.pause() : _controller.play();
-                      });
-                    },
-                  ),
                   Positioned(
                     bottom: 10.0,
-                    left: 10.0,
-                    right: 10.0,
+                    left: 50.0,
                     child: Row(
                       children: [
                         IconButton(
@@ -329,7 +325,8 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
                           ),
                           onPressed: _toggleMute,
                         ),
-                        Expanded(
+                        Container(
+                          width: MediaQuery.of(context).size.width - 160, // Adjust width dynamically
                           child: Slider(
                             value: _volume,
                             min: 0,
