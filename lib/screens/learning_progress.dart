@@ -3,21 +3,21 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../widgets/nav-footer.dart';
 
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+class LearningProgressPage extends StatelessWidget {
+  const LearningProgressPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const PreferredSize(
         preferredSize: Size.fromHeight(80.0),
-        child: ProfilePageHeader(),
+        child: LearningProgressPageHeader(),
       ),
       body: Column(
         children: [
           Expanded(
             child: SingleChildScrollView(
-              child: ProfilePageBody(),
+              child: LearningProgressPageBody(),
             ),
           ),
           const NavFooter(),
@@ -27,8 +27,8 @@ class ProfilePage extends StatelessWidget {
   }
 }
 
-class ProfilePageHeader extends StatelessWidget {
-  const ProfilePageHeader({super.key});
+class LearningProgressPageHeader extends StatelessWidget {
+  const LearningProgressPageHeader({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -50,8 +50,8 @@ class ProfilePageHeader extends StatelessWidget {
   }
 }
 
-class ProfilePageBody extends StatelessWidget {
-  const ProfilePageBody({super.key});
+class LearningProgressPageBody extends StatelessWidget {
+  const LearningProgressPageBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +72,7 @@ class ProfilePageBody extends StatelessWidget {
               ),
             ),
           ),
-          const Image(image: AssetImage('assets/images/profile/profile.png')),
+          const Image(image: AssetImage('assets/images/LearningProgress/LearningProgress.png')),
           Container(
             color: Colors.white70,
             padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
@@ -116,7 +116,8 @@ class ProfilePageBody extends StatelessWidget {
               children: <Widget>[
                 Expanded(
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                    },
                     style: TextButton.styleFrom(
                       backgroundColor: const Color.fromRGBO(232, 235, 242,
                           0.867), // Set your desired background color
@@ -132,7 +133,7 @@ class ProfilePageBody extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    child: const Text('Share profile'),
+                    child: const Text('Share LearningProgress'),
                   ),
                 ),
                 const SizedBox(width: 8.0), // Add some spacing between the buttons

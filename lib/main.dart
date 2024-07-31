@@ -8,6 +8,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'firebase_options.dart';
 import 'screens/home.dart';
 import 'screens/login.dart';
+import 'screens/learning_progress.dart';
 import 'game/view/game_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:EduGAIte/game/game.dart';
@@ -69,6 +70,7 @@ class MyApp extends StatelessWidget {
           initialRoute: "/",
           routes: {
             "/": (context) => const HomePage(),
+            "/learning_progress": (context) => const LearningProgressPage(),
             "/login": (context) => const LoginPage(),
             "/signup": (context) => const SignUpPage(),
             "/game": (context) => const GameScreen(),
