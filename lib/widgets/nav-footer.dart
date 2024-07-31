@@ -63,27 +63,30 @@ class NavFooter extends StatelessWidget {
               ),
             ],
           ),
-          Column(
-            children: [
-              IconButton(
-                icon: const FaIcon(FontAwesomeIcons.bookOpen),
-                color: const Color.fromRGBO(13, 18, 28, 0.867),
-                onPressed: () {
-                  if (ModalRoute.of(context)?.settings.name != '/courses') {
-                    Navigator.pushNamed(context, '/courses');
-                  }
-                },
-              ),
-              const Text(
-                'Courses',
-                style: TextStyle(
-                  color: Color.fromRGBO(13, 18, 28, 0.867),
-                  fontFamily: "Lexend",
-                  fontSize: 12.0,
-                ),
-              ),
-            ],
-          ),
+
+          // // UNCOMMENT FOR EASIER  TESTING, EASIER ACCESS TO COURSES PAGE
+          // Column(
+          //   children: [
+          //     IconButton(
+          //       icon: const FaIcon(FontAwesomeIcons.bookOpen),
+          //       color: const Color.fromRGBO(13, 18, 28, 0.867),
+          //       onPressed: () {
+          //         if (ModalRoute.of(context)?.settings.name != '/courses') {
+          //           Navigator.pushNamed(context, '/courses');
+          //         }
+          //       },
+          //     ),
+          //     const Text(
+          //       'Courses',
+          //       style: TextStyle(
+          //         color: Color.fromRGBO(13, 18, 28, 0.867),
+          //         fontFamily: "Lexend",
+          //         fontSize: 12.0,
+          //       ),
+          //     ),
+          //   ],
+          // ),
+
         ],
       ),
     );
