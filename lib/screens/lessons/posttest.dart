@@ -122,6 +122,10 @@ class _PosttestPageState extends State<PosttestPage> {
   Future<void> _startQuestions() async {
     setState(() {
       _showQuestions = true;
+      _currentQuestionIndex = 0;
+      _selectedChoice = null;
+      _scoreArray = List.filled(_questions.length, 0); // Reset the score array
+      _selectedChoices = List.filled(_questions.length, null); // Reset the selected choices array
     });
   }
 
