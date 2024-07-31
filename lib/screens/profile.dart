@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../widgets/nav-footer.dart';
 
@@ -50,8 +51,37 @@ class ProfilePageHeader extends StatelessWidget {
   }
 }
 
-class ProfilePageBody extends StatelessWidget {
+class ProfilePageBody extends StatefulWidget {
   const ProfilePageBody({super.key});
+
+  @override
+  _ProfilePageBodyState createState() => _ProfilePageBodyState();
+}
+
+class _ProfilePageBodyState extends State<ProfilePageBody> {
+  bool _showSubjects = false;
+  bool _showTracks = false;
+  final String mathCurriculumUrl =
+      'https://www.deped.gov.ph/wp-content/uploads/2019/01/Math-CG_with-tagged-math-equipment.pdf';
+
+  void _toggleNewCourse() {
+    setState(() {
+      _showSubjects = !_showSubjects;
+    });
+  }
+
+  void _toggleAddTrack() {
+    setState(() {
+      _showTracks = !_showTracks;
+    });
+  }
+
+  void _launchURL() async {
+    final Uri _url = Uri.parse(mathCurriculumUrl);
+    if (!await launchUrl(_url)) {
+      throw 'Could not launch $_url';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -92,8 +122,7 @@ class ProfilePageBody extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 16.0,
-                  color: Color.fromRGBO(
-                      79, 102, 150, 1), // Label text color,
+                  color: Color.fromRGBO(79, 102, 150, 1), // Label text color
                   fontFamily: "Lexend",
                 ),
               ),
@@ -102,8 +131,7 @@ class ProfilePageBody extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 16.0,
-                  color: Color.fromRGBO(
-                      79, 102, 150, 1), // Label text color,
+                  color: Color.fromRGBO(79, 102, 150, 1), // Label text color
                   fontFamily: "Lexend",
                 ),
               ),
@@ -137,7 +165,8 @@ class ProfilePageBody extends StatelessWidget {
                     child: const Text('Learning progress'),
                   ),
                 ),
-                const SizedBox(width: 8.0), // Add some spacing between the buttons
+                const SizedBox(
+                    width: 8.0), // Add some spacing between the buttons
                 Expanded(
                   child: TextButton(
                     onPressed: () {},
@@ -148,8 +177,8 @@ class ProfilePageBody extends StatelessWidget {
                         borderRadius: BorderRadius.circular(
                             12.0), // Customize button shape
                       ),
-                      foregroundColor: const Color.fromRGBO(232, 235, 242,
-                          0.867), // Set your desired color here
+                      foregroundColor: const Color.fromRGBO(
+                          232, 235, 242, 0.867), // Set your desired color here
                       textStyle: const TextStyle(
                         fontSize: 12.0, // Set text size
                         fontFamily: "Lexend",
@@ -182,8 +211,8 @@ class ProfilePageBody extends StatelessWidget {
               children: <Widget>[
                 Container(
                   decoration: BoxDecoration(
-                    color: const Color.fromRGBO(
-                        232, 235, 242, 0.867), // Set your desir,
+                    color: const Color.fromRGBO(232, 235, 242,
+                        0.867), // Set your desired background color
                     borderRadius: BorderRadius.circular(12.0), // Border radius
                   ),
                   child: IconButton(
@@ -192,16 +221,18 @@ class ProfilePageBody extends StatelessWidget {
                       size: 16,
                     ),
                     color: const Color.fromRGBO(13, 18, 28, 0.867),
-                    onPressed: () {},
+                    onPressed: _launchURL,
                   ),
                 ),
-                const SizedBox(width: 8.0), // Add some spacing between the buttons
+                const SizedBox(
+                    width: 8.0), // Add some spacing between the buttons
                 const Text(
                   "Math Curriculum",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 16.0,
-                    color: Color.fromRGBO(13, 18, 28, 0.867), // Se
+                    color: Color.fromRGBO(
+                        13, 18, 28, 0.867), // Set your desired color here
                     fontFamily: "Lexend",
                   ),
                 ),
@@ -211,66 +242,134 @@ class ProfilePageBody extends StatelessWidget {
           Container(
             color: Colors.white70,
             padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 4.0),
-            child: Row(
-              children: <Widget>[
-                Container(
-                  decoration: BoxDecoration(
-                    color: const Color.fromRGBO(
-                        232, 235, 242, 0.867), // Set your desir,
-                    borderRadius: BorderRadius.circular(12.0), // Border radius
-                  ),
-                  child: IconButton(
-                    icon: const FaIcon(
-                      FontAwesomeIcons.circlePlus,
-                      size: 16,
+            child: Column(
+              children: [
+                Row(
+                  children: <Widget>[
+                    Container(
+                      decoration: BoxDecoration(
+                        color: const Color.fromRGBO(232, 235, 242,
+                            0.867), // Set your desired background color
+                        borderRadius:
+                            BorderRadius.circular(12.0), // Border radius
+                      ),
+                      child: IconButton(
+                        icon: const FaIcon(
+                          FontAwesomeIcons.circlePlus,
+                          size: 16,
+                        ),
+                        color: const Color.fromRGBO(13, 18, 28, 0.867),
+                        onPressed: _toggleNewCourse,
+                      ),
                     ),
-                    color: const Color.fromRGBO(13, 18, 28, 0.867),
+                    const SizedBox(
+                        width: 8.0), // Add some spacing between the buttons
+                    const Text(
+                      "New Course",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 16.0,
+                        color: Color.fromRGBO(
+                            13, 18, 28, 0.867), // Set your desired color here
+                        fontFamily: "Lexend",
+                      ),
+                    ),
+                  ],
+                ),
+                if (_showSubjects) ...[
+                  const SizedBox(height: 8.0),
+                  ElevatedButton(
                     onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromRGBO(
+                          26, 92, 229, 0.867), // Button color
+                      foregroundColor: Colors.white, // Text color
+                    ),
+                    child: const Text('Math'),
                   ),
-                ),
-                const SizedBox(width: 8.0), // Add some spacing between the buttons
-                const Text(
-                  "New Course",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 16.0,
-                    color: Color.fromRGBO(13, 18, 28, 0.867), // Se
-                    fontFamily: "Lexend",
+                  const SizedBox(height: 8.0),
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromRGBO(
+                          26, 92, 229, 0.867), // Button color
+                      foregroundColor: Colors.white, // Text color
+                    ),
+                    child: const Text('Science'),
                   ),
-                ),
+                  const SizedBox(height: 8.0),
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromRGBO(
+                          26, 92, 229, 0.867), // Button color
+                      foregroundColor: Colors.white, // Text color
+                    ),
+                    child: const Text('Filipino'),
+                  ),
+                ]
               ],
             ),
           ),
           Container(
             color: Colors.white70,
             padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 4.0),
-            child: Row(
-              children: <Widget>[
-                Container(
-                  decoration: BoxDecoration(
-                    color: const Color.fromRGBO(
-                        232, 235, 242, 0.867), // Set your desir,
-                    borderRadius: BorderRadius.circular(12.0), // Border radius
-                  ),
-                  child: IconButton(
-                    icon: const FaIcon(
-                      FontAwesomeIcons.userPlus,
-                      size: 16,
+            child: Column(
+              children: [
+                Row(
+                  children: <Widget>[
+                    Container(
+                      decoration: BoxDecoration(
+                        color: const Color.fromRGBO(232, 235, 242,
+                            0.867), // Set your desired background color
+                        borderRadius:
+                            BorderRadius.circular(12.0), // Border radius
+                      ),
+                      child: IconButton(
+                        icon: const FaIcon(
+                          FontAwesomeIcons.userPlus,
+                          size: 16,
+                        ),
+                        color: const Color.fromRGBO(13, 18, 28, 0.867),
+                        onPressed: _toggleAddTrack,
+                      ),
                     ),
-                    color: const Color.fromRGBO(13, 18, 28, 0.867),
+                    const SizedBox(
+                        width: 8.0), // Add some spacing between the buttons
+                    const Text(
+                      "Add Track",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 16.0,
+                        color: Color.fromRGBO(
+                            13, 18, 28, 0.867), // Set your desired color here
+                        fontFamily: "Lexend",
+                      ),
+                    ),
+                  ],
+                ),
+                if (_showTracks) ...[
+                  const SizedBox(height: 8.0),
+                  ElevatedButton(
                     onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromRGBO(
+                          26, 92, 229, 0.867), // Button color
+                      foregroundColor: Colors.white, // Text color
+                    ),
+                    child: const Text('Advance Algebra'),
                   ),
-                ),
-                const SizedBox(width: 8.0), // Add some spacing between the buttons
-                const Text(
-                  "Add Track",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 16.0,
-                    color: Color.fromRGBO(13, 18, 28, 0.867), // Se
-                    fontFamily: "Lexend",
+                  const SizedBox(height: 8.0),
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromRGBO(
+                          26, 92, 229, 0.867), // Button color
+                      foregroundColor: Colors.white, // Text color
+                    ),
+                    child: const Text('Data Science'),
                   ),
-                ),
+                ]
               ],
             ),
           ),
