@@ -27,6 +27,7 @@ import 'screens/lessons/posttest-result.dart';
 import 'package:EduGAIte/game/bloc/navigation_bloc.dart';
 import 'package:EduGAIte/game/bloc/navigation_state.dart';
 import 'screens/feedback.dart';
+import 'screens/community.dart'; // Import the community page
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
@@ -85,6 +86,8 @@ class MyApp extends StatelessWidget {
             "/courses/posttest": (context) => const PosttestPage(),
             // "/courses/posttest-result": (context) => const PosttestResultPage(),
             "/feedback": (context) => FeedbackPage(),
+            "/community": (context) =>
+                CommunityPage(), // Add the community page route
           },
           title: 'EduGAIte',
           theme: ThemeData(
