@@ -67,7 +67,7 @@ class _LearningProgressPageBodyState extends State<LearningProgressPageBody> {
   Widget build(BuildContext context) {
     return Container(
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Container(
             color: Colors.white70,
@@ -93,7 +93,7 @@ class _LearningProgressPageBodyState extends State<LearningProgressPageBody> {
             color: Colors.white70,
             padding: const EdgeInsets.all(16.0),
             child: const Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Text(
                   "You're on fire!",
@@ -106,14 +106,6 @@ class _LearningProgressPageBodyState extends State<LearningProgressPageBody> {
                 ),
                 Text(
                   "Keep it up!",
-                  style: TextStyle(
-                    fontSize: 16.0,
-                    color: Color.fromRGBO(79, 102, 150, 1),
-                    fontFamily: "Lexend",
-                  ),
-                ),
-                Text(
-                  "Joined 2020, 2nd year",
                   style: TextStyle(
                     fontSize: 16.0,
                     color: Color.fromRGBO(79, 102, 150, 1),
@@ -148,14 +140,42 @@ class _LearningProgressPageBodyState extends State<LearningProgressPageBody> {
                     borderRadius: BorderRadius.circular(12.0),
                   ),
                   child: IconButton(
-                    icon: const FaIcon(FontAwesomeIcons.bookOpen, size: 16),
+                    icon: const FaIcon(FontAwesomeIcons.trophy, size: 16),
                     color: const Color.fromRGBO(13, 18, 28, 0.867),
                     onPressed: () {},
                   ),
                 ),
                 const SizedBox(width: 8.0), // Add some spacing between the buttons
                 const Text(
-                  "Math Curriculum",
+                  "Practice makes perfect",
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    color: Color.fromRGBO(13, 18, 28, 0.867),
+                    fontFamily: "Lexend",
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            color: Colors.white70,
+            padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 4.0),
+            child: Row(
+              children: <Widget>[
+                Container(
+                  decoration: BoxDecoration(
+                    color: const Color.fromRGBO(232, 235, 242, 0.867),
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                  child: IconButton(
+                    icon: const FaIcon(FontAwesomeIcons.trophy, size: 16),
+                    color: const Color.fromRGBO(13, 18, 28, 0.867),
+                    onPressed: () {},
+                  ),
+                ),
+                const SizedBox(width: 8.0), // Add some spacing between the buttons
+                const Text(
+                  "Champion",
                   style: TextStyle(
                     fontSize: 16.0,
                     color: Color.fromRGBO(13, 18, 28, 0.867),
@@ -189,7 +209,7 @@ class _LearningProgressPageBodyState extends State<LearningProgressPageBody> {
                     borderRadius: BorderRadius.circular(12.0),
                   ),
                   child: IconButton(
-                    icon: const FaIcon(FontAwesomeIcons.bookOpen, size: 16),
+                    icon: const FaIcon(FontAwesomeIcons.star, size: 16),
                     color: const Color.fromRGBO(13, 18, 28, 0.867),
                     onPressed: () {},
                   ),
@@ -302,7 +322,8 @@ class _LearningProgressPageBodyState extends State<LearningProgressPageBody> {
                           // Navigate to Challenges page
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color.fromRGBO(79, 102, 150, 1),
+                          backgroundColor: const Color.fromRGBO(26, 92, 229,
+                          0.867), // Se,
                           foregroundColor: Colors.white,
                           minimumSize: Size(double.infinity, 50), // Set the size
                         ),
@@ -317,7 +338,8 @@ class _LearningProgressPageBodyState extends State<LearningProgressPageBody> {
                           // Navigate to Learning Path page
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color.fromRGBO(79, 102, 150, 1),
+                          backgroundColor: const Color.fromRGBO(26, 92, 229,
+                          0.867), // Se,
                           foregroundColor: Colors.white,
                           minimumSize: Size(double.infinity, 50), // Set the size
                         ),
@@ -332,7 +354,8 @@ class _LearningProgressPageBodyState extends State<LearningProgressPageBody> {
                           // Navigate to Feedback page
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color.fromRGBO(79, 102, 150, 1),
+                          backgroundColor: const Color.fromRGBO(26, 92, 229,
+                          0.867), // Se,
                           foregroundColor: Colors.white,
                           minimumSize: Size(double.infinity, 50), // Set the size
                         ),
@@ -347,7 +370,8 @@ class _LearningProgressPageBodyState extends State<LearningProgressPageBody> {
                           // Navigate to Teach Community page
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color.fromRGBO(79, 102, 150, 1),
+                          backgroundColor: const Color.fromRGBO(26, 92, 229,
+                          0.867), // Se,
                           foregroundColor: Colors.white,
                           minimumSize: Size(double.infinity, 50), // Set the size
                         ),
