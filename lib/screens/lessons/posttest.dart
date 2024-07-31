@@ -19,7 +19,8 @@ class _PosttestPageState extends State<PosttestPage> {
   bool _showNextButton = false;
   bool _showQuestions = false;
   bool _isLoading = true;
-  int _correctAnswers = 0;  // Add a variable to track correct answers
+  List<int> _scoreArray = [];  // Array to track score
+  List<String?> _selectedChoices = []; // Array to track selected choices
 
   @override
   void initState() {
@@ -38,6 +39,8 @@ class _PosttestPageState extends State<PosttestPage> {
       final questions = await DatabaseService().fetchQuestions(grade, subject, topic, level);
       setState(() {
         _questions = questions;
+        _scoreArray = List.filled(questions.length, 0); // Initialize the score array
+        _selectedChoices = List.filled(questions.length, null); // Initialize the selected choices array
         _isLoading = false;
       });
     } catch (e) {
@@ -51,33 +54,37 @@ class _PosttestPageState extends State<PosttestPage> {
   void _selectChoice(String? choice) {
     setState(() {
       _selectedChoice = choice;
+      _selectedChoices[_currentQuestionIndex] = choice; // Save the selected choice
       _showNextButton = true;
     });
   }
 
   Future<void> _nextQuestion() async {
     if (_selectedChoice == _questions[_currentQuestionIndex].correct_answer) {
-      _correctAnswers++;  // Increment the correct answers count if the answer is correct
+      _scoreArray[_currentQuestionIndex] = 1; // Mark the question as correct
+    } else {
+      _scoreArray[_currentQuestionIndex] = 0; // Mark the question as incorrect
     }
 
     int lastQuestionNumber = _questions.length - 1;
     if (_currentQuestionIndex < lastQuestionNumber) {
       setState(() {
         _currentQuestionIndex++;
-        _selectedChoice = null;
-        _showNextButton = false;
+        _selectedChoice = _selectedChoices[_currentQuestionIndex]; // Restore the selected choice
+        _showNextButton = _selectedChoice != null;
       });
     } else {
       final bool? result = await _showExitConfirmationDialog(context,
           'This marks the last question in your test.\nDo you want to submit?',
           invertColors: false);
       if (result == true) {
+        int correctAnswers = _scoreArray.reduce((a, b) => a + b); // Calculate total correct answers
         // Navigate to the ResultPage with the score data
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
             builder: (context) => PosttestResultPage(
-              correctAnswers: _correctAnswers,
+              correctAnswers: correctAnswers,
               totalQuestions: _questions.length,
             ),
           ),
@@ -95,8 +102,8 @@ class _PosttestPageState extends State<PosttestPage> {
     if (_currentQuestionIndex > 0) {
       setState(() {
         _currentQuestionIndex--;
-        _selectedChoice = null;
-        _showNextButton = false;
+        _selectedChoice = _selectedChoices[_currentQuestionIndex]; // Restore the selected choice
+        _showNextButton = _selectedChoice != null;
       });
     } else {
       final bool? result = await _showExitConfirmationDialog(context,
