@@ -19,7 +19,7 @@ class _PretestResultPageState extends State<PretestResultPage> {
   bool _showNextButton = false;
   bool _showQuestions = false;
   bool _isLoading = true;
-  int _correctAnswers = 0;  // Add a variable to track correct answers
+  List<int> _scoreArray = [];  // Array to track score
 
   @override
   void initState() {
@@ -38,6 +38,7 @@ class _PretestResultPageState extends State<PretestResultPage> {
       final questions = await DatabaseService().fetchQuestions(grade, subject, topic, level);
       setState(() {
         _questions = questions;
+        _scoreArray = List.filled(questions.length, 0); // Initialize the score array
         _isLoading = false;
       });
     } catch (e) {
@@ -56,9 +57,10 @@ class _PretestResultPageState extends State<PretestResultPage> {
   }
 
   Future<void> _nextQuestion() async {
-    print('${_selectedChoice}\n${_questions[_currentQuestionIndex].correct_answer}');
     if (_selectedChoice == _questions[_currentQuestionIndex].correct_answer) {
-      _correctAnswers++;  // Increment the correct answers count if the answer is correct
+      _scoreArray[_currentQuestionIndex] = 1; // Mark the question as correct
+    } else {
+      _scoreArray[_currentQuestionIndex] = 0; // Mark the question as incorrect
     }
 
     int lastQuestionNumber = _questions.length - 1;
@@ -73,12 +75,13 @@ class _PretestResultPageState extends State<PretestResultPage> {
           'This marks the last question in pretest.\nDo you want to submit?',
           invertColors: false);
       if (result == true) {
+        int correctAnswers = _scoreArray.reduce((a, b) => a + b); // Calculate total correct answers
         // Navigate to the ResultPage with the score data
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
             builder: (context) => ResultPage(
-              correctAnswers: _correctAnswers,
+              correctAnswers: correctAnswers,
               totalQuestions: _questions.length,
             ),
           ),
