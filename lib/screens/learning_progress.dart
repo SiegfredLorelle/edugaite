@@ -335,6 +335,7 @@ class _LearningProgressPageBodyState extends State<LearningProgressPageBody> {
                         icon: const FaIcon(FontAwesomeIcons.mapSigns, size: 16),
                         label: const Text("Learning Path"),
                         onPressed: () {
+                          Navigator.pushNamed(context, "/learning_path");
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color.fromRGBO(26, 92, 229,
