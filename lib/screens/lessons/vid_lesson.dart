@@ -283,6 +283,13 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
     super.dispose();
   }
 
+  void _toggleMute() {
+    setState(() {
+      _volume = _volume > 0 ? 0 : 0.5; // Toggle between mute and half volume
+      _controller.setVolume(_volume);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -301,7 +308,7 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
                     icon: Icon(
                       _controller.value.isPlaying ? Icons.pause_circle_filled : Icons.play_circle_filled,
                       size: 48.0,
-                      color: Colors.blue, // Change the color of the control
+                      color: Colors.black, // Change the color of the control
                     ),
                     onPressed: () {
                       setState(() {
@@ -310,34 +317,41 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
                     },
                   ),
                   Positioned(
-                    top: 10.0,
-                    right: 10.0,
-                    child: IconButton(
-                      icon: Icon(
-                        Icons.fullscreen_exit,
-                        size: 24.0,
-                        color: Colors.blue, // Change the color of the control
-                      ),
-                      onPressed: widget.toggleFullscreen,
-                    ),
-                  ),
-                  Positioned(
                     bottom: 10.0,
                     left: 10.0,
+                    right: 10.0,
                     child: Row(
                       children: [
-                        Icon(Icons.volume_up, color: Colors.blue),
-                        Slider(
-                          value: _volume,
-                          min: 0,
-                          max: 1,
-                          divisions: 10,
-                          onChanged: (value) {
-                            setState(() {
-                              _volume = value;
-                              _controller.setVolume(_volume);
-                            });
-                          },
+                        IconButton(
+                          icon: Icon(
+                            _volume > 0 ? Icons.volume_up : Icons.volume_off,
+                            color: Colors.black,
+                          ),
+                          onPressed: _toggleMute,
+                        ),
+                        Expanded(
+                          child: Slider(
+                            value: _volume,
+                            min: 0,
+                            max: 1,
+                            divisions: 10,
+                            onChanged: (value) {
+                              setState(() {
+                                _volume = value;
+                                _controller.setVolume(_volume);
+                              });
+                            },
+                            activeColor: Colors.black,
+                            inactiveColor: Colors.grey,
+                          ),
+                        ),
+                        IconButton(
+                          icon: Icon(
+                            Icons.fullscreen,
+                            size: 24.0,
+                            color: Colors.black, // Change the color of the control
+                          ),
+                          onPressed: widget.toggleFullscreen,
                         ),
                       ],
                     ),
