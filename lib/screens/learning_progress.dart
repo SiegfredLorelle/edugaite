@@ -37,12 +37,14 @@ class LearningProgressPageHeader extends StatelessWidget {
       color: Colors.white70,
       padding: const EdgeInsets.fromLTRB(16.0, 20.0, 16.0, 8.0),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           IconButton(
-            icon: const FaIcon(FontAwesomeIcons.bell, size: 20),
+            icon: const FaIcon(FontAwesomeIcons.arrowLeft, size: 20),
             color: const Color.fromRGBO(13, 18, 28, 0.867),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pop(context);
+            },
           ),
         ],
       ),
@@ -57,57 +59,61 @@ class LearningProgressPageBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
             color: Colors.white70,
             padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
             child: const Text(
-              "TODO LEARNING PROGRESS!",
+              "Learning Progress",
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 32.0,
+                fontSize: 28.0,
                 color: Color.fromRGBO(13, 18, 28, 0.867),
                 fontFamily: "Lexend",
                 fontWeight: FontWeight.bold,
               ),
             ),
           ),
-          const Image(image: AssetImage('assets/images/LearningProgress/LearningProgress.png')),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: const Image(
+              image: AssetImage('assets/images/profile/profile.png'),
+            ),
+          ),
           Container(
             color: Colors.white70,
-            padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
-            child: const Column(children: <Widget>[
-              Text(
-                "Mrs. Johnson",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 20.0,
-                  color: Color.fromRGBO(13, 18, 28, 0.867),
-                  fontFamily: "Lexend",
-                  fontWeight: FontWeight.bold,
+            padding: const EdgeInsets.all(16.0),
+            child: const Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  "You're on fire!",
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    color: Color.fromRGBO(13, 18, 28, 0.867),
+                    fontFamily: "Lexend",
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-              Text(
-                "Math Teacher",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 16.0,
-                  color: Color.fromRGBO(
-                      79, 102, 150, 1), // Label text color,
-                  fontFamily: "Lexend",
+                Text(
+                  "Keep it up!",
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    color: Color.fromRGBO(79, 102, 150, 1),
+                    fontFamily: "Lexend",
+                  ),
                 ),
-              ),
-              Text(
-                "Joined 2020, 2nd year",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 16.0,
-                  color: Color.fromRGBO(
-                      79, 102, 150, 1), // Label text color,
-                  fontFamily: "Lexend",
+                Text(
+                  "Joined 2020, 2nd year",
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    color: Color.fromRGBO(79, 102, 150, 1),
+                    fontFamily: "Lexend",
+                  ),
                 ),
-              ),
-            ]),
+              ],
+            ),
           ),
           Container(
             color: Colors.white70,
@@ -116,24 +122,20 @@ class LearningProgressPageBody extends StatelessWidget {
               children: <Widget>[
                 Expanded(
                   child: TextButton(
-                    onPressed: () {
-                    },
+                    onPressed: () {},
                     style: TextButton.styleFrom(
-                      backgroundColor: const Color.fromRGBO(232, 235, 242,
-                          0.867), // Set your desired background color
+                      backgroundColor: const Color.fromRGBO(232, 235, 242, 0.867),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(
-                            12.0), // Customize button shape
+                        borderRadius: BorderRadius.circular(12.0),
                       ),
-                      foregroundColor: const Color.fromRGBO(
-                          13, 18, 28, 0.867), // Set your desired color here
+                      foregroundColor: const Color.fromRGBO(13, 18, 28, 0.867),
                       textStyle: const TextStyle(
-                        fontSize: 12.0, // Set text size
+                        fontSize: 12.0,
                         fontFamily: "Lexend",
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    child: const Text('Share LearningProgress'),
+                    child: const Text('Share Learning Progress'),
                   ),
                 ),
                 const SizedBox(width: 8.0), // Add some spacing between the buttons
@@ -141,16 +143,13 @@ class LearningProgressPageBody extends StatelessWidget {
                   child: TextButton(
                     onPressed: () {},
                     style: TextButton.styleFrom(
-                      backgroundColor: const Color.fromRGBO(26, 92, 229,
-                          0.867), // Set your desired background color
+                      backgroundColor: const Color.fromRGBO(26, 92, 229, 0.867),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(
-                            12.0), // Customize button shape
+                        borderRadius: BorderRadius.circular(12.0),
                       ),
-                      foregroundColor: const Color.fromRGBO(232, 235, 242,
-                          0.867), // Set your desired color here
+                      foregroundColor: const Color.fromRGBO(232, 235, 242, 0.867),
                       textStyle: const TextStyle(
-                        fontSize: 12.0, // Set text size
+                        fontSize: 12.0,
                         fontFamily: "Lexend",
                         fontWeight: FontWeight.bold,
                       ),
@@ -181,15 +180,11 @@ class LearningProgressPageBody extends StatelessWidget {
               children: <Widget>[
                 Container(
                   decoration: BoxDecoration(
-                    color: const Color.fromRGBO(
-                        232, 235, 242, 0.867), // Set your desir,
-                    borderRadius: BorderRadius.circular(12.0), // Border radius
+                    color: const Color.fromRGBO(232, 235, 242, 0.867),
+                    borderRadius: BorderRadius.circular(12.0),
                   ),
                   child: IconButton(
-                    icon: const FaIcon(
-                      FontAwesomeIcons.bookOpen,
-                      size: 16,
-                    ),
+                    icon: const FaIcon(FontAwesomeIcons.bookOpen, size: 16),
                     color: const Color.fromRGBO(13, 18, 28, 0.867),
                     onPressed: () {},
                   ),
@@ -197,10 +192,9 @@ class LearningProgressPageBody extends StatelessWidget {
                 const SizedBox(width: 8.0), // Add some spacing between the buttons
                 const Text(
                   "Math Curriculum",
-                  textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 16.0,
-                    color: Color.fromRGBO(13, 18, 28, 0.867), // Se
+                    color: Color.fromRGBO(13, 18, 28, 0.867),
                     fontFamily: "Lexend",
                   ),
                 ),
@@ -214,15 +208,11 @@ class LearningProgressPageBody extends StatelessWidget {
               children: <Widget>[
                 Container(
                   decoration: BoxDecoration(
-                    color: const Color.fromRGBO(
-                        232, 235, 242, 0.867), // Set your desir,
-                    borderRadius: BorderRadius.circular(12.0), // Border radius
+                    color: const Color.fromRGBO(232, 235, 242, 0.867),
+                    borderRadius: BorderRadius.circular(12.0),
                   ),
                   child: IconButton(
-                    icon: const FaIcon(
-                      FontAwesomeIcons.circlePlus,
-                      size: 16,
-                    ),
+                    icon: const FaIcon(FontAwesomeIcons.circlePlus, size: 16),
                     color: const Color.fromRGBO(13, 18, 28, 0.867),
                     onPressed: () {},
                   ),
@@ -230,10 +220,9 @@ class LearningProgressPageBody extends StatelessWidget {
                 const SizedBox(width: 8.0), // Add some spacing between the buttons
                 const Text(
                   "New Course",
-                  textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 16.0,
-                    color: Color.fromRGBO(13, 18, 28, 0.867), // Se
+                    color: Color.fromRGBO(13, 18, 28, 0.867),
                     fontFamily: "Lexend",
                   ),
                 ),
@@ -247,15 +236,11 @@ class LearningProgressPageBody extends StatelessWidget {
               children: <Widget>[
                 Container(
                   decoration: BoxDecoration(
-                    color: const Color.fromRGBO(
-                        232, 235, 242, 0.867), // Set your desir,
-                    borderRadius: BorderRadius.circular(12.0), // Border radius
+                    color: const Color.fromRGBO(232, 235, 242, 0.867),
+                    borderRadius: BorderRadius.circular(12.0),
                   ),
                   child: IconButton(
-                    icon: const FaIcon(
-                      FontAwesomeIcons.userPlus,
-                      size: 16,
-                    ),
+                    icon: const FaIcon(FontAwesomeIcons.userPlus, size: 16),
                     color: const Color.fromRGBO(13, 18, 28, 0.867),
                     onPressed: () {},
                   ),
@@ -263,10 +248,9 @@ class LearningProgressPageBody extends StatelessWidget {
                 const SizedBox(width: 8.0), // Add some spacing between the buttons
                 const Text(
                   "Add Track",
-                  textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 16.0,
-                    color: Color.fromRGBO(13, 18, 28, 0.867), // Se
+                    color: Color.fromRGBO(13, 18, 28, 0.867),
                     fontFamily: "Lexend",
                   ),
                 ),
