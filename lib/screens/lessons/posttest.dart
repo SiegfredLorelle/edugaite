@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../../widgets/nav-footer.dart';
+// import '../../widgets/nav-footer.dart';
 import '../../services/database_service.dart';
 import '../../models/question_model.dart';
 import './posttest-result.dart';  // Import the ResultPage
@@ -264,7 +264,7 @@ class _PosttestPageState extends State<PosttestPage> {
                             ),
                           ),
                   ),
-                  if (!_showQuestions) const NavFooter(),
+                  // if (!_showQuestions) const NavFooter(),
                   if (_showNextButton && _showQuestions)
                     Padding(
                       padding: const EdgeInsets.all(16.0),

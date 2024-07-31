@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../widgets/nav-footer.dart';
+// import '../../widgets/nav-footer.dart';
 
 class ReadLessonPage extends StatelessWidget {
   const ReadLessonPage({super.key});
@@ -20,7 +20,7 @@ class ReadLessonPage extends StatelessWidget {
               child: const ReadLessonPageBody(),
             ),
           ),
-          const NavFooter(),
+          // const NavFooter(),
         ],
       ),
     );
