@@ -159,7 +159,7 @@ class _VidLessonPageBodyState extends State<VidLessonPageBody> {
             ),
           ),
         ),
-        if (!_isFullscreen) const NavFooter(),
+        // if (!_isFullscreen) const NavFooter(),
       ],
     );
   }
