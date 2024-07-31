@@ -351,7 +351,7 @@ class _LearningProgressPageBodyState extends State<LearningProgressPageBody> {
                         icon: const FaIcon(FontAwesomeIcons.comments, size: 16),
                         label: const Text("Feedback"),
                         onPressed: () {
-                          // Navigate to Feedback page
+                          Navigator.pushNamed(context, "/feedback");
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color.fromRGBO(26, 92, 229,
@@ -367,7 +367,7 @@ class _LearningProgressPageBodyState extends State<LearningProgressPageBody> {
                         icon: const FaIcon(FontAwesomeIcons.users, size: 16),
                         label: const Text("Teach Community"),
                         onPressed: () {
-                          // Navigate to Teach Community page
+                          Navigator.pushNamed(context, "/community");
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color.fromRGBO(26, 92, 229,
