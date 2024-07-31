@@ -33,7 +33,7 @@ class _PretestResultPageState extends State<PretestResultPage> {
       // Update these values to match your desired path
       final String grade = '7';
       final String subject = 'mathematics';
-      final String topic = 'geometry';
+      final String topic = 'algebra';
       final String level = 'basic';
 
       final questions = await DatabaseService().fetchQuestions(grade, subject, topic, level);
