@@ -9,6 +9,7 @@ import 'firebase_options.dart';
 import 'screens/home.dart';
 import 'screens/login.dart';
 import 'screens/learning_progress.dart';
+import 'screens/learning_path.dart';
 import 'screens/challenges.dart';
 import 'game/view/game_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -74,6 +75,7 @@ class MyApp extends StatelessWidget {
           routes: {
             "/": (context) => const HomePage(),
             "/learning_progress": (context) => const LearningProgressPage(),
+            "/learning_path": (context) => const LearningPathPage(),
             "/challenges": (context) => const ChallengesPage(),
             "/login": (context) => const LoginPage(),
             "/signup": (context) => const SignUpPage(),
