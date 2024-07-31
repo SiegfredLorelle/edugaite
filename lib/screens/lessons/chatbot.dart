@@ -70,87 +70,92 @@ class _ChatbotPageState extends State<ChatbotPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(80.0),
-        child: const ChatbotPageHeader(),
-      ),
-      body: Stack(
-        children: [
-          Column(
-            children: [
-              if (_isServiceInitialized && _showInstructions)
-                Expanded(
-                  child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Text(
-                        'Type your message below to start chatting with the bot.',
-                        style:
-                            TextStyle(fontSize: 16.0, color: Colors.grey[600]),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ),
-                )
-              else
-                Expanded(
-                  child: ListView.builder(
-                    padding: const EdgeInsets.all(16.0),
-                    itemCount: _messages.length,
-                    itemBuilder: (context, index) {
-                      return ChatMessage(
-                        message: _messages[index],
-                        isUserMessage: index % 2 == 0,
-                      );
-                    },
-                  ),
-                ),
-              const Divider(height: 1.0),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                color: Theme.of(context).cardColor,
-                child: Row(
-                  children: <Widget>[
-                    Flexible(
-                      child: TextField(
-                        controller: _controller,
-                        decoration: const InputDecoration.collapsed(
-                          hintText: "Send a message",
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: Scaffold(
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(80.0),
+          child: const ChatbotPageHeader(),
+        ),
+        body: Stack(
+          children: [
+            Column(
+              children: [
+                if (_isServiceInitialized && _showInstructions)
+                  Expanded(
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Text(
+                          'Type your message below to start chatting with the bot.',
+                          style: TextStyle(
+                              fontSize: 16.0, color: Colors.grey[600]),
+                          textAlign: TextAlign.center,
                         ),
                       ),
                     ),
-                    IconButton(
-                      icon: const Icon(Icons.send),
-                      onPressed: _sendMessage,
+                  )
+                else
+                  Expanded(
+                    child: ListView.builder(
+                      padding: const EdgeInsets.all(16.0),
+                      itemCount: _messages.length,
+                      itemBuilder: (context, index) {
+                        return ChatMessage(
+                          message: _messages[index],
+                          isUserMessage: index % 2 == 0,
+                        );
+                      },
                     ),
-                  ],
-                ),
-              ),
-              if (_showNextButton)
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, "/courses/read_lesson");
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromRGBO(35, 89, 197,
-                          0.867), // Change this to your desired color
-                    ),
-                    child: const Text("Proceed to Next?"),
+                  ),
+                const Divider(height: 1.0),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  color: Theme.of(context).cardColor,
+                  child: Row(
+                    children: <Widget>[
+                      Flexible(
+                        child: TextField(
+                          controller: _controller,
+                          decoration: const InputDecoration.collapsed(
+                            hintText: "Send a message",
+                          ),
+                        ),
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.send),
+                        onPressed: _sendMessage,
+                      ),
+                    ],
                   ),
                 ),
-            ],
-          ),
-          if (!_isServiceInitialized)
-            const Center(
-              child: CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(
-                    Color.fromRGBO(35, 89, 197, 0.867)),
-              ),
+                if (_showNextButton)
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, "/courses/read_lesson");
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromRGBO(35, 89, 197,
+                            0.867), // Change this to your desired color
+                      ),
+                      child: const Text("Proceed to Next?"),
+                    ),
+                  ),
+              ],
             ),
-        ],
+            if (!_isServiceInitialized)
+              const Center(
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                      Color.fromRGBO(35, 89, 197, 0.867)),
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }
