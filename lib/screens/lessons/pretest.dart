@@ -20,6 +20,7 @@ class _PretestResultPageState extends State<PretestResultPage> {
   bool _showQuestions = false;
   bool _isLoading = true;
   List<int> _scoreArray = [];  // Array to track score
+  List<String?> _selectedChoices = []; // Array to track selected choices
 
   @override
   void initState() {
@@ -39,6 +40,7 @@ class _PretestResultPageState extends State<PretestResultPage> {
       setState(() {
         _questions = questions;
         _scoreArray = List.filled(questions.length, 0); // Initialize the score array
+        _selectedChoices = List.filled(questions.length, null); // Initialize the selected choices array
         _isLoading = false;
       });
     } catch (e) {
@@ -52,6 +54,7 @@ class _PretestResultPageState extends State<PretestResultPage> {
   void _selectChoice(String? choice) {
     setState(() {
       _selectedChoice = choice;
+      _selectedChoices[_currentQuestionIndex] = choice; // Save the selected choice
       _showNextButton = true;
     });
   }
@@ -67,8 +70,8 @@ class _PretestResultPageState extends State<PretestResultPage> {
     if (_currentQuestionIndex < lastQuestionNumber) {
       setState(() {
         _currentQuestionIndex++;
-        _selectedChoice = null;
-        _showNextButton = false;
+        _selectedChoice = _selectedChoices[_currentQuestionIndex]; // Restore the selected choice
+        _showNextButton = _selectedChoice != null;
       });
     } else {
       final bool? result = await _showExitConfirmationDialog(context,
@@ -99,8 +102,8 @@ class _PretestResultPageState extends State<PretestResultPage> {
     if (_currentQuestionIndex > 0) {
       setState(() {
         _currentQuestionIndex--;
-        _selectedChoice = null;
-        _showNextButton = false;
+        _selectedChoice = _selectedChoices[_currentQuestionIndex]; // Restore the selected choice
+        _showNextButton = _selectedChoice != null;
       });
     } else {
       final bool? result = await _showExitConfirmationDialog(context,
