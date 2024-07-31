@@ -99,7 +99,7 @@ class _VidLessonPageBodyState extends State<VidLessonPageBody> {
                     color: Colors.white70,
                     padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
                     child: const Text(
-                      "Let's explore how to visualize a fraction.",
+                      "Let's explore what algebra is.",
                       textAlign: TextAlign.left,
                       style: TextStyle(
                         fontSize: 24.0,
@@ -113,7 +113,7 @@ class _VidLessonPageBodyState extends State<VidLessonPageBody> {
                     color: Colors.white70,
                     padding: const EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 8.0),
                     child: const Text(
-                      "We can use different shapes and colors to represent the fraction.",
+                      "Algebra is a branch of mathematics that deals with symbols and the rules for manipulating those symbols. In algebra, those symbols (today written as Latin and Greek letters) represent quantities without fixed values, known as variables.",
                       textAlign: TextAlign.left,
                       style: TextStyle(
                         fontSize: 16.0,
@@ -129,49 +129,6 @@ class _VidLessonPageBodyState extends State<VidLessonPageBody> {
                   child: VideoGallery(toggleFullscreen: _toggleFullscreen),
                 ),
                 if (!_isFullscreen) ...[
-                  Container(
-                    color: Colors.white70,
-                    padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 4.0),
-                    child: Row(
-                      children: <Widget>[
-                        Container(
-                          decoration: BoxDecoration(
-                            color: const Color.fromRGBO(232, 235, 242, 0.867),
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          child: IconButton(
-                            icon: const FaIcon(FontAwesomeIcons.circleCheck, size: 16),
-                            color: const Color.fromRGBO(13, 18, 28, 0.867),
-                            onPressed: () {},
-                          ),
-                        ),
-                        const SizedBox(width: 8.0),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
-                            Text(
-                              "Fraction",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 16.0,
-                                fontFamily: "Lexend",
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(
-                              "1/2 - 1 out of 2 slices are shaded.",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 12.0,
-                                color: Color.fromRGBO(79, 102, 150, 1),
-                                fontFamily: "Lexend",
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
                   Container(
                     width: double.infinity,
                     padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
