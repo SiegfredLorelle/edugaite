@@ -116,7 +116,9 @@ class ProfilePageBody extends StatelessWidget {
               children: <Widget>[
                 Expanded(
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, "/learning_progress");
+                    },
                     style: TextButton.styleFrom(
                       backgroundColor: const Color.fromRGBO(232, 235, 242,
                           0.867), // Set your desired background color
@@ -132,7 +134,7 @@ class ProfilePageBody extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    child: const Text('Share profile'),
+                    child: const Text('Learning progress'),
                   ),
                 ),
                 const SizedBox(width: 8.0), // Add some spacing between the buttons
