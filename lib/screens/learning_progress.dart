@@ -52,8 +52,16 @@ class LearningProgressPageHeader extends StatelessWidget {
   }
 }
 
-class LearningProgressPageBody extends StatelessWidget {
+class LearningProgressPageBody extends StatefulWidget {
   const LearningProgressPageBody({super.key});
+
+  @override
+  _LearningProgressPageBodyState createState() =>
+      _LearningProgressPageBodyState();
+}
+
+class _LearningProgressPageBodyState extends State<LearningProgressPageBody> {
+  bool _showMoreOptions = false;
 
   @override
   Widget build(BuildContext context) {
@@ -115,56 +123,12 @@ class LearningProgressPageBody extends StatelessWidget {
               ],
             ),
           ),
-          Container(
-            color: Colors.white70,
-            padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
-            child: Row(
-              children: <Widget>[
-                Expanded(
-                  child: TextButton(
-                    onPressed: () {},
-                    style: TextButton.styleFrom(
-                      backgroundColor: const Color.fromRGBO(232, 235, 242, 0.867),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12.0),
-                      ),
-                      foregroundColor: const Color.fromRGBO(13, 18, 28, 0.867),
-                      textStyle: const TextStyle(
-                        fontSize: 12.0,
-                        fontFamily: "Lexend",
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    child: const Text('Share Learning Progress'),
-                  ),
-                ),
-                const SizedBox(width: 8.0), // Add some spacing between the buttons
-                Expanded(
-                  child: TextButton(
-                    onPressed: () {},
-                    style: TextButton.styleFrom(
-                      backgroundColor: const Color.fromRGBO(26, 92, 229, 0.867),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12.0),
-                      ),
-                      foregroundColor: const Color.fromRGBO(232, 235, 242, 0.867),
-                      textStyle: const TextStyle(
-                        fontSize: 12.0,
-                        fontFamily: "Lexend",
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    child: const Text('Add Note'),
-                  ),
-                ),
-              ],
-            ),
-          ),
+
           Container(
             alignment: Alignment.centerLeft,
             padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 0.0),
             child: const Text(
-              "Quick Access",
+              "Badges",
               style: TextStyle(
                 fontSize: 20.0,
                 color: Color.fromRGBO(13, 18, 28, 0.867),
@@ -202,31 +166,16 @@ class LearningProgressPageBody extends StatelessWidget {
             ),
           ),
           Container(
-            color: Colors.white70,
-            padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 4.0),
-            child: Row(
-              children: <Widget>[
-                Container(
-                  decoration: BoxDecoration(
-                    color: const Color.fromRGBO(232, 235, 242, 0.867),
-                    borderRadius: BorderRadius.circular(12.0),
-                  ),
-                  child: IconButton(
-                    icon: const FaIcon(FontAwesomeIcons.circlePlus, size: 16),
-                    color: const Color.fromRGBO(13, 18, 28, 0.867),
-                    onPressed: () {},
-                  ),
-                ),
-                const SizedBox(width: 8.0), // Add some spacing between the buttons
-                const Text(
-                  "New Course",
-                  style: TextStyle(
-                    fontSize: 16.0,
-                    color: Color.fromRGBO(13, 18, 28, 0.867),
-                    fontFamily: "Lexend",
-                  ),
-                ),
-              ],
+            alignment: Alignment.centerLeft,
+            padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 0.0),
+            child: const Text(
+              "Points",
+              style: TextStyle(
+                fontSize: 20.0,
+                color: Color.fromRGBO(13, 18, 28, 0.867),
+                fontFamily: "Lexend",
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           Container(
@@ -240,14 +189,14 @@ class LearningProgressPageBody extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12.0),
                   ),
                   child: IconButton(
-                    icon: const FaIcon(FontAwesomeIcons.userPlus, size: 16),
+                    icon: const FaIcon(FontAwesomeIcons.bookOpen, size: 16),
                     color: const Color.fromRGBO(13, 18, 28, 0.867),
                     onPressed: () {},
                   ),
                 ),
                 const SizedBox(width: 8.0), // Add some spacing between the buttons
                 const Text(
-                  "Add Track",
+                  "Math Curriculum",
                   style: TextStyle(
                     fontSize: 16.0,
                     color: Color.fromRGBO(13, 18, 28, 0.867),
@@ -257,6 +206,159 @@ class LearningProgressPageBody extends StatelessWidget {
               ],
             ),
           ),
+
+          // Levels Section
+          Container(
+            alignment: Alignment.centerLeft,
+            padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 0.0),
+            child: const Text(
+              "Levels",
+              style: TextStyle(
+                fontSize: 20.0,
+                color: Color.fromRGBO(13, 18, 28, 0.867),
+                fontFamily: "Lexend",
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          Container(
+            color: Colors.white70,
+            padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 4.0),
+            child: Row(
+              children: <Widget>[
+                Container(
+                  decoration: BoxDecoration(
+                    color: const Color.fromRGBO(232, 235, 242, 0.867),
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                  child: IconButton(
+                    icon: const FaIcon(FontAwesomeIcons.levelUpAlt, size: 16),
+                    color: const Color.fromRGBO(13, 18, 28, 0.867),
+                    onPressed: () {},
+                  ),
+                ),
+                const SizedBox(width: 8.0), // Add some spacing between the buttons
+                const Text(
+                  "Level 1",
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    color: Color.fromRGBO(13, 18, 28, 0.867),
+                    fontFamily: "Lexend",
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          // Additional Buttons Section
+          Center(
+            child: Container(
+              padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 0.0),
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    _showMoreOptions = !_showMoreOptions;
+                  });
+                },
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Text(
+                      "More Options ",
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        color: Color.fromRGBO(13, 18, 28, 0.867),
+                        fontFamily: "Lexend",
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Icon(
+                      _showMoreOptions
+                          ? FontAwesomeIcons.angleUp
+                          : FontAwesomeIcons.angleDown,
+                      color: const Color.fromRGBO(13, 18, 28, 0.867),
+                      size: 20,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Visibility(
+            visible: _showMoreOptions,
+            child: Center(
+              child: Container(
+                color: Colors.white70,
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Container(
+                      margin: const EdgeInsets.symmetric(vertical: 4.0),
+                      child: ElevatedButton.icon(
+                        icon: const FaIcon(FontAwesomeIcons.trophy, size: 16),
+                        label: const Text("Challenges"),
+                        onPressed: () {
+                          // Navigate to Challenges page
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color.fromRGBO(79, 102, 150, 1),
+                          foregroundColor: Colors.white,
+                          minimumSize: Size(double.infinity, 50), // Set the size
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.symmetric(vertical: 4.0),
+                      child: ElevatedButton.icon(
+                        icon: const FaIcon(FontAwesomeIcons.mapSigns, size: 16),
+                        label: const Text("Learning Path"),
+                        onPressed: () {
+                          // Navigate to Learning Path page
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color.fromRGBO(79, 102, 150, 1),
+                          foregroundColor: Colors.white,
+                          minimumSize: Size(double.infinity, 50), // Set the size
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.symmetric(vertical: 4.0),
+                      child: ElevatedButton.icon(
+                        icon: const FaIcon(FontAwesomeIcons.comments, size: 16),
+                        label: const Text("Feedback"),
+                        onPressed: () {
+                          // Navigate to Feedback page
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color.fromRGBO(79, 102, 150, 1),
+                          foregroundColor: Colors.white,
+                          minimumSize: Size(double.infinity, 50), // Set the size
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.symmetric(vertical: 4.0),
+                      child: ElevatedButton.icon(
+                        icon: const FaIcon(FontAwesomeIcons.users, size: 16),
+                        label: const Text("Teach Community"),
+                        onPressed: () {
+                          // Navigate to Teach Community page
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color.fromRGBO(79, 102, 150, 1),
+                          foregroundColor: Colors.white,
+                          minimumSize: Size(double.infinity, 50), // Set the size
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+
         ],
       ),
     );
