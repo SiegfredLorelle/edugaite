@@ -112,9 +112,11 @@ class PosttestResultPage extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 if (percentage >= 80) {
-                  // Navigator.pushNamed(context, '/new_level');
+                  // Update to next lvl
+                  Navigator.pushNamed(context, '/track');
                 } else {
-                  // Navigator.pushNamed(context, '/repeat_level');
+                  // lvl stays the same
+                  Navigator.pushNamed(context, '/track');
                 }
               },
               style: ElevatedButton.styleFrom(
