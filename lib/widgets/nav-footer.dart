@@ -64,7 +64,7 @@ class NavFooter extends StatelessWidget {
             ],
           ),
 
-          // // UNCOMMENT FOR EASIER  TESTING, EASIER ACCESS TO COURSES PAGE
+          // UNCOMMENT FOR EASIER  TESTING, EASIER ACCESS TO COURSES PAGE
           // Column(
           //   children: [
           //     IconButton(
