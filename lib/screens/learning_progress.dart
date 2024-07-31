@@ -216,7 +216,7 @@ class _LearningProgressPageBodyState extends State<LearningProgressPageBody> {
                 ),
                 const SizedBox(width: 8.0), // Add some spacing between the buttons
                 const Text(
-                  "Math Curriculum",
+                  "8,000 Points",
                   style: TextStyle(
                     fontSize: 16.0,
                     color: Color.fromRGBO(13, 18, 28, 0.867),
@@ -319,7 +319,7 @@ class _LearningProgressPageBodyState extends State<LearningProgressPageBody> {
                         icon: const FaIcon(FontAwesomeIcons.trophy, size: 16),
                         label: const Text("Challenges"),
                         onPressed: () {
-                          // Navigate to Challenges page
+                          Navigator.pushNamed(context, "/challenges");
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color.fromRGBO(26, 92, 229,
@@ -335,7 +335,6 @@ class _LearningProgressPageBodyState extends State<LearningProgressPageBody> {
                         icon: const FaIcon(FontAwesomeIcons.mapSigns, size: 16),
                         label: const Text("Learning Path"),
                         onPressed: () {
-                          // Navigate to Learning Path page
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color.fromRGBO(26, 92, 229,
