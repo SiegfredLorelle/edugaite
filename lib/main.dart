@@ -26,6 +26,7 @@ import 'screens/lessons/posttest-result.dart';
 
 import 'package:EduGAIte/game/bloc/navigation_bloc.dart';
 import 'package:EduGAIte/game/bloc/navigation_state.dart';
+import 'screens/feedback.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
@@ -83,7 +84,7 @@ class MyApp extends StatelessWidget {
             "/courses/read_lesson": (context) => const ReadLessonPage(),
             "/courses/posttest": (context) => const PosttestPage(),
             // "/courses/posttest-result": (context) => const PosttestResultPage(),
-            
+            "/feedback": (context) => FeedbackPage(),
           },
           title: 'EduGAIte',
           theme: ThemeData(

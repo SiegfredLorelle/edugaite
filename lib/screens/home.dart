@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../widgets/home-image-carousel.dart';
 import '../game/view/game_view.dart'; // Import the game screen
+import '../screens/feedback.dart'; // Import the feedback screen
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -110,7 +111,7 @@ class HomePageBody extends StatelessWidget {
                 TextButton(
                   onPressed: () {
                     Navigator.pushNamed(context, '/login');
-                },
+                  },
                   child: const Text('Get Started'),
                   style: TextButton.styleFrom(
                     backgroundColor: const Color.fromRGBO(26, 92, 229,
@@ -132,7 +133,7 @@ class HomePageBody extends StatelessWidget {
                 TextButton(
                   onPressed: () {
                     Navigator.pushNamed(context, '/login');
-                },
+                  },
                   child: const Text('Sign In'),
                   style: TextButton.styleFrom(
                     backgroundColor: const Color.fromRGBO(232, 235, 242,
@@ -178,6 +179,36 @@ class HomePageBody extends StatelessWidget {
                   ),
                 ),
                 child: const Text('Go to Game'),
+              ),
+            ),
+            Container(
+              color: Colors.white70,
+              padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
+              child: TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            FeedbackPage()), // Removed 'const'
+                  );
+                },
+                style: TextButton.styleFrom(
+                  backgroundColor: const Color.fromRGBO(
+                      26, 92, 229, 0.867), // Set your desired background color
+                  shape: RoundedRectangleBorder(
+                    borderRadius:
+                        BorderRadius.circular(12.0), // Customize button shape
+                  ),
+                  foregroundColor: const Color.fromRGBO(
+                      232, 235, 242, 0.867), // Set your desired color here
+                  textStyle: const TextStyle(
+                    fontSize: 12.0, // Set text size
+                    fontFamily: "Lexend",
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                child: const Text('Go to Feedback'),
               ),
             ),
             Container(
