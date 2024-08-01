@@ -115,6 +115,7 @@ class ResultPageHeader extends StatelessWidget {
       height: 60.0, // Set desired height
       color: Colors.white70,
       padding: const EdgeInsets.fromLTRB(16.0, 20.0, 16.0, 8.0),
+      margin: const EdgeInsets.fromLTRB(0, 20.0, 0, 0),
       child: Center(
         child: Text(
           'Result',

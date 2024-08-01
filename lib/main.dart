@@ -66,7 +66,7 @@ class MyApp extends StatelessWidget {
         listener: (context, state) {
           final navigator = navigatorKey.currentState!;
           if (state is CoursePageState) {
-            navigator.pushNamed('/courses');
+            navigator.pushReplacementNamed('/courses');
           }
         },
         child: MaterialApp(

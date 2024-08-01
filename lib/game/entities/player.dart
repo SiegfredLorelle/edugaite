@@ -295,5 +295,6 @@ class Player extends JumperCharacter<EdugaiteGame> {
 
   void _navigateToCoursePage() {
     navigationBloc.add(NavigateToCoursePage());
+
   }
 }
