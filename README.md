@@ -26,9 +26,6 @@ samples, guidance on mobile development, and a full API reference.
   - Backend ng account info
 - Backend ng courses/quizzes/etc
 - AI API
-- Game
-  - baguhin asset ng obstacle, related sa arithmetic??
-  - connect level db galing sa firebase
 - Gawing link ung title na EduGAIte
 - On App Start, check if logged in already
 - VARK
@@ -49,3 +46,7 @@ samples, guidance on mobile development, and a full API reference.
 - randomize question/choices in pretest/postest?
 - fix on device backbutton on pretest/postest
 - add loading spinner for pretest/postest
+- Profile
+  - new course -> advance courses like (Data Science, Advanced Algebra)
+  - add track -> certification na role?? certified mathematician, data scientist etc.
+  - gawin icons lalabas after click ng new course at add track
