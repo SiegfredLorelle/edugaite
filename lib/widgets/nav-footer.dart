@@ -28,7 +28,7 @@ class NavFooter extends StatelessWidget {
                 color: const Color.fromRGBO(13, 18, 28, 0.867),
                 onPressed: () {
                   if (ModalRoute.of(context)?.settings.name != '/profile') {
-                    Navigator.pushNamed(context, '/profile');
+                    Navigator.pushReplacementNamed(context, '/profile');
                   }
                 },
               ),
@@ -49,7 +49,7 @@ class NavFooter extends StatelessWidget {
                 color: const Color.fromRGBO(13, 18, 28, 0.867),
                 onPressed: () {
                   if (ModalRoute.of(context)?.settings.name != '/track') {
-                    Navigator.pushNamed(context, '/track');
+                    Navigator.pushReplacementNamed(context, '/track');
                   }
                 },
               ),
