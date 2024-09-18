@@ -73,24 +73,26 @@ class MyApp extends StatelessWidget {
           navigatorKey: navigatorKey,
           initialRoute: "/",
           routes: {
+            // Auth
             "/": (context) => const HomePage(),
-            "/learning_progress": (context) => const LearningProgressPage(),
-            "/learning_path": (context) => const LearningPathPage(),
-            "/challenges": (context) => const ChallengesPage(),
             "/login": (context) => const LoginPage(),
             "/signup": (context) => const SignUpPage(),
-            "/game": (context) => const GameScreen(),
+
+            // Main
             "/profile": (context) => const ProfilePage(),
             "/track": (context) => const TrackPage(),
+            
+            "/learning_path": (context) => const LearningPathPage(),
+            "/learning_progress": (context) => const LearningProgressPage(),
+            "/challenges": (context) => const ChallengesPage(),
+            "/game": (context) => const GameScreen(),
             "/courses": (context) => const CoursesPage(),
             "/courses/pretest": (context) => const PretestResultPage(),
-            // "/courses/pretest-result": (context) => const PretestResultPage(),
             "/courses/vid_lesson": (context) => const VidLessonPage(),
             "/courses/chat_lesson": (context) => const ChatLessonPage(),
             "/courses/chatbot": (context) => const ChatbotPage(),
             "/courses/read_lesson": (context) => const ReadLessonPage(),
             "/courses/posttest": (context) => const PosttestPage(),
-            // "/courses/posttest-result": (context) => const PosttestResultPage(),
             "/feedback": (context) => FeedbackPage(),
             "/community": (context) =>
                 CommunityPage(), // Add the community page route
