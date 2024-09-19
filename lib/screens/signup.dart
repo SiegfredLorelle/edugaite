@@ -41,7 +41,7 @@ class _SignUpPageState extends State<SignUpPage> {
             ),
           ),
         );
-        Navigator.pushNamed(context, '/login'); 
+        Navigator.pushReplacementNamed(context, '/login'); 
       } on FirebaseAuthException catch (e) {
         String message;
         switch (e.code) {
@@ -268,7 +268,7 @@ class _SignUpPageState extends State<SignUpPage> {
           ),
           InkWell(
             onTap: () {
-              Navigator.pushNamed(context, '/login');
+              Navigator.pushReplacementNamed(context, '/login');
             },
             child: Container(
               color: Colors.white70,
