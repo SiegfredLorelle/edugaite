@@ -41,7 +41,7 @@ class _LoginPageState extends State<LoginPage> {
           ),
         );
         // Navigate to the home page or another page on successful login
-        Navigator.pushNamed(context, '/profile');
+        Navigator.pushReplacementNamed(context, '/profile');
         
       } on FirebaseAuthException catch (e) {
         String message;
@@ -255,7 +255,7 @@ class _LoginPageState extends State<LoginPage> {
           ),
           InkWell(
             onTap: () {
-              Navigator.pushNamed(context, '/signup');
+              Navigator.pushReplacementNamed(context, '/signup');
 
             },
             child: Container(
